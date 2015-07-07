@@ -19,6 +19,7 @@
 #include "LayoutManager.h"
 #include "KeyboardManager.h"
 #include "GuiManager.h"
+#include "CostumeManager.h"
 
 //========================== class AppManager ==============================
 //============================================================================
@@ -62,6 +63,9 @@ public:
     
     //! Returns the GUI manager
     GuiManager&   getGuiManager() { return m_guiManager; }
+    
+    //! Returns the Costume manager
+    CostumeManager&   getCostumeManager() { return m_costumeManager; }
 
     
     //==========================================================================
@@ -103,6 +107,7 @@ private:
     LayoutManager            m_layoutManager;            ///< Manages the layout
     KeyboardManager          m_keyboardManager;          ///< Manages the keyboard
     GuiManager               m_guiManager;               ///< Manages the graphical user interface
+    CostumeManager           m_costumeManager;           ///< Manages the costume visuals
 
     bool                     m_debugMode;
 };

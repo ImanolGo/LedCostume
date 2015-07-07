@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D4826A68-644C-4CEC-9E75-9AF516D1825A</string>
+	<string>03E5E473-FF58-4E88-9624-7E85BE30ADCE</string>
 	<key>IDESourceControlProjectName</key>
 	<string>LedCostume</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>053EFDB5D06E7682CDA6DF51359BD2A6455714ED</key>
-		<string>https://github.com/ImanolGo/HaloLight.git</string>
+		<key>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</key>
+		<string>https://github.com/ImanolGo/LedCostume.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>LedCostume.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>053EFDB5D06E7682CDA6DF51359BD2A6455714ED</key>
+		<key>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/ImanolGo/HaloLight.git</string>
+	<string>https://github.com/ImanolGo/LedCostume.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>053EFDB5D06E7682CDA6DF51359BD2A6455714ED</string>
+	<string>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>053EFDB5D06E7682CDA6DF51359BD2A6455714ED</string>
+			<string>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LedCostume</string>
 		</dict>

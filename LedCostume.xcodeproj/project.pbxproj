@@ -12,6 +12,7 @@
 		08AE04751B4E623C007B55CE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04711B4E623C007B55CE /* README.md */; };
 		08AE04761B4E623C007B55CE /* ofxScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04731B4E623C007B55CE /* ofxScrollView.cpp */; };
 		08AE04791B4E6EA0007B55CE /* LedsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04771B4E6EA0007B55CE /* LedsManager.cpp */; };
+		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
 		10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1CE60B1AC164DA8880771 /* ofxGuiGroup.cpp */; };
 		19D0A302C3A681F97EEAE033 /* ftDrawForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CF05B308B6DFDCF026864B2 /* ftDrawForce.cpp */; };
 		1AF15FCF93D2DDD6D4285C8E /* AppManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5056FC61E30B9810903B814D /* AppManager.cpp */; };
@@ -119,6 +120,8 @@
 		08AE04741B4E623C007B55CE /* ofxScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxScrollView.h; sourceTree = "<group>"; };
 		08AE04771B4E6EA0007B55CE /* LedsManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LedsManager.cpp; path = Costume/LedsManager.cpp; sourceTree = "<group>"; };
 		08AE04781B4E6EA0007B55CE /* LedsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LedsManager.h; path = Costume/LedsManager.h; sourceTree = "<group>"; };
+		08AE047A1B4E7708007B55CE /* Led.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Led.cpp; path = Costume/Led.cpp; sourceTree = "<group>"; };
+		08AE047B1B4E7708007B55CE /* Led.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Led.h; path = Costume/Led.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
 		09F8F2DF1D53E65319F30B96 /* LightManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LightManager.cpp; path = src/Engine/3D/LightManager.cpp; sourceTree = SOURCE_ROOT; };
 		0ACA94EAF2C7DCA9EE906D69 /* svgtiny_internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = svgtiny_internal.h; path = src/Addons/ofxSvg/libs/svgTiny/src/svgtiny_internal.h; sourceTree = SOURCE_ROOT; };
@@ -743,6 +746,8 @@
 		CE75F045B397535276B2B3BE /* Costume */ = {
 			isa = PBXGroup;
 			children = (
+				08AE047A1B4E7708007B55CE /* Led.cpp */,
+				08AE047B1B4E7708007B55CE /* Led.h */,
 				08AE04771B4E6EA0007B55CE /* LedsManager.cpp */,
 				08AE04781B4E6EA0007B55CE /* LedsManager.h */,
 				6CEC2E22294E0E49D9755DFA /* CostumeManager.cpp */,
@@ -969,6 +974,7 @@
 				B7993B374B98F50CBD9EC220 /* README.md in Sources */,
 				20DD9BBB631FBC0CDCCFA6B6 /* ofTextConverter.cpp in Sources */,
 				7E78555D595408C86F902937 /* ofUnicode.cpp in Sources */,
+				08AE047C1B4E7708007B55CE /* Led.cpp in Sources */,
 				EC108074DB75C3CD93A7DADF /* ofUTF8.cpp in Sources */,
 				FD64AAF18A0DB2DE4406D915 /* CostumeManager.cpp in Sources */,
 				48F94177806B5CB8D3C0F283 /* CameraAnimations.cpp in Sources */,

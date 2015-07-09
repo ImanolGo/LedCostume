@@ -10,6 +10,7 @@
 #pragma once
 
 #include "Manager.h"
+#include "Led.h"
 
 //========================== class LedsManager ==============================
 //============================================================================
@@ -22,7 +23,7 @@
 class LedsManager: public Manager
 {
 
-    static const int NUM_HALO_LEDS;
+    static const string LEDS_LIST_PATH;
     
     public:
 
@@ -40,6 +41,22 @@ class LedsManager: public Manager
     
         //! Draw the Halo Manager
         void draw();
+    
+    private:
+    
+        void readLedsPosition();
+    
+        bool parseLedLine(string& line, ofPoint& position);
+    
+        void removeCharsFromString( string &str, char* charsToRemove );
+    
+        void createLed(const ofPoint& position, int id, int channel);
+    
+    private:
+    
+        typedef vector< ofPtr<Led> > LedVector;
+    
+        LedVector m_leds;
     
 };
 

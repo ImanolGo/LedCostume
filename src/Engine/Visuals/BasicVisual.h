@@ -25,6 +25,10 @@ class BasicVisual
     
         //! Constructor
         BasicVisual(const ofVec3f& pos, float width, float height): m_position(pos), m_width(width), m_height(height), m_scale(ofVec3f(1,1,1)) {}
+    
+        //! Constructor
+        BasicVisual(const BasicVisual& visual): m_position(visual.getPosition()), m_width(visual.getWidth()), m_height(visual.getHeight()),
+                                                m_scale(visual.getScale()),m_rotation(visual.getRotation()),m_color(visual.getColor()) {}
 
         //! Destructor
         virtual ~BasicVisual(){}
@@ -42,7 +46,7 @@ class BasicVisual
         virtual void setColor(const ofColor& color) {m_color = color;}
 
         //! Gets the color of the BasicVisual
-        virtual const ofColor& getColor() {return m_color;}
+        virtual const ofColor& getColor() const {return m_color;}
 
         //! Gets the position of the BasicVisual
         virtual const ofPoint& getPosition() const{ return m_position;}

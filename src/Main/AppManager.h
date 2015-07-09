@@ -20,6 +20,7 @@
 #include "KeyboardManager.h"
 #include "GuiManager.h"
 #include "CostumeManager.h"
+#include "LedsManager.h"
 
 //========================== class AppManager ==============================
 //============================================================================
@@ -66,6 +67,9 @@ public:
     
     //! Returns the Costume manager
     CostumeManager&   getCostumeManager() { return m_costumeManager; }
+    
+    //! Returns the LEDs manager
+    LedsManager&   getLedsManager() { return m_ledsManager; }
 
     
     //==========================================================================
@@ -108,6 +112,7 @@ private:
     KeyboardManager          m_keyboardManager;          ///< Manages the keyboard
     GuiManager               m_guiManager;               ///< Manages the graphical user interface
     CostumeManager           m_costumeManager;           ///< Manages the costume visuals
+    LedsManager              m_ledsManager;              ///< Manages the costume leds
 
     bool                     m_debugMode;
 };

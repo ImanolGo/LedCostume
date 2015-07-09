@@ -69,6 +69,7 @@ void AppManager::setupManagers()
     m_visualEffectsManager.setup();
     m_layoutManager.setup();
     m_keyboardManager.setup();
+    m_ledsManager.setup();
     m_costumeManager.setup();
     m_guiManager.setup();
 
@@ -78,6 +79,7 @@ void AppManager::update()
 {
     m_visualEffectsManager.update();
     m_viewManager.update();
+    m_ledsManager.update();
     m_costumeManager.update();
 }
 
@@ -85,6 +87,7 @@ void AppManager::update()
 void AppManager::draw()
 {
     m_viewManager.draw();
+    m_ledsManager.draw();
     m_costumeManager.draw();
     m_guiManager.draw();
     

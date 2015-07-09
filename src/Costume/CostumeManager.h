@@ -11,6 +11,8 @@
 
 #include "Manager.h"
 #include "ImageVisual.h"
+#include "SvgVisual.h"
+#include "ofxScrollView.h"
 
 //========================== class CostumeManager ==============================
 //============================================================================
@@ -47,8 +49,13 @@ class CostumeManager: public Manager
     
         void setupImages();
     
+        void setupScrollView();
+    
     
     ofPtr<ImageVisual>  m_costumeImage;
+    ofPtr<SvgVisual>    m_costumeSvgImage;
+    
+    ofxScrollView       m_scrollView;
 };
 
 

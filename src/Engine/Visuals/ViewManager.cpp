@@ -35,7 +35,7 @@ void ViewManager::setup()
     Manager::setup();
 
     //this->setupGL();
-    //this->setup3D();
+    this->setup3D();
     this->setupTextVisuals();
 
     ofLogNotice() << "ViewManager::initialized ";
@@ -118,6 +118,7 @@ void ViewManager::drawBackround()
 void ViewManager::drawVisuals()
 {
     ofEnableAlphaBlending();
+    ofEnableLighting();
     
     m_cam.begin();
     m_light.enable();
@@ -136,6 +137,7 @@ void ViewManager::drawVisuals()
     m_light.disable();
     m_cam.end();
     ofDisableAlphaBlending();
+    ofDisableLighting();
 }
 
 void ViewManager::drawOverlays()

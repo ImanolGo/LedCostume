@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0466B9E6A55078A9F39B1B4B /* svgtiny_gradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD4F639B12AA5C1013177E49 /* svgtiny_gradient.cpp */; };
 		04DF616AA21AD331DF08C325 /* ftParticleFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D9822CFA7F77387B3BBDBC /* ftParticleFlow.cpp */; };
+		08AE04751B4E623C007B55CE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04711B4E623C007B55CE /* README.md */; };
+		08AE04761B4E623C007B55CE /* ofxScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04731B4E623C007B55CE /* ofxScrollView.cpp */; };
 		10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1CE60B1AC164DA8880771 /* ofxGuiGroup.cpp */; };
 		19D0A302C3A681F97EEAE033 /* ftDrawForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CF05B308B6DFDCF026864B2 /* ftDrawForce.cpp */; };
 		1AF15FCF93D2DDD6D4285C8E /* AppManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5056FC61E30B9810903B814D /* AppManager.cpp */; };
@@ -111,6 +113,9 @@
 		05F8E3C8BC749A2D7EFC7E4D /* ftTemperatureFieldShader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftTemperatureFieldShader.h; path = src/Addons/ofxFlowTools/src/visualisation/ftTemperatureFieldShader.h; sourceTree = SOURCE_ROOT; };
 		067A0CB3F8E32F33532D73DE /* ofxGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGui.h; path = src/Addons/ofxGui/src/ofxGui.h; sourceTree = SOURCE_ROOT; };
 		074978820820325AB8737225 /* README.md */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = README.md; path = src/Addons/ofxUnicode/README.md; sourceTree = SOURCE_ROOT; };
+		08AE04711B4E623C007B55CE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		08AE04731B4E623C007B55CE /* ofxScrollView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxScrollView.cpp; sourceTree = "<group>"; };
+		08AE04741B4E623C007B55CE /* ofxScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxScrollView.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
 		09F8F2DF1D53E65319F30B96 /* LightManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LightManager.cpp; path = src/Engine/3D/LightManager.cpp; sourceTree = SOURCE_ROOT; };
 		0ACA94EAF2C7DCA9EE906D69 /* svgtiny_internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = svgtiny_internal.h; path = src/Addons/ofxSvg/libs/svgTiny/src/svgtiny_internal.h; sourceTree = SOURCE_ROOT; };
@@ -292,6 +297,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08AE046F1B4E623C007B55CE /* ofxScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				08AE04711B4E623C007B55CE /* README.md */,
+				08AE04721B4E623C007B55CE /* src */,
+			);
+			name = ofxScrollView;
+			path = Addons/ofxScrollView;
+			sourceTree = "<group>";
+		};
+		08AE04721B4E623C007B55CE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				08AE04731B4E623C007B55CE /* ofxScrollView.cpp */,
+				08AE04741B4E623C007B55CE /* ofxScrollView.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		0FF7CAEDFA036750CEB39296 /* visualisation */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +640,7 @@
 		AD642137CCDF61FB3E6CCEA2 /* Addons */ = {
 			isa = PBXGroup;
 			children = (
+				08AE046F1B4E623C007B55CE /* ofxScrollView */,
 				EE04855B1D171F0ADC55D799 /* ofxFastFboReader */,
 				810FC8833FA2B9CF6358B009 /* ofxFlowTools */,
 				58C8D76E83509B9D19DA59D2 /* ofxGui */,
@@ -922,10 +947,12 @@
 				9A15495FA2EE8F23378413B2 /* ofxBaseGui.cpp in Sources */,
 				1E777E277DAB367779E7E89A /* ofxButton.cpp in Sources */,
 				10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */,
+				08AE04751B4E623C007B55CE /* README.md in Sources */,
 				4D8AD4DF379BCF35DCB7A000 /* ofxLabel.cpp in Sources */,
 				ACE00783B5CCD633D94EDDEF /* ofxPanel.cpp in Sources */,
 				5367CE7A2C5BCF846D28D246 /* ofxSlider.cpp in Sources */,
 				469ACA6CB6A2A17D8076D840 /* ofxSliderGroup.cpp in Sources */,
+				08AE04761B4E623C007B55CE /* ofxScrollView.cpp in Sources */,
 				EF28B4E47642F5ABD48095BA /* ofxToggle.cpp in Sources */,
 				9D3E5A7C189607A50D28E499 /* src_colors.cpp in Sources */,
 				A417B50DA594FBD304CFF2CA /* svgtiny.cpp in Sources */,

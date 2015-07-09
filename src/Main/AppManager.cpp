@@ -51,12 +51,12 @@ void AppManager::setup()
 void AppManager::setupOF()
 {
    ofSetVerticalSync(true);
-   ofDisableAlphaBlending();
-   ofDisableSmoothing();
-   ofDisableDepthTest();
-   ofDisableLighting();
-   ofDisableBlendMode();
-   ofDisableAntiAliasing();
+   //ofDisableAlphaBlending();
+   //ofDisableSmoothing();
+   //ofDisableDepthTest();
+   //ofDisableLighting();
+   //ofDisableBlendMode();
+   //ofDisableAntiAliasing();
    ofShowCursor();
 }
 

@@ -14,6 +14,12 @@
 	
   </textures>
 
+  <svgs>
+  
+    <svg name="LedCostumes" path="images/costume/Anya_and_Jonathan_Costumes.svg"/>
+  
+  </svgs>
+
   <colors>
 
 	<color name="CenterBackgroundColor" r="85" g="78" b="68" a="255"/>

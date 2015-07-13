@@ -40,6 +40,7 @@ void CostumeManager::setup()
     
 }
 
+
 void CostumeManager::setupImages()
 {
     string resourceName = "LedCostumes";
@@ -55,6 +56,7 @@ void CostumeManager::setupImages()
     //m_costumeSvgImage->setHeight(1700,true);
 }
 
+
 void CostumeManager::setupScrollView()
 {
     ofRectangle contentRect;
@@ -62,7 +64,7 @@ void CostumeManager::setupScrollView()
     contentRect.height = m_costumeImage->getOriginalHeight();
     
     ofRectangle windowRect;
-    windowRect.width = ofGetWidth();
+    windowRect.width = ofGetWidth() - GuiManager::GUI_WIDTH - 80;
     windowRect.height =  ofGetHeight();
     
     //----------------------------------------------------------
@@ -90,7 +92,6 @@ void CostumeManager::update()
 }
 
 
-
 void CostumeManager::draw()
 {
     m_scrollView.begin();
@@ -104,6 +105,7 @@ void CostumeManager::draw()
 
 void CostumeManager::drawCostumeLeds()
 {
+    
     auto leds = AppManager::getInstance().getLedsManager().getLeds();
     for (auto led : leds) {
         auto pos = led->getPosition();
@@ -113,7 +115,7 @@ void CostumeManager::drawCostumeLeds()
             led->draw();
         ofPopMatrix();
     }
-  
+    
 }
 
 

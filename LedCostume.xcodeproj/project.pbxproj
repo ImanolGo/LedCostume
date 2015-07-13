@@ -14,8 +14,6 @@
 		08AE04791B4E6EA0007B55CE /* LedsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04771B4E6EA0007B55CE /* LedsManager.cpp */; };
 		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
 		08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */; };
-		08E318051B53D78A003B99B3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08E318011B53D78A003B99B3 /* README.md */; };
-		08E318061B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E318031B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
 		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
@@ -137,12 +135,6 @@
 		08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseManager.cpp; sourceTree = "<group>"; };
 		08B1BF281B4FC606003C7BB3 /* NoiseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseManager.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
-		08E317FE1B53D78A003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		08E317FF1B53D78A003B99B3 /* noiseimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noiseimage.jpg; sourceTree = "<group>"; };
-		08E318001B53D78A003B99B3 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
-		08E318011B53D78A003B99B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		08E318031B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGLSLSimplexNoise.cpp; sourceTree = "<group>"; };
-		08E318041B53D78A003B99B3 /* ofxGLSLSimplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGLSLSimplexNoise.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
@@ -374,28 +366,6 @@
 				08B1BF281B4FC606003C7BB3 /* NoiseManager.h */,
 			);
 			path = Visuals;
-			sourceTree = "<group>";
-		};
-		08E317FD1B53D78A003B99B3 /* ofxGLSLSimplexNoise */ = {
-			isa = PBXGroup;
-			children = (
-				08E317FE1B53D78A003B99B3 /* .gitignore */,
-				08E317FF1B53D78A003B99B3 /* noiseimage.jpg */,
-				08E318001B53D78A003B99B3 /* ofxaddons_thumbnail.png */,
-				08E318011B53D78A003B99B3 /* README.md */,
-				08E318021B53D78A003B99B3 /* src */,
-			);
-			name = ofxGLSLSimplexNoise;
-			path = Addons/ofxGLSLSimplexNoise;
-			sourceTree = "<group>";
-		};
-		08E318021B53D78A003B99B3 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				08E318031B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp */,
-				08E318041B53D78A003B99B3 /* ofxGLSLSimplexNoise.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		08E318071B53D84B003B99B3 /* ofxFft */ = {
@@ -819,7 +789,6 @@
 			isa = PBXGroup;
 			children = (
 				08E318071B53D84B003B99B3 /* ofxFft */,
-				08E317FD1B53D78A003B99B3 /* ofxGLSLSimplexNoise */,
 				08AE046F1B4E623C007B55CE /* ofxScrollView */,
 				EE04855B1D171F0ADC55D799 /* ofxFastFboReader */,
 				810FC8833FA2B9CF6358B009 /* ofxFlowTools */,
@@ -1127,7 +1096,6 @@
 				19D0A302C3A681F97EEAE033 /* ftDrawForce.cpp in Sources */,
 				6960C2659A81B7936347DA8D /* ftFluidSimulation.cpp in Sources */,
 				3E08E879CDB133B2B1D5F23B /* ftVelocityMask.cpp in Sources */,
-				08E318061B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp in Sources */,
 				5A7307C2BBC29E51B588C902 /* ftOpticalFlow.cpp in Sources */,
 				04DF616AA21AD331DF08C325 /* ftParticleFlow.cpp in Sources */,
 				08E3182C1B53D84C003B99B3 /* ofxEasyFft.cpp in Sources */,
@@ -1170,7 +1138,6 @@
 				FDBF3E3276ACAF0114532C4B /* KeyboardManager.cpp in Sources */,
 				3A6C7D72771284673CBE247D /* ImageVisual.cpp in Sources */,
 				F7EA3801298F5E54967C119B /* ImageVisual3D.cpp in Sources */,
-				08E318051B53D78A003B99B3 /* README.md in Sources */,
 				8BC3D4AABDF5E655706BA3B8 /* SvgVisual.cpp in Sources */,
 				DB05E98D002D6650AA23E87B /* TextVisual.cpp in Sources */,
 				9D9E0E996DA1B9AC9952C889 /* ViewManager.cpp in Sources */,

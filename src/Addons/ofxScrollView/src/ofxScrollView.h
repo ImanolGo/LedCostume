@@ -42,6 +42,7 @@ public:
     void setDoubleTapRegistrationDistanceInPixels(float value);
 
     virtual void setup();
+    
     virtual void reset();
     
     void setWindowRect(const ofRectangle & rect);

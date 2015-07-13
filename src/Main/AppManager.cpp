@@ -88,9 +88,10 @@ void AppManager::update()
 
 void AppManager::draw()
 {
+    ofBackgroundGradient( ofColor(55), ofColor(0), OF_GRADIENT_CIRCULAR );
     m_viewManager.draw();
-    m_noiseManager.draw();
     m_costumeManager.draw();
+    m_noiseManager.draw();
     m_guiManager.draw();
     
 }

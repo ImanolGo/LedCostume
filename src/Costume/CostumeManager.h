@@ -48,9 +48,12 @@ class CostumeManager: public Manager
     
         float getHeight() const {return m_costumeImage->getOriginalHeight();}
     
+    
     private:
     
         void setupImages();
+    
+        void setupBlur();
     
         void setupScrollView();
     
@@ -61,7 +64,7 @@ class CostumeManager: public Manager
         ofPtr<SvgVisual>    m_costumeSvgImage;
     
         ofxScrollView       m_scrollView;
-    
+       
 };
 
 

@@ -1,12 +1,12 @@
 #include "ofMain.h"
-#include "ofAppGlutWindow.h"
+#include "ofAppGlfwWindow.h"
 #include "LedCostumeApp.h"
 
 
 //========================================================================
 int main( ){
 
-    ofAppGlutWindow window;
+    ofAppGLFWWindow window;
     ofSetupOpenGL(&window,1280, 1024, OF_WINDOW);
     ofRunApp( new LedCostumeApp());
 

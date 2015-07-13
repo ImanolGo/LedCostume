@@ -64,9 +64,12 @@ private:
     
     
     ofParameterGroup    m_parametersNoise;
-    ofParameter<float>	m_noiseFrequency;
-    ofParameter<float>	m_noiseSpeed;
-    ofParameter<float>	m_inputLevel;
+    
+    ofParameter<int>      m_noiseResolution;
+    ofParameter<float>    m_noiseFrequency;
+    ofParameter<float>    m_noiseSpeed;
+    ofParameter<int>      m_noiseHue;
+    ofParameter<int>      m_noiseBrightness;
     
     bool        m_showGui;  //It defines the whether the gui should be shown or not
 };

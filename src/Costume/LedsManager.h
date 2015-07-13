@@ -50,6 +50,8 @@ class LedsManager: public Manager
     
         void setupLeds();
     
+        void updateLeds();
+    
         void readLedsPosition();
     
         void normalizeLeds();

@@ -158,7 +158,27 @@ void LedsManager::removeCharsFromString( string &str, char* charsToRemove ) {
 
 void LedsManager::update()
 {
-    //
+    this->updateLeds();
+}
+
+void LedsManager::updateLeds()
+{
+    ofPixels pixels;
+    //pixels.clear();
+    
+    pixels = AppManager::getInstance().getNoiseManager().getPixels();
+    
+    for (auto led : m_leds) {
+        ofPoint pos = led->getPosition();
+        pos.x *= AppManager::getInstance().getNoiseManager().getWidth();
+        pos.y *= AppManager::getInstance().getNoiseManager().getHeight();
+        
+        ofColor color = pixels.getColor(pos.x, pos.y);
+        
+        led->setColor(color);
+    }
+    
+    
 }
 
 

@@ -34,7 +34,7 @@ class BasicVisual
         virtual ~BasicVisual(){}
 
         //! Draws the BasicVisual
-        virtual void draw(){}
+        virtual void draw() {}
 
         //! Changes the alpha channel.
         virtual void setAlpha(double alpha) { m_color.set(m_color.r,m_color.g,m_color.b,alpha);}

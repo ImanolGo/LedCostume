@@ -93,7 +93,7 @@ void ViewManager::update()
 
 void ViewManager::draw()
 {
-    this->drawBackround();
+    //this->drawBackround();
     this->drawOverlays();
     this->drawVisuals();
 	

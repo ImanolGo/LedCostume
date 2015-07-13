@@ -10,8 +10,6 @@
 #pragma once
 
 #include "ofxFastFboReader.h"
-#include "ofxGLSLSimplexNoise.h"
-#include "ofxProcessFFT.h"
 #include "Manager.h"
 
 
@@ -43,45 +41,55 @@ class NoiseManager: public Manager
         //! Draw the Halo Manager
         void draw();
     
-        bool readToPixels(ofPixelsRef pix) {return m_fboReader.readToPixels(m_fbo, pix);}
+        //bool readToPixels(ofPixelsRef pix) {return m_fboReader.readToPixels(m_fbo, pix);}
+    
+        void readToPixels(ofPixelsRef pix) {pix = m_noiseImage.getPixelsRef();}
 
+        ofPixelsRef getPixels() {return m_noiseImage.getPixelsRef();}
     
-        float getWidth() const {return m_width;}
+        float getWidth()  {return m_noiseImage.getWidth();}
     
-        float getHeight() const {return m_height;}
+        float getHeight()  {return m_noiseImage.getHeight();}
     
         void onNoiseFrequencyChange(float& value) {m_noiseFrequency = value;}
     
         void onNoiseSpeedChange(float& value) {m_noiseSpeed = value;}
     
-        void onInputLevelChange(float& value) {m_level = value;}
+        void onNoiseHueChange(int& value) {m_hue = value;}
     
+        void onNoiseBrightnessChange(int& value) {m_brightness = ofMap(value, 0, 255, 0, 1);}
+    
+        void onNoiseResolutionChange(int& value);
+
     
     private:
+    
+        void setupBoundingBox();
     
         void setupFbo();
     
         void setupNoise();
     
-        void setupFft();
-    
         void updateNoise();
+    
+        void drawRectangle();
     
     
     private:
   
         ofFbo               m_fbo;
         ofxFastFboReader    m_fboReader;
-        ProcessFFT          m_fft;
-        ofxGLSLSimplexNoise m_noise;
+
+        ofRectangle         m_boundingBox;
     
+        float       m_noiseFrequency;
+        float       m_noiseSpeed;
+        int         m_noiseResolution;
     
-        float m_width;
-        float m_height;
+        int         m_hue;
+        float         m_brightness;
     
-        float   m_noiseFrequency;
-        float   m_noiseSpeed;
-        float   m_level;
+        ofImage m_noiseImage;
 };
 
 

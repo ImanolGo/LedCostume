@@ -51,7 +51,7 @@ void GuiManager::setupGuiParameters()
 {
     m_gui.setDefaultWidth(GUI_WIDTH);
     m_gui.setup(GUI_SETTINGS_NAME, GUI_SETTINGS_FILE_NAME);
-    m_gui.setPosition(ofGetWidth() + 150, 40);
+    m_gui.setPosition(ofGetWidth() - GUI_WIDTH - 40, 40);
     //m_gui.setPosition(20, 20);
     m_gui.add(m_guiFPS.set("FPS", 0, 0, 60));
     ofxGuiSetFont( "fonts/open-sans/OpenSans-Semibold.ttf", 9 );
@@ -63,18 +63,28 @@ void GuiManager::setupNoiseGui()
     auto noiseManager = &AppManager::getInstance().getNoiseManager();
     
     m_parametersNoise.setName("Noise");
+
+    m_noiseResolution.set("Noise Resolution",  64, 2, 256 );
+    m_noiseResolution.addListener(noiseManager, &NoiseManager::onNoiseResolutionChange);
+    m_parametersNoise.add(m_noiseResolution);
+    
+    m_noiseHue.set("Noise Hue",  0, 0, 255);
+    m_noiseHue.addListener(noiseManager, &NoiseManager::onNoiseHueChange);
+    m_parametersNoise.add(m_noiseHue);
+    
+    m_noiseBrightness.set("Noise Brightness",  0, 0, 255);
+    m_noiseBrightness.addListener(noiseManager, &NoiseManager::onNoiseBrightnessChange);
+    m_parametersNoise.add(m_noiseBrightness);
+
     
     m_noiseFrequency.set("Noise Frequency",  0.4, 0.0, 4.0);
     m_noiseFrequency.addListener(noiseManager, &NoiseManager::onNoiseFrequencyChange);
     m_parametersNoise.add(m_noiseFrequency);
     
-    m_noiseSpeed.set("Noise Speed",  1.0, 0.0, 10.0);
+    m_noiseSpeed.set("Noise Speed",  1.0, 0.001, 3);
     m_noiseSpeed.addListener(noiseManager, &NoiseManager::onNoiseSpeedChange);
     m_parametersNoise.add(m_noiseSpeed);
-    
-    m_inputLevel.set("Input Level", 1.0,  0.0,  20.0);
-    m_inputLevel.addListener(noiseManager, &NoiseManager::onInputLevelChange);
-    m_parametersNoise.add(m_inputLevel);
+
     
     m_gui.add(m_parametersNoise);
 }

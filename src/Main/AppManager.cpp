@@ -45,7 +45,7 @@ void AppManager::setup()
     this->setupOF();
 	this->setupManagers();
     
-    setDebugMode(m_debugMode);
+    //setDebugMode(m_debugMode);
 }
 
 void AppManager::setupOF()
@@ -69,8 +69,9 @@ void AppManager::setupManagers()
     m_visualEffectsManager.setup();
     m_layoutManager.setup();
     m_keyboardManager.setup();
-    m_ledsManager.setup();
     m_costumeManager.setup();
+    m_ledsManager.setup();
+    m_noiseManager.setup();
     m_guiManager.setup();
 
 }
@@ -79,6 +80,7 @@ void AppManager::update()
 {
     m_visualEffectsManager.update();
     m_viewManager.update();
+    m_noiseManager.update();
     m_ledsManager.update();
     m_costumeManager.update();
 }
@@ -87,7 +89,7 @@ void AppManager::update()
 void AppManager::draw()
 {
     m_viewManager.draw();
-    m_ledsManager.draw();
+    m_noiseManager.draw();
     m_costumeManager.draw();
     m_guiManager.draw();
     

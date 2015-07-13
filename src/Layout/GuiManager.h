@@ -20,6 +20,8 @@
 
 class GuiManager: public Manager
 {
+    static const string GUI_SETTINGS_FILE_NAME;
+    static const string GUI_SETTINGS_NAME;
     
 public:
 
@@ -43,13 +45,29 @@ public:
     
     void showGui(bool show){m_showGui=show;}
     
+private:
+    
+    void setupGuiParameters();
+    
+    void setupNoiseGui();
+
+public:
+    
+     static const int GUI_WIDTH;
 
 private:
     
     // Fluid GUI
-    ofxPanel			gui;
+    ofxPanel			m_gui;
     
-    ofParameter<float>	guiFPS;
+    ofParameter<float>	m_guiFPS;
+    
+    
+    ofParameterGroup    m_parametersNoise;
+    ofParameter<float>	m_noiseFrequency;
+    ofParameter<float>	m_noiseSpeed;
+    ofParameter<float>	m_inputLevel;
+    
     bool        m_showGui;  //It defines the whether the gui should be shown or not
 };
 

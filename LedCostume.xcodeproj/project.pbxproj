@@ -13,6 +13,18 @@
 		08AE04761B4E623C007B55CE /* ofxScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04731B4E623C007B55CE /* ofxScrollView.cpp */; };
 		08AE04791B4E6EA0007B55CE /* LedsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04771B4E6EA0007B55CE /* LedsManager.cpp */; };
 		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
+		08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */; };
+		08E318051B53D78A003B99B3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08E318011B53D78A003B99B3 /* README.md */; };
+		08E318061B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E318031B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp */; };
+		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
+		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
+		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
+		08E3182B1B53D84C003B99B3 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 08E3181C1B53D84B003B99B3 /* readme.md */; };
+		08E3182C1B53D84C003B99B3 /* ofxEasyFft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E3181E1B53D84B003B99B3 /* ofxEasyFft.cpp */; };
+		08E3182D1B53D84C003B99B3 /* ofxFft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E318201B53D84B003B99B3 /* ofxFft.cpp */; };
+		08E3182E1B53D84C003B99B3 /* ofxFftBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E318221B53D84B003B99B3 /* ofxFftBasic.cpp */; };
+		08E3182F1B53D84C003B99B3 /* ofxFftw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E318241B53D84B003B99B3 /* ofxFftw.cpp */; };
+		08E318301B53D84C003B99B3 /* ofxProcessFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E318261B53D84B003B99B3 /* ofxProcessFFT.cpp */; };
 		10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1CE60B1AC164DA8880771 /* ofxGuiGroup.cpp */; };
 		19D0A302C3A681F97EEAE033 /* ftDrawForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1CF05B308B6DFDCF026864B2 /* ftDrawForce.cpp */; };
 		1AF15FCF93D2DDD6D4285C8E /* AppManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5056FC61E30B9810903B814D /* AppManager.cpp */; };
@@ -122,7 +134,39 @@
 		08AE04781B4E6EA0007B55CE /* LedsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LedsManager.h; path = Costume/LedsManager.h; sourceTree = "<group>"; };
 		08AE047A1B4E7708007B55CE /* Led.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Led.cpp; path = Costume/Led.cpp; sourceTree = "<group>"; };
 		08AE047B1B4E7708007B55CE /* Led.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Led.h; path = Costume/Led.h; sourceTree = "<group>"; };
+		08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseManager.cpp; sourceTree = "<group>"; };
+		08B1BF281B4FC606003C7BB3 /* NoiseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseManager.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
+		08E317FE1B53D78A003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		08E317FF1B53D78A003B99B3 /* noiseimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noiseimage.jpg; sourceTree = "<group>"; };
+		08E318001B53D78A003B99B3 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
+		08E318011B53D78A003B99B3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		08E318031B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGLSLSimplexNoise.cpp; sourceTree = "<group>"; };
+		08E318041B53D78A003B99B3 /* ofxGLSLSimplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGLSLSimplexNoise.h; sourceTree = "<group>"; };
+		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
+		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
+		08E3180F1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
+		08E318111B53D84B003B99B3 /* fftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = fftw3f.a; sourceTree = "<group>"; };
+		08E318131B53D84B003B99B3 /* libfftw3f-3.dll */ = {isa = PBXFileReference; lastKnownFileType = file; path = "libfftw3f-3.dll"; sourceTree = "<group>"; };
+		08E318151B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
+		08E318161B53D84B003B99B3 /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _kiss_fft_guts.h; sourceTree = "<group>"; };
+		08E318171B53D84B003B99B3 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fft.c; sourceTree = "<group>"; };
+		08E318181B53D84B003B99B3 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
+		08E318191B53D84B003B99B3 /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fftr.c; sourceTree = "<group>"; };
+		08E3181A1B53D84B003B99B3 /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fftr.h; sourceTree = "<group>"; };
+		08E3181B1B53D84B003B99B3 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
+		08E3181C1B53D84B003B99B3 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		08E3181E1B53D84B003B99B3 /* ofxEasyFft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxEasyFft.cpp; sourceTree = "<group>"; };
+		08E3181F1B53D84B003B99B3 /* ofxEasyFft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxEasyFft.h; sourceTree = "<group>"; };
+		08E318201B53D84B003B99B3 /* ofxFft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFft.cpp; sourceTree = "<group>"; };
+		08E318211B53D84B003B99B3 /* ofxFft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFft.h; sourceTree = "<group>"; };
+		08E318221B53D84B003B99B3 /* ofxFftBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFftBasic.cpp; sourceTree = "<group>"; };
+		08E318231B53D84B003B99B3 /* ofxFftBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFftBasic.h; sourceTree = "<group>"; };
+		08E318241B53D84B003B99B3 /* ofxFftw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFftw.cpp; sourceTree = "<group>"; };
+		08E318251B53D84B003B99B3 /* ofxFftw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFftw.h; sourceTree = "<group>"; };
+		08E318261B53D84B003B99B3 /* ofxProcessFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxProcessFFT.cpp; sourceTree = "<group>"; };
+		08E318271B53D84B003B99B3 /* ofxProcessFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxProcessFFT.h; sourceTree = "<group>"; };
 		09F8F2DF1D53E65319F30B96 /* LightManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LightManager.cpp; path = src/Engine/3D/LightManager.cpp; sourceTree = SOURCE_ROOT; };
 		0ACA94EAF2C7DCA9EE906D69 /* svgtiny_internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = svgtiny_internal.h; path = src/Addons/ofxSvg/libs/svgTiny/src/svgtiny_internal.h; sourceTree = SOURCE_ROOT; };
 		0C1C0F60B9ED693828ED32A8 /* ofUnicode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofUnicode.h; path = src/Addons/ofxUnicode/src/ofUnicode.h; sourceTree = SOURCE_ROOT; };
@@ -286,6 +330,7 @@
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
+				08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				E45BE97F0E8CC7DD009D7055 /* CoreAudio.framework in Frameworks */,
@@ -318,6 +363,133 @@
 			children = (
 				08AE04731B4E623C007B55CE /* ofxScrollView.cpp */,
 				08AE04741B4E623C007B55CE /* ofxScrollView.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		08B1BF261B4FC606003C7BB3 /* Visuals */ = {
+			isa = PBXGroup;
+			children = (
+				08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */,
+				08B1BF281B4FC606003C7BB3 /* NoiseManager.h */,
+			);
+			path = Visuals;
+			sourceTree = "<group>";
+		};
+		08E317FD1B53D78A003B99B3 /* ofxGLSLSimplexNoise */ = {
+			isa = PBXGroup;
+			children = (
+				08E317FE1B53D78A003B99B3 /* .gitignore */,
+				08E317FF1B53D78A003B99B3 /* noiseimage.jpg */,
+				08E318001B53D78A003B99B3 /* ofxaddons_thumbnail.png */,
+				08E318011B53D78A003B99B3 /* README.md */,
+				08E318021B53D78A003B99B3 /* src */,
+			);
+			name = ofxGLSLSimplexNoise;
+			path = Addons/ofxGLSLSimplexNoise;
+			sourceTree = "<group>";
+		};
+		08E318021B53D78A003B99B3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				08E318031B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp */,
+				08E318041B53D78A003B99B3 /* ofxGLSLSimplexNoise.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		08E318071B53D84B003B99B3 /* ofxFft */ = {
+			isa = PBXGroup;
+			children = (
+				08E318081B53D84B003B99B3 /* .gitignore */,
+				08E318091B53D84B003B99B3 /* libs */,
+				08E3181B1B53D84B003B99B3 /* ofxaddons_thumbnail.png */,
+				08E3181C1B53D84B003B99B3 /* readme.md */,
+				08E3181D1B53D84B003B99B3 /* src */,
+			);
+			name = ofxFft;
+			path = Addons/ofxFft;
+			sourceTree = "<group>";
+		};
+		08E318091B53D84B003B99B3 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				08E3180A1B53D84B003B99B3 /* fftw */,
+				08E318141B53D84B003B99B3 /* kiss */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		08E3180A1B53D84B003B99B3 /* fftw */ = {
+			isa = PBXGroup;
+			children = (
+				08E3180B1B53D84B003B99B3 /* .keep */,
+				08E3180C1B53D84B003B99B3 /* include */,
+				08E3180E1B53D84B003B99B3 /* lib */,
+			);
+			path = fftw;
+			sourceTree = "<group>";
+		};
+		08E3180C1B53D84B003B99B3 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				08E3180D1B53D84B003B99B3 /* fftw3.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		08E3180E1B53D84B003B99B3 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				08E3180F1B53D84B003B99B3 /* .keep */,
+				08E318101B53D84B003B99B3 /* osx */,
+				08E318121B53D84B003B99B3 /* win32 */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		08E318101B53D84B003B99B3 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				08E318111B53D84B003B99B3 /* fftw3f.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		08E318121B53D84B003B99B3 /* win32 */ = {
+			isa = PBXGroup;
+			children = (
+				08E318131B53D84B003B99B3 /* libfftw3f-3.dll */,
+			);
+			path = win32;
+			sourceTree = "<group>";
+		};
+		08E318141B53D84B003B99B3 /* kiss */ = {
+			isa = PBXGroup;
+			children = (
+				08E318151B53D84B003B99B3 /* .keep */,
+				08E318161B53D84B003B99B3 /* _kiss_fft_guts.h */,
+				08E318171B53D84B003B99B3 /* kiss_fft.c */,
+				08E318181B53D84B003B99B3 /* kiss_fft.h */,
+				08E318191B53D84B003B99B3 /* kiss_fftr.c */,
+				08E3181A1B53D84B003B99B3 /* kiss_fftr.h */,
+			);
+			path = kiss;
+			sourceTree = "<group>";
+		};
+		08E3181D1B53D84B003B99B3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				08E3181E1B53D84B003B99B3 /* ofxEasyFft.cpp */,
+				08E3181F1B53D84B003B99B3 /* ofxEasyFft.h */,
+				08E318201B53D84B003B99B3 /* ofxFft.cpp */,
+				08E318211B53D84B003B99B3 /* ofxFft.h */,
+				08E318221B53D84B003B99B3 /* ofxFftBasic.cpp */,
+				08E318231B53D84B003B99B3 /* ofxFftBasic.h */,
+				08E318241B53D84B003B99B3 /* ofxFftw.cpp */,
+				08E318251B53D84B003B99B3 /* ofxFftw.h */,
+				08E318261B53D84B003B99B3 /* ofxProcessFFT.cpp */,
+				08E318271B53D84B003B99B3 /* ofxProcessFFT.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -646,6 +818,8 @@
 		AD642137CCDF61FB3E6CCEA2 /* Addons */ = {
 			isa = PBXGroup;
 			children = (
+				08E318071B53D84B003B99B3 /* ofxFft */,
+				08E317FD1B53D78A003B99B3 /* ofxGLSLSimplexNoise */,
 				08AE046F1B4E623C007B55CE /* ofxScrollView */,
 				EE04855B1D171F0ADC55D799 /* ofxFastFboReader */,
 				810FC8833FA2B9CF6358B009 /* ofxFlowTools */,
@@ -834,6 +1008,7 @@
 			children = (
 				AD642137CCDF61FB3E6CCEA2 /* Addons */,
 				E2C62C2B4F591B9A20DAF22A /* Engine */,
+				08B1BF261B4FC606003C7BB3 /* Visuals */,
 				375D8B140B52B55EB32EB487 /* Layout */,
 				CE75F045B397535276B2B3BE /* Costume */,
 				AF4FDCF7E02C59FCC5FE54A2 /* Main */,
@@ -952,26 +1127,35 @@
 				19D0A302C3A681F97EEAE033 /* ftDrawForce.cpp in Sources */,
 				6960C2659A81B7936347DA8D /* ftFluidSimulation.cpp in Sources */,
 				3E08E879CDB133B2B1D5F23B /* ftVelocityMask.cpp in Sources */,
+				08E318061B53D78A003B99B3 /* ofxGLSLSimplexNoise.cpp in Sources */,
 				5A7307C2BBC29E51B588C902 /* ftOpticalFlow.cpp in Sources */,
 				04DF616AA21AD331DF08C325 /* ftParticleFlow.cpp in Sources */,
+				08E3182C1B53D84C003B99B3 /* ofxEasyFft.cpp in Sources */,
 				9A15495FA2EE8F23378413B2 /* ofxBaseGui.cpp in Sources */,
 				1E777E277DAB367779E7E89A /* ofxButton.cpp in Sources */,
 				10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */,
+				08E318301B53D84C003B99B3 /* ofxProcessFFT.cpp in Sources */,
 				08AE04751B4E623C007B55CE /* README.md in Sources */,
 				4D8AD4DF379BCF35DCB7A000 /* ofxLabel.cpp in Sources */,
 				ACE00783B5CCD633D94EDDEF /* ofxPanel.cpp in Sources */,
 				5367CE7A2C5BCF846D28D246 /* ofxSlider.cpp in Sources */,
+				08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */,
 				469ACA6CB6A2A17D8076D840 /* ofxSliderGroup.cpp in Sources */,
+				08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */,
+				08E3182B1B53D84C003B99B3 /* readme.md in Sources */,
 				08AE04761B4E623C007B55CE /* ofxScrollView.cpp in Sources */,
 				EF28B4E47642F5ABD48095BA /* ofxToggle.cpp in Sources */,
 				9D3E5A7C189607A50D28E499 /* src_colors.cpp in Sources */,
 				A417B50DA594FBD304CFF2CA /* svgtiny.cpp in Sources */,
+				08E3182D1B53D84C003B99B3 /* ofxFft.cpp in Sources */,
 				0466B9E6A55078A9F39B1B4B /* svgtiny_gradient.cpp in Sources */,
 				FCA1CD00EA2BBEEEBA5C4AC9 /* svgtiny_list.cpp in Sources */,
 				E76816EF014518B0B3E83C39 /* ofxSvg.cpp in Sources */,
+				08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */,
 				D75E4524BBB94FF34BF7DD48 /* ReleaseNotes in Sources */,
 				82C668F7D0DF704AD7D1BB1C /* utf8cpp.html in Sources */,
 				B7993B374B98F50CBD9EC220 /* README.md in Sources */,
+				08E3182F1B53D84C003B99B3 /* ofxFftw.cpp in Sources */,
 				20DD9BBB631FBC0CDCCFA6B6 /* ofTextConverter.cpp in Sources */,
 				7E78555D595408C86F902937 /* ofUnicode.cpp in Sources */,
 				08AE047C1B4E7708007B55CE /* Led.cpp in Sources */,
@@ -986,6 +1170,7 @@
 				FDBF3E3276ACAF0114532C4B /* KeyboardManager.cpp in Sources */,
 				3A6C7D72771284673CBE247D /* ImageVisual.cpp in Sources */,
 				F7EA3801298F5E54967C119B /* ImageVisual3D.cpp in Sources */,
+				08E318051B53D78A003B99B3 /* README.md in Sources */,
 				8BC3D4AABDF5E655706BA3B8 /* SvgVisual.cpp in Sources */,
 				DB05E98D002D6650AA23E87B /* TextVisual.cpp in Sources */,
 				9D9E0E996DA1B9AC9952C889 /* ViewManager.cpp in Sources */,
@@ -994,6 +1179,7 @@
 				5D33A9513B2A4C6DBD3188C7 /* GuiManager.cpp in Sources */,
 				93510377552D47B6620A7586 /* LayoutManager.cpp in Sources */,
 				1AF15FCF93D2DDD6D4285C8E /* AppManager.cpp in Sources */,
+				08E3182E1B53D84C003B99B3 /* ofxFftBasic.cpp in Sources */,
 				85CD90F6F95312E0133F496C /* LedCostumeApp.cpp in Sources */,
 				DA22DA3A4F2E611DF50078F2 /* main.cpp in Sources */,
 				58BCEB4034B30CB4A3456FC7 /* SettingsManager.cpp in Sources */,
@@ -1219,6 +1405,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
+					"$(PROJECT_DIR)/src/Addons/ofxFft/libs/fftw/lib/osx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -1304,6 +1491,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
+					"$(PROJECT_DIR)/src/Addons/ofxFft/libs/fftw/lib/osx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

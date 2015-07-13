@@ -21,6 +21,7 @@
 #include "GuiManager.h"
 #include "CostumeManager.h"
 #include "LedsManager.h"
+#include "NoiseManager.h"
 
 //========================== class AppManager ==============================
 //============================================================================
@@ -70,6 +71,9 @@ public:
     
     //! Returns the LEDs manager
     LedsManager&   getLedsManager() { return m_ledsManager; }
+    
+    //! Returns the Noise manager
+    NoiseManager&   getNoiseManager() { return m_noiseManager; }
 
     
     //==========================================================================
@@ -113,6 +117,7 @@ private:
     GuiManager               m_guiManager;               ///< Manages the graphical user interface
     CostumeManager           m_costumeManager;           ///< Manages the costume visuals
     LedsManager              m_ledsManager;              ///< Manages the costume leds
+    NoiseManager             m_noiseManager;             ///< Manages the noise visuals
 
     bool                     m_debugMode;
 };

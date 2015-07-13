@@ -36,7 +36,7 @@ void ViewManager::setup()
 
     //this->setupGL();
     this->setup3D();
-    this->setupTextVisuals();
+    //this->setupTextVisuals();
 
     ofLogNotice() << "ViewManager::initialized ";
 }
@@ -86,10 +86,7 @@ void ViewManager::setupTextVisuals()
 
 void ViewManager::update()
 {
-    if(m_showDebugInfo){
-        string text = "fps: " + ofToString(ofGetFrameRate(), 2);
-        m_frameRateText->setText(text);
-	}
+   //
 }
 
 
@@ -102,8 +99,9 @@ void ViewManager::draw()
 	
 
 	if(m_showDebugInfo){
-        m_frameRateText->draw();
-	}
+        string text = "fps: " + ofToString(ofGetFrameRate(), 2);
+        //m_frameRateText->setText(text);
+        ofDrawBitmapString(text, 20, 20);	}
 }
 
 void ViewManager::drawBackround()

@@ -25,6 +25,8 @@ class LedsManager: public Manager
 
     static const string LEDS_LIST_PATH;
     
+    typedef vector< ofPtr<Led> > LedVector;
+    
     public:
 
         //! Constructor
@@ -42,9 +44,17 @@ class LedsManager: public Manager
         //! Draw the Halo Manager
         void draw();
     
+        const LedVector& getLeds() const {return m_leds;}
+    
     private:
     
+        void setupLeds();
+    
         void readLedsPosition();
+    
+        void normalizeLeds();
+    
+        void readLedsPositionFromGroup(const string& groupName, int& id, int numberOfSections);
     
         bool parseLedLine(string& line, ofPoint& position);
     
@@ -54,9 +64,10 @@ class LedsManager: public Manager
     
     private:
     
-        typedef vector< ofPtr<Led> > LedVector;
     
-        LedVector m_leds;
+    
+        LedVector       m_leds;
+        ofRectangle     m_boundingBox;
     
 };
 

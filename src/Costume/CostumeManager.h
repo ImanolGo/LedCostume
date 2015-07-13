@@ -44,6 +44,9 @@ class CostumeManager: public Manager
         //! Draw the Halo Manager
         void draw();
     
+        float getWidth() const {return m_costumeImage->getOriginalWidth();}
+    
+        float getHeight() const {return m_costumeImage->getOriginalHeight();}
     
     private:
     
@@ -51,11 +54,14 @@ class CostumeManager: public Manager
     
         void setupScrollView();
     
+        void drawCostumeLeds();
     
-    ofPtr<ImageVisual>  m_costumeImage;
-    ofPtr<SvgVisual>    m_costumeSvgImage;
     
-    ofxScrollView       m_scrollView;
+        ofPtr<ImageVisual>  m_costumeImage;
+        ofPtr<SvgVisual>    m_costumeSvgImage;
+    
+        ofxScrollView       m_scrollView;
+    
 };
 
 

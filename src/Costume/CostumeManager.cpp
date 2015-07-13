@@ -96,11 +96,25 @@ void CostumeManager::draw()
     m_scrollView.begin();
     
         m_costumeImage->draw();
+        this->drawCostumeLeds();
     
     m_scrollView.end();
     
-    //m_costumeImage->draw();
-    //m_costumeSvgImage->draw();
 }
+
+void CostumeManager::drawCostumeLeds()
+{
+    auto leds = AppManager::getInstance().getLedsManager().getLeds();
+    for (auto led : leds) {
+        auto pos = led->getPosition();
+        
+        ofPushMatrix();
+        ofTranslate(pos.x*m_costumeImage->getOriginalWidth(), pos.y*m_costumeImage->getOriginalHeight());
+            led->draw();
+        ofPopMatrix();
+    }
+  
+}
+
 
 

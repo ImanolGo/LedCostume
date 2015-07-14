@@ -23,6 +23,7 @@
 #include "LedsManager.h"
 #include "NoiseManager.h"
 
+
 //========================== class AppManager ==============================
 //============================================================================
 /** \class AppManager AppManager.h
@@ -105,8 +106,8 @@ private:
     //! update all the managers
     void updateManagers();
 
-
 private:
+
 
     SettingsManager          m_settingsManager;          ///< Manages the application's settings
     ResourceManager          m_resourceManager;          ///< Manages the application's resources

@@ -38,6 +38,8 @@ void AppManager::setup()
 	if(m_initialized)
 		return;
 
+    //ofSetDataPathRoot("../Resources/data/");
+    
     ofLogNotice() << "AppManager::initialized";
 
 	Manager::setup();
@@ -50,14 +52,8 @@ void AppManager::setup()
 
 void AppManager::setupOF()
 {
-   ofSetVerticalSync(true);
-   //ofDisableAlphaBlending();
-   //ofDisableSmoothing();
-   //ofDisableDepthTest();
-   //ofDisableLighting();
-   //ofDisableBlendMode();
-   //ofDisableAntiAliasing();
-   ofShowCursor();
+    ofSetVerticalSync(true);
+    ofSetEscapeQuitsApp(true);
 }
 
 
@@ -88,6 +84,7 @@ void AppManager::update()
 
 void AppManager::draw()
 {
+    
     ofBackgroundGradient( ofColor(55), ofColor(0), OF_GRADIENT_CIRCULAR );
     m_viewManager.draw();
     m_costumeManager.draw();
@@ -110,7 +107,7 @@ void AppManager::setDebugMode(bool showDebug)
     ofLogNotice()<<"AppManager::setDebugMode-> " << m_debugMode;
     
     if(m_debugMode){
-        ofSetLogLevel(OF_LOG_VERBOSE);
+        //ofSetLogLevel(OF_LOG_VERBOSE);
     }
     else{
         ofSetLogLevel(OF_LOG_NOTICE);

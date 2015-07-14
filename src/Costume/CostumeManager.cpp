@@ -64,8 +64,8 @@ void CostumeManager::setupScrollView()
     contentRect.height = m_costumeImage->getOriginalHeight();
     
     ofRectangle windowRect;
-    windowRect.width = ofGetWidth() - GuiManager::GUI_WIDTH - 80;
-    windowRect.height =  ofGetHeight();
+    windowRect.width = 1920;
+    windowRect.height =  1080;
     
     //----------------------------------------------------------
     m_scrollView.setWindowRect(windowRect); // window size and position of scroll view.
@@ -76,6 +76,7 @@ void CostumeManager::setupScrollView()
     m_scrollView.setBounceBack(0.3); // the speed of bounce back, between 0 and 1.
     m_scrollView.setDragVelocityDecay(0.9); // the speed of decay of drag velocity after release, between 0 and 1.
     m_scrollView.setUserInteraction(true); // enable / disable mouse or touch interaction.
+    m_scrollView.setPinchZoom(true);
     
     m_scrollView.setDoubleTapZoom(true); // enable double tap zoom.
     m_scrollView.setDoubleTapZoomIncrement(1.0); // the increment value of zoom on double tap, between 0 and 1.
@@ -84,6 +85,7 @@ void CostumeManager::setupScrollView()
     m_scrollView.setDoubleTapRegistrationDistanceInPixels(20); // the distance threshold between taps for double tap event to register.
     
     m_scrollView.setup(); // setup must always be called at the end of scroll view config.
+    
 }
 
 void CostumeManager::update()

@@ -38,26 +38,68 @@ void AppManager::setup()
 	if(m_initialized)
 		return;
 
+    ofSetDataPathRoot("../Resources/data/");
+    
     ofLogNotice() << "AppManager::initialized";
 
 	Manager::setup();
     
     this->setupOF();
 	this->setupManagers();
+    this->setupGlfwWidows();
     
     //setDebugMode(m_debugMode);
 }
 
 void AppManager::setupOF()
 {
-   ofSetVerticalSync(true);
-   //ofDisableAlphaBlending();
-   //ofDisableSmoothing();
-   //ofDisableDepthTest();
-   //ofDisableLighting();
-   //ofDisableBlendMode();
-   //ofDisableAntiAliasing();
-   ofShowCursor();
+    ofSetVerticalSync(true);
+    ofSetEscapeQuitsApp(true);
+}
+
+void AppManager::setupGlfwWidows()
+{
+    ofLogNotice() << "AppManager::setupGlfwWidows";
+    
+    //ofVbo::disableVAOs();
+    
+    m_glfw = (ofxMultiGLFWWindow*)ofGetWindowPtr();
+    
+    // vector of windows, count set in main
+    m_windows = &m_glfw->windows;
+    
+    WindowSettingsVector windowSettingsVector = AppManager::getInstance().getSettingsManager().getWindowsSettings();
+    
+    int i = 0;
+    for(auto windowSettings : windowSettingsVector) {
+        ofLogNotice() << "AppManager::setupGlfwWidows -> creating window: " << i;
+        
+        if(i>1){
+            m_glfw->createWindow();
+        }
+        
+        m_glfw->setWindow(m_windows->at(i));    // set window pointer
+        m_glfw->initializeWindow();       // initialize events (mouse, keyboard, etc) on window (optional)
+        ofSetWindowPosition(windowSettings.x, windowSettings.y);    // business as usual...
+        ofSetWindowShape(windowSettings.width, windowSettings.height);
+        ofSetWindowTitle(windowSettings.title);
+        ofSetFullscreen(windowSettings.fullscreen);        // order important with fullscreen
+        //ofLogNotice() << "AppManager::setupGlfwWidows -> width = " << ofGetWidth() << ", height = " << ofGetHeight();
+        
+        if(windowSettings.showCursor){
+            ofShowCursor();
+        }
+        else{
+            ofHideCursor();
+        }
+        
+        i++;
+    }
+    
+    
+    m_glfw->setWindow(m_windows->at(0));
+    
+    //m_sceneManager.changeScene("SmokyHandsScene");
 }
 
 
@@ -88,11 +130,25 @@ void AppManager::update()
 
 void AppManager::draw()
 {
-    ofBackgroundGradient( ofColor(55), ofColor(0), OF_GRADIENT_CIRCULAR );
-    m_viewManager.draw();
-    m_costumeManager.draw();
-    m_noiseManager.draw();
-    m_guiManager.draw();
+
+    // the window index will increment
+    int wIndex = m_glfw->getWindowIndex();
+    
+    switch (wIndex) { // switch on window index
+        case 0:
+            ofBackground(0,0,0); // change background color on each window
+            m_viewManager.draw();
+            m_noiseManager.draw();
+            m_guiManager.draw();
+            break;
+        case 1:
+            ofEnableAlphaBlending();
+            ofBackgroundGradient( ofColor(55), ofColor(0), OF_GRADIENT_CIRCULAR );
+            m_costumeManager.draw();
+            ofDisableAlphaBlending();
+            break;
+    }
+
     
 }
 
@@ -110,7 +166,7 @@ void AppManager::setDebugMode(bool showDebug)
     ofLogNotice()<<"AppManager::setDebugMode-> " << m_debugMode;
     
     if(m_debugMode){
-        ofSetLogLevel(OF_LOG_VERBOSE);
+        //ofSetLogLevel(OF_LOG_VERBOSE);
     }
     else{
         ofSetLogLevel(OF_LOG_NOTICE);

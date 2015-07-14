@@ -14,6 +14,8 @@
 		08AE04791B4E6EA0007B55CE /* LedsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04771B4E6EA0007B55CE /* LedsManager.cpp */; };
 		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
 		08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */; };
+		08DC679A1B55AACE00789AFA /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 08DC67961B55AACE00789AFA /* README.md */; };
+		08DC679B1B55AACE00789AFA /* ofxMultiGLFWWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC67981B55AACE00789AFA /* ofxMultiGLFWWindow.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
 		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
@@ -135,6 +137,11 @@
 		08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseManager.cpp; sourceTree = "<group>"; };
 		08B1BF281B4FC606003C7BB3 /* NoiseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseManager.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
+		08DC67941B55AACE00789AFA /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		08DC67951B55AACE00789AFA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		08DC67961B55AACE00789AFA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		08DC67981B55AACE00789AFA /* ofxMultiGLFWWindow.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ofxMultiGLFWWindow.cpp; sourceTree = "<group>"; };
+		08DC67991B55AACE00789AFA /* ofxMultiGLFWWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMultiGLFWWindow.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
@@ -366,6 +373,27 @@
 				08B1BF281B4FC606003C7BB3 /* NoiseManager.h */,
 			);
 			path = Visuals;
+			sourceTree = "<group>";
+		};
+		08DC67931B55AACE00789AFA /* ofxMultiGLFWWindow */ = {
+			isa = PBXGroup;
+			children = (
+				08DC67941B55AACE00789AFA /* .gitignore */,
+				08DC67951B55AACE00789AFA /* LICENSE */,
+				08DC67961B55AACE00789AFA /* README.md */,
+				08DC67971B55AACE00789AFA /* src */,
+			);
+			name = ofxMultiGLFWWindow;
+			path = Addons/ofxMultiGLFWWindow;
+			sourceTree = "<group>";
+		};
+		08DC67971B55AACE00789AFA /* src */ = {
+			isa = PBXGroup;
+			children = (
+				08DC67981B55AACE00789AFA /* ofxMultiGLFWWindow.cpp */,
+				08DC67991B55AACE00789AFA /* ofxMultiGLFWWindow.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		08E318071B53D84B003B99B3 /* ofxFft */ = {
@@ -788,6 +816,7 @@
 		AD642137CCDF61FB3E6CCEA2 /* Addons */ = {
 			isa = PBXGroup;
 			children = (
+				08DC67931B55AACE00789AFA /* ofxMultiGLFWWindow */,
 				08E318071B53D84B003B99B3 /* ofxFft */,
 				08AE046F1B4E623C007B55CE /* ofxScrollView */,
 				EE04855B1D171F0ADC55D799 /* ofxFastFboReader */,
@@ -1080,7 +1109,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\ncp -f \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n";
+			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\ncp -f \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\ncp -r bin/data \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1096,6 +1125,7 @@
 				19D0A302C3A681F97EEAE033 /* ftDrawForce.cpp in Sources */,
 				6960C2659A81B7936347DA8D /* ftFluidSimulation.cpp in Sources */,
 				3E08E879CDB133B2B1D5F23B /* ftVelocityMask.cpp in Sources */,
+				08DC679B1B55AACE00789AFA /* ofxMultiGLFWWindow.cpp in Sources */,
 				5A7307C2BBC29E51B588C902 /* ftOpticalFlow.cpp in Sources */,
 				04DF616AA21AD331DF08C325 /* ftParticleFlow.cpp in Sources */,
 				08E3182C1B53D84C003B99B3 /* ofxEasyFft.cpp in Sources */,
@@ -1113,6 +1143,7 @@
 				08E3182B1B53D84C003B99B3 /* readme.md in Sources */,
 				08AE04761B4E623C007B55CE /* ofxScrollView.cpp in Sources */,
 				EF28B4E47642F5ABD48095BA /* ofxToggle.cpp in Sources */,
+				08DC679A1B55AACE00789AFA /* README.md in Sources */,
 				9D3E5A7C189607A50D28E499 /* src_colors.cpp in Sources */,
 				A417B50DA594FBD304CFF2CA /* svgtiny.cpp in Sources */,
 				08E3182D1B53D84C003B99B3 /* ofxFft.cpp in Sources */,

@@ -23,6 +23,8 @@
 #include "LedsManager.h"
 #include "NoiseManager.h"
 
+#include "ofxMultiGLFWWindow.h"
+
 //========================== class AppManager ==============================
 //============================================================================
 /** \class AppManager AppManager.h
@@ -104,10 +106,16 @@ private:
 
     //! update all the managers
     void updateManagers();
+    
+    //! Set-up GLFW windows
+    void setupGlfwWidows();
 
 
 private:
 
+    ofxMultiGLFWWindow*             m_glfw;                     ///< Pointer to the multi-GLFW window
+    vector<GLFWwindow*>*            m_windows;                  ///< Pointer the vector holding all the GLFW windows
+    
     SettingsManager          m_settingsManager;          ///< Manages the application's settings
     ResourceManager          m_resourceManager;          ///< Manages the application's resources
     ViewManager              m_viewManager;              ///< Manages visuals

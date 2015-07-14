@@ -100,34 +100,44 @@ void SettingsManager::setDebugProperties()
 void SettingsManager::setWindowProperties()
 {
     m_xmlSettings.setTo("//");
-
-    string windowPath = "//of_settings/window";
+    
+    string windowPath = "//of_settings";
     if(m_xmlSettings.exists(windowPath)) {
+        
+        windowPath += "/window[0]";
         m_xmlSettings.setTo(windowPath);
         typedef   std::map<string, string>   AttributesMap;
-        AttributesMap attributes = m_xmlSettings.getAttributes();
-        string title = attributes["title"];
-        m_appWidth = ofToInt(attributes["width"]);
-        m_appHeight= ofToInt(attributes["height"]);
-        int x = ofToInt(attributes["x"]);
-        int y = ofToInt(attributes["y"]);
-        bool fullscreen = ofToBool(attributes["fullscreen"]);
-
-        ofSetFullscreen(fullscreen);
-        ofSetWindowShape(m_appWidth,m_appHeight);
-        if(!fullscreen){
-            ofSetWindowPosition(x,y);
+        
+        do {
+            
+            AttributesMap attributes = m_xmlSettings.getAttributes();
+            WindowSettings windowSettings;
+            
+            windowSettings.title = attributes["title"];
+            windowSettings.width = ofToInt(attributes["width"]);
+            windowSettings.height = ofToInt(attributes["height"]);
+            windowSettings.x = ofToInt(attributes["x"]);
+            windowSettings.y = ofToInt(attributes["y"]);
+            windowSettings.fullscreen = ofToBool(attributes["fullscreen"]);
+            windowSettings.showCursor = ofToBool(attributes["showCursor"]);
+            
+            ofLogNotice() <<"SettingsManager::setWindowProperties->  title = "<< windowSettings.title <<", width = " << windowSettings.width <<", height = "
+            <<windowSettings.height <<", x = "<< windowSettings.x << ", y = " <<windowSettings.y << ", fullscreen = " << windowSettings.fullscreen
+            << ", showCursor = " << windowSettings.showCursor;
+            
+            m_windowsSettings.push_back(windowSettings);
         }
-        ofSetWindowTitle(title);
-
+        while(m_xmlSettings.setToSibling()); // go to the next texture
+        
+        
         ofLogNotice() <<"SettingsManager::setWindowProperties->  successfully loaded the window settings" ;
-        ofLogNotice() <<"SettingsManager::setWindowProperties->  title = "<< title<<", width = " << m_appWidth <<", height = "
-        <<m_appHeight <<", x = "<<x<<", y = "<<y;
         return;
     }
-
+    
     ofLogNotice() <<"SettingsManager::setWindowProperties->  path not found: " << windowPath ;
 }
+
+
 void SettingsManager::setNetworkProperties()
 {
     m_xmlSettings.setTo("//");

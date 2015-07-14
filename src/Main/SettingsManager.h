@@ -18,7 +18,21 @@
  *	\details it reads from an xml settings file and provides access to the information
  */
 
+struct WindowSettings
+{
+    string title;
+    int x, y;
+    int width, height;
+    bool fullscreen, showCursor;
+    
+    WindowSettings(): title(""), x(0),y(0), width(0), height(0), fullscreen(false),showCursor(false)
+    {
+    }
+    
+};
+
 typedef             map<string,string>               ResourcesPathMap;       ///< defines a map of path attached to the resources name
+typedef  vector<WindowSettings>      WindowSettingsVector;   ///< Defines a vector of windows settings
 
 class SettingsManager: public Manager
 {
@@ -49,6 +63,8 @@ class SettingsManager: public Manager
         string getIpAddress() const {return m_ipAddress;}
 
         int getPort() const {return m_port;}
+    
+        const WindowSettingsVector& getWindowsSettings() const {return m_windowsSettings;}
 
 
     private:
@@ -83,6 +99,8 @@ class SettingsManager: public Manager
         typedef             map< string, ofPtr<ofColor> >    ColorMap;               ///< Defines a map of colors attached to a name
 
 
+        WindowSettingsVector    m_windowsSettings;      ///< store the settings of all the windows
+        WindowSettings          m_defaultWindow;        ///< default window setting
         ofXml		            m_xmlSettings;          ///< instance of the xml parser
         ResourcesPathMap        m_texturesPath;         ///< stores the texture paths
         ResourcesPathMap        m_svgResourcesPath;     ///< stores the resources paths

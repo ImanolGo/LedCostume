@@ -14,6 +14,7 @@
 		08AE04791B4E6EA0007B55CE /* LedsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04771B4E6EA0007B55CE /* LedsManager.cpp */; };
 		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
 		08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */; };
+		08DC67AF1B564F6800789AFA /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC67AD1B564F6800789AFA /* ImageManager.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
 		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
@@ -135,6 +136,8 @@
 		08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseManager.cpp; sourceTree = "<group>"; };
 		08B1BF281B4FC606003C7BB3 /* NoiseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseManager.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
+		08DC67AD1B564F6800789AFA /* ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageManager.cpp; sourceTree = "<group>"; };
+		08DC67AE1B564F6800789AFA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 		08B1BF261B4FC606003C7BB3 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				08DC67AD1B564F6800789AFA /* ImageManager.cpp */,
+				08DC67AE1B564F6800789AFA /* ImageManager.h */,
 				08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */,
 				08B1BF281B4FC606003C7BB3 /* NoiseManager.h */,
 			);
@@ -1146,6 +1151,7 @@
 				5D33A9513B2A4C6DBD3188C7 /* GuiManager.cpp in Sources */,
 				93510377552D47B6620A7586 /* LayoutManager.cpp in Sources */,
 				1AF15FCF93D2DDD6D4285C8E /* AppManager.cpp in Sources */,
+				08DC67AF1B564F6800789AFA /* ImageManager.cpp in Sources */,
 				08E3182E1B53D84C003B99B3 /* ofxFftBasic.cpp in Sources */,
 				85CD90F6F95312E0133F496C /* LedCostumeApp.cpp in Sources */,
 				DA22DA3A4F2E611DF50078F2 /* main.cpp in Sources */,

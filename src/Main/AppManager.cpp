@@ -68,6 +68,7 @@ void AppManager::setupManagers()
     m_costumeManager.setup();
     m_ledsManager.setup();
     m_noiseManager.setup();
+    m_imageManager.setup();
     m_guiManager.setup();
 
 }
@@ -89,6 +90,7 @@ void AppManager::draw()
     m_viewManager.draw();
     m_costumeManager.draw();
     m_noiseManager.draw();
+    m_imageManager.draw();
     m_guiManager.draw();
     
 }

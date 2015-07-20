@@ -70,6 +70,11 @@ void GuiManager::setupImageGui()
     m_imageRecord.addListener(imageManager, &ImageManager::onRecordingChange);
     m_parametersImage.add(m_imageRecord);
     
+    m_imageLoop.set("Loop",  false );
+    m_imageLoop.addListener(imageManager, &ImageManager::onLoopingChange);
+    m_parametersImage.add(m_imageLoop);
+
+    
     m_gui.add(m_parametersImage);
 }
 

@@ -15,7 +15,7 @@
 #include "AppManager.h"
 
 
-ImageManager::ImageManager(): Manager(), m_isRecording(false)
+ImageManager::ImageManager(): Manager(), m_isRecording(false), m_loop(false)
 {
 	//Intentionally left empty
 }
@@ -58,15 +58,27 @@ void ImageManager::draw()
 
 void ImageManager::onRecordingChange(bool& value)
 {
-    m_isRecording = value;
-    
-    if (!m_isRecording) {
+    if (m_isRecording && !value) {
         this->saveImage();
     }
+    
+     m_isRecording = value;
 }
 
 
 void ImageManager::saveImage()
+{
+    
+    if(m_loop){
+        this->saveImageLoop();
+    }
+    else{
+        this->saveImageSample();
+    }
+}
+
+
+void ImageManager::saveImageSample()
 {
     
     int width = AppManager::getInstance().getLedsManager().getNumberLeds();
@@ -87,18 +99,47 @@ void ImageManager::saveImage()
     
     m_image.update(); // uploads the new pixels to the gfx card
     
-    
     string fileName = "images/saved/image_"+ getDateTime() +".bmp";
-    //string fileName = "snapshot_"+ofToString(10000+snapCounter)+".bmp";
     m_image.saveImage(fileName);
-    //fileName = "images/saved/image_"+ getDateTime() +".png";
-    //m_image.saveImage(fileName);
     
     ofLogNotice() <<"ImageManager::saveImage ->  Saved " << fileName;
-
     
     m_imageVector.clear();
 }
+
+void ImageManager::saveImageLoop()
+{
+    
+    int width = AppManager::getInstance().getLedsManager().getNumberLeds();
+    int height = 2*m_imageVector.size();
+    
+    m_image.allocate(width, height, OF_IMAGE_COLOR);
+    
+    ofPixelsRef pixels = m_image.getPixelsRef();
+    
+    for (int y = 0; y < height; y++) {
+        
+        int n = y;
+        if ( y >= height/2) {
+            n = height - y - 1;
+        }
+        auto colors = m_imageVector[n];
+        
+        for (int x = 0; x < width; x++) {
+            pixels.setColor(x, y, colors[x]);
+        }
+    }
+
+    m_image.update(); // uploads the new pixels to the gfx card
+    
+    string fileName = "images/saved/image_"+ getDateTime() +".bmp";
+    m_image.saveImage(fileName);
+    
+    ofLogNotice() <<"ImageManager::saveImage ->  Saved " << fileName;
+    
+    m_imageVector.clear();
+}
+
 
 void ImageManager::updateImage()
 {

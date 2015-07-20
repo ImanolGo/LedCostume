@@ -50,7 +50,7 @@ void NoiseManager::setupBoundingBox()
     m_boundingBox.height = m_boundingBox.width/ratio;
 
     
-    m_boundingBox.y = 240;
+    m_boundingBox.y = 280;
     m_boundingBox.x = ofGetWidth() - GuiManager::GUI_WIDTH - 40;
 }
 

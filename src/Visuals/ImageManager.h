@@ -44,9 +44,15 @@ class ImageManager: public Manager
     
         void onRecordingChange(bool& value);
     
+        void onLoopingChange(bool& value) {m_loop = value;}
+    
     private:
     
         void saveImage();
+    
+        void saveImageLoop();
+    
+        void saveImageSample();
     
         void updateImage();
     
@@ -59,6 +65,7 @@ class ImageManager: public Manager
   
         ofImage             m_image;
         bool                m_isRecording;
+        bool                m_loop;
     
         ImageVector         m_imageVector;
 };

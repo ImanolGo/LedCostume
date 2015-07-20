@@ -69,6 +69,7 @@ private:
     ofParameterGroup    m_parametersImage;
     
     ofParameter<bool>     m_imageRecord;
+    ofParameter<bool>     m_imageLoop;
     
     ofParameter<int>      m_noiseResolution;
     ofParameter<float>    m_noiseFrequency;

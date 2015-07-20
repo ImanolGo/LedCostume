@@ -54,8 +54,8 @@ class ImageManager: public Manager
     
     private:
     
-        typedef vector< ofPtr<Led> > LedVector;
-        typedef vector< LedVector> ImageVector;
+        typedef vector< ofColor > ColorVector;
+        typedef vector< ColorVector> ImageVector;
   
         ofImage             m_image;
         bool                m_isRecording;

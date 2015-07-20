@@ -15,7 +15,7 @@
 #include "AppManager.h"
 
 
-ImageManager::ImageManager(): Manager()
+ImageManager::ImageManager(): Manager(), m_isRecording(false)
 {
 	//Intentionally left empty
 }
@@ -77,20 +77,22 @@ void ImageManager::saveImage()
     ofPixelsRef pixels = m_image.getPixelsRef();
     
     for (int y = 0; y < height; y++) {
-        LedVector leds = m_imageVector[y];
+        auto colors = m_imageVector[y];
         
         for (int x = 0; x < width; x++) {
             
-            pixels.setColor(x, y, leds[x]->getColor());
+            pixels.setColor(x, y, colors[x]);
         }
     }
     
     m_image.update(); // uploads the new pixels to the gfx card
     
     
-    string fileName = "/images/saved/image_"+ getDateTime() +".bmp";
+    string fileName = "images/saved/image_"+ getDateTime() +".bmp";
     //string fileName = "snapshot_"+ofToString(10000+snapCounter)+".bmp";
     m_image.saveImage(fileName);
+    //fileName = "images/saved/image_"+ getDateTime() +".png";
+    //m_image.saveImage(fileName);
     
     ofLogNotice() <<"ImageManager::saveImage ->  Saved " << fileName;
 
@@ -100,7 +102,14 @@ void ImageManager::saveImage()
 
 void ImageManager::updateImage()
 {
+    auto leds = AppManager::getInstance().getLedsManager().getLeds();
+    ColorVector colors;
     
+    for (auto led: leds) {
+        colors.push_back(led->getColor());
+    }
+    
+    m_imageVector.push_back(colors);
 }
 
 
@@ -108,7 +117,6 @@ string ImageManager::getDateTime()
 {
     char buffer[80];
     string fmt="%d-%m-%Y-%X";
-    //time_t rawtime = (time_t)timeValue;
     time_t rawtime;
     time ( &rawtime );
     

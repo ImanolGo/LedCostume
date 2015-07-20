@@ -69,8 +69,11 @@ void AppManager::setupManagers()
     m_ledsManager.setup();
     m_noiseManager.setup();
     m_imageManager.setup();
+    m_videoManager.setup();
     m_guiManager.setup();
-
+    m_noiseManager.resetPosition();
+    m_videoManager.resetPosition();
+    
 }
 
 void AppManager::update()
@@ -80,6 +83,7 @@ void AppManager::update()
     m_noiseManager.update();
     m_ledsManager.update();
     m_imageManager.update();
+    m_videoManager.update();
     m_costumeManager.update();
 }
 
@@ -90,9 +94,10 @@ void AppManager::draw()
     ofBackgroundGradient( ofColor(55), ofColor(0), OF_GRADIENT_CIRCULAR );
     m_viewManager.draw();
     m_costumeManager.draw();
+    m_guiManager.draw();
     m_noiseManager.draw();
     m_imageManager.draw();
-    m_guiManager.draw();
+    m_videoManager.draw();
     
 }
 

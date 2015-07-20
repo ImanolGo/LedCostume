@@ -13,7 +13,7 @@
 #include "AppManager.h"
 
 
-NoiseManager::NoiseManager(): Manager(), m_noiseResolution(255)
+NoiseManager::NoiseManager(): Manager(), m_noiseResolution(255), m_playNoise(false)
 {
 	//Intentionally left empty
 }
@@ -46,12 +46,12 @@ void NoiseManager::setupBoundingBox()
    
     float ratio = ((float)ofGetWidth())/ofGetHeight();
     
-    m_boundingBox.width = GuiManager::GUI_WIDTH;
+    m_boundingBox.width = AppManager::getInstance().getGuiManager().getWidth();
     m_boundingBox.height = m_boundingBox.width/ratio;
 
     
-    m_boundingBox.y = 280;
-    m_boundingBox.x = ofGetWidth() - GuiManager::GUI_WIDTH - 40;
+    m_boundingBox.y = AppManager::getInstance().getGuiManager().getPosition().y + AppManager::getInstance().getGuiManager().getHeight() + 20;
+    m_boundingBox.x = AppManager::getInstance().getGuiManager().getPosition().x;
 }
 
 void NoiseManager::setupFbo()
@@ -69,12 +69,22 @@ void NoiseManager::setupNoise()
 }
 
 
-
+void NoiseManager::resetPosition()
+{
+    setupBoundingBox();
+    setupFbo();
+}
 
 
 void NoiseManager::update()
 {
+    if(!m_playNoise){
+        return;
+    }
+    
     this->updateNoise();
+    
+    AppManager::getInstance().getLedsManager().setPixels(m_noiseImage.getPixelsRef());
 }
 
 
@@ -120,18 +130,13 @@ void NoiseManager::onNoiseResolutionChange( int& value )
 
 void NoiseManager::draw()
 {
-    this->drawRectangle();
+    if(!m_playNoise){
+        return;
+    }
+    
      m_noiseImage.draw(m_boundingBox);
-    //m_noiseImage.draw(0,0, m_boundingBox.width, m_boundingBox.height);
 }
 
-void NoiseManager::drawRectangle()
-{
-    ofPushStyle();
-    ofSetColor(ofColor::black);
-    ofRect(m_boundingBox.x - 20, 0, m_boundingBox.width + 60, ofGetHeight());
-    ofPopStyle();
-}
 
 
 

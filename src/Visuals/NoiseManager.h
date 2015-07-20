@@ -44,8 +44,6 @@ class NoiseManager: public Manager
         //bool readToPixels(ofPixelsRef pix) {return m_fboReader.readToPixels(m_fbo, pix);}
     
         void readToPixels(ofPixelsRef pix) {pix = m_noiseImage.getPixelsRef();}
-
-        ofPixelsRef getPixels() {return m_noiseImage.getPixelsRef();}
     
         float getWidth()  {return m_noiseImage.getWidth();}
     
@@ -60,6 +58,10 @@ class NoiseManager: public Manager
         void onNoiseBrightnessChange(int& value) {m_brightness = ofMap(value, 0, 255, 0, 1);}
     
         void onNoiseResolutionChange(int& value);
+    
+        void  onPlayNoiseChange(bool value) {m_playNoise = value;}
+    
+        void resetPosition();
 
     
     private:
@@ -71,8 +73,6 @@ class NoiseManager: public Manager
         void setupNoise();
     
         void updateNoise();
-    
-        void drawRectangle();
     
     
     private:
@@ -87,7 +87,9 @@ class NoiseManager: public Manager
         int         m_noiseResolution;
     
         int         m_hue;
-        float         m_brightness;
+        float       m_brightness;
+    
+        bool        m_playNoise;
     
         ofImage m_noiseImage;
 };

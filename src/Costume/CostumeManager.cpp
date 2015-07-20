@@ -64,7 +64,7 @@ void CostumeManager::setupScrollView()
     contentRect.height = m_costumeImage->getOriginalHeight();
     
     ofRectangle windowRect;
-    windowRect.width = ofGetWidth() - GuiManager::GUI_WIDTH - 40;
+    windowRect.width = ofGetWidth() - AppManager::getInstance().getGuiManager().getWidth() - 40;
     windowRect.height =  ofGetHeight();
     
     //----------------------------------------------------------

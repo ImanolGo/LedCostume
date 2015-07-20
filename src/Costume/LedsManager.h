@@ -48,13 +48,12 @@ class LedsManager: public Manager
     
         int getNumberLeds() const {return m_leds.size();}
     
+        void setPixels(ofPixelsRef pixels);
     
     
     private:
     
         void setupLeds();
-    
-        void updateLeds();
     
         void readLedsPosition();
     

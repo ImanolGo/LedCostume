@@ -15,6 +15,7 @@
 		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
 		08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */; };
 		08DC24BF1B5D1A340055BB82 /* RectangleVisual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC24BD1B5D1A340055BB82 /* RectangleVisual.cpp */; };
+		08DC24C41B5D592E0055BB82 /* VideoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC24C21B5D592E0055BB82 /* VideoManager.cpp */; };
 		08DC67AF1B564F6800789AFA /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC67AD1B564F6800789AFA /* ImageManager.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
@@ -139,6 +140,8 @@
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
 		08DC24BD1B5D1A340055BB82 /* RectangleVisual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RectangleVisual.cpp; path = Engine/Visuals/RectangleVisual.cpp; sourceTree = "<group>"; };
 		08DC24BE1B5D1A340055BB82 /* RectangleVisual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RectangleVisual.h; path = Engine/Visuals/RectangleVisual.h; sourceTree = "<group>"; };
+		08DC24C21B5D592E0055BB82 /* VideoManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoManager.cpp; sourceTree = "<group>"; };
+		08DC24C31B5D592E0055BB82 /* VideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoManager.h; sourceTree = "<group>"; };
 		08DC67AD1B564F6800789AFA /* ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageManager.cpp; sourceTree = "<group>"; };
 		08DC67AE1B564F6800789AFA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 		08B1BF261B4FC606003C7BB3 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				08DC24C21B5D592E0055BB82 /* VideoManager.cpp */,
+				08DC24C31B5D592E0055BB82 /* VideoManager.h */,
 				08DC67AD1B564F6800789AFA /* ImageManager.cpp */,
 				08DC67AE1B564F6800789AFA /* ImageManager.h */,
 				08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */,
@@ -1139,6 +1144,7 @@
 				7E78555D595408C86F902937 /* ofUnicode.cpp in Sources */,
 				08AE047C1B4E7708007B55CE /* Led.cpp in Sources */,
 				EC108074DB75C3CD93A7DADF /* ofUTF8.cpp in Sources */,
+				08DC24C41B5D592E0055BB82 /* VideoManager.cpp in Sources */,
 				FD64AAF18A0DB2DE4406D915 /* CostumeManager.cpp in Sources */,
 				48F94177806B5CB8D3C0F283 /* CameraAnimations.cpp in Sources */,
 				C6B3BFC2668F137F745DC3C6 /* CameraAnimationsManager.cpp in Sources */,

@@ -40,7 +40,9 @@ void GuiManager::setup()
 
 
     this->setupGuiParameters();
+    this->setupModesGui();
     this->setupImageGui();
+    this->setupVideoGui();
     this->setupNoiseGui();
     this->loadGuiValues();
     
@@ -52,11 +54,28 @@ void GuiManager::setupGuiParameters()
 {
     m_gui.setDefaultWidth(GUI_WIDTH);
     m_gui.setup(GUI_SETTINGS_NAME, GUI_SETTINGS_FILE_NAME);
-    m_gui.setPosition(ofGetWidth() - GUI_WIDTH - 40, 40);
+    m_gui.setPosition(ofGetWidth() - GUI_WIDTH - 20, 40);
     //m_gui.setPosition(20, 20);
     m_gui.add(m_guiFPS.set("FPS", 0, 0, 60));
     ofxGuiSetFont( "fonts/open-sans/OpenSans-Semibold.ttf", 9 );
 
+}
+
+
+void GuiManager::setupModesGui()
+{
+
+    m_parametersModes.setName("Modes");
+    
+    m_videoMode.set("Video",  false );
+    m_videoMode.addListener(this, &GuiManager::onSetVideoMode);
+    m_parametersModes.add(m_videoMode);
+    
+    m_noiseMode.set("Noise",  false );
+    m_noiseMode.addListener(this, &GuiManager::onSetNoiseMode);
+    m_parametersModes.add(m_noiseMode);
+    
+    m_gui.add(m_parametersModes);
 }
 
 
@@ -77,6 +96,20 @@ void GuiManager::setupImageGui()
     
     m_gui.add(m_parametersImage);
 }
+
+void GuiManager::setupVideoGui()
+{
+    auto videoManager = &AppManager::getInstance().getVideoManager();
+    
+    m_parametersVideo.setName("Video");
+    
+    m_nextVideo.setup("Next Video");
+    m_nextVideo.addListener(videoManager, &VideoManager::onNextVideoChange);
+    
+    m_gui.add(&m_nextVideo);
+    
+}
+
 
 
 void GuiManager::setupNoiseGui()
@@ -116,6 +149,8 @@ void GuiManager::draw()
     if(!m_showGui)
         return;
     
+    this->drawRectangle();
+    
     m_guiFPS = ofGetFrameRate();
     m_gui.draw();
     
@@ -136,4 +171,34 @@ void GuiManager::loadGuiValues()
 void GuiManager::toggleGui()
 {
     m_showGui = !m_showGui;
+}
+
+void GuiManager::drawRectangle()
+{
+    ofPushStyle();
+    ofSetColor(ofColor::black);
+    ofRect( m_gui.getPosition().x - 20, 0, GUI_WIDTH + 60, ofGetHeight());
+    ofPopStyle();
+}
+
+
+
+void GuiManager::onSetVideoMode(bool& value)
+{
+    if(value == true){
+        m_noiseMode = false;
+        AppManager::getInstance().getVideoManager().onPlayVideoChange(value);
+        AppManager::getInstance().getNoiseManager().onPlayNoiseChange(false);
+    }
+
+}
+
+void GuiManager::onSetNoiseMode(bool& value)
+{
+    if(value == true){
+        m_videoMode = false;
+        AppManager::getInstance().getVideoManager().onPlayVideoChange(m_videoMode.get());
+        AppManager::getInstance().getNoiseManager().onPlayNoiseChange(value);
+    }
+
 }

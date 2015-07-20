@@ -22,6 +22,7 @@ class GuiManager: public Manager
 {
     static const string GUI_SETTINGS_FILE_NAME;
     static const string GUI_SETTINGS_NAME;
+    static const int GUI_WIDTH;
     
 public:
 
@@ -45,17 +46,29 @@ public:
     
     void showGui(bool show){m_showGui=show;}
     
+    void onSetVideoMode(bool& value);
+    
+    void onSetNoiseMode(bool& value);
+    
+    int getWidth() {return GUI_WIDTH;}
+    
+    int getHeight() {return m_gui.getHeight();}
+    
+    ofPoint  getPosition() {return m_gui.getPosition();}
+    
 private:
     
     void setupGuiParameters();
     
+    void setupModesGui();
+    
     void setupNoiseGui();
     
     void setupImageGui();
-
-public:
     
-     static const int GUI_WIDTH;
+    void setupVideoGui();
+    
+    void drawRectangle();
 
 private:
     
@@ -66,10 +79,17 @@ private:
     
     
     ofParameterGroup    m_parametersNoise;
+    ofParameterGroup    m_parametersModes;
     ofParameterGroup    m_parametersImage;
+    ofParameterGroup    m_parametersVideo;
+    
+    ofxButton           m_nextVideo;
     
     ofParameter<bool>     m_imageRecord;
     ofParameter<bool>     m_imageLoop;
+    
+    ofParameter<bool>     m_videoMode;
+    ofParameter<bool>     m_noiseMode;
     
     ofParameter<int>      m_noiseResolution;
     ofParameter<float>    m_noiseFrequency;

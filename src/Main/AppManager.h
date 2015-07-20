@@ -23,6 +23,7 @@
 #include "LedsManager.h"
 #include "NoiseManager.h"
 #include "ImageManager.h"
+#include "VideoManager.h"
 
 
 //========================== class AppManager ==============================
@@ -79,6 +80,9 @@ public:
     
     //! Returns the Image manager
     ImageManager&   getImageManager() { return m_imageManager; }
+    
+    //! Returns the video manager
+    VideoManager&   getVideoManager() { return m_videoManager; }
 
     
     //==========================================================================
@@ -123,6 +127,7 @@ private:
     CostumeManager           m_costumeManager;           ///< Manages the costume visuals
     LedsManager              m_ledsManager;              ///< Manages the costume leds
     NoiseManager             m_noiseManager;             ///< Manages the noise visuals
+    VideoManager             m_videoManager;             ///< Manages the video  visuals
     ImageManager             m_imageManager;             ///< Manages the images to be exported
 
     bool                     m_debugMode;

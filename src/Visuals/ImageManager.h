@@ -10,6 +10,8 @@
 #pragma once
 
 #include "Manager.h"
+#include "Led.h"
+#include "Manager.h"
 
 
 //========================== class ImageManager ==============================
@@ -34,13 +36,31 @@ class ImageManager: public Manager
         //! Setup the Image Manager
         void setup();
     
+        //! Update the Image Manager
+        void update();
+    
         //! Draw the Image Manager
         void draw();
     
+        void onRecordingChange(bool& value);
     
     private:
+    
+        void saveImage();
+    
+        void updateImage();
+    
+        string getDateTime();
+    
+    private:
+    
+        typedef vector< ofPtr<Led> > LedVector;
+        typedef vector< LedVector> ImageVector;
   
         ofImage             m_image;
+        bool                m_isRecording;
+    
+        ImageVector         m_imageVector;
 };
 
 

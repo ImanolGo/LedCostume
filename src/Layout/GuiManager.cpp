@@ -40,6 +40,7 @@ void GuiManager::setup()
 
 
     this->setupGuiParameters();
+    this->setupImageGui();
     this->setupNoiseGui();
     this->loadGuiValues();
     
@@ -57,6 +58,21 @@ void GuiManager::setupGuiParameters()
     ofxGuiSetFont( "fonts/open-sans/OpenSans-Semibold.ttf", 9 );
 
 }
+
+
+void GuiManager::setupImageGui()
+{
+    auto imageManager = &AppManager::getInstance().getImageManager();
+    
+    m_parametersImage.setName("Image Export");
+    
+    m_imageRecord.set("Record",  false );
+    m_imageRecord.addListener(imageManager, &ImageManager::onRecordingChange);
+    m_parametersImage.add(m_imageRecord);
+    
+    m_gui.add(m_parametersImage);
+}
+
 
 void GuiManager::setupNoiseGui()
 {

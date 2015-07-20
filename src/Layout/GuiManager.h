@@ -50,6 +50,8 @@ private:
     void setupGuiParameters();
     
     void setupNoiseGui();
+    
+    void setupImageGui();
 
 public:
     
@@ -64,6 +66,9 @@ private:
     
     
     ofParameterGroup    m_parametersNoise;
+    ofParameterGroup    m_parametersImage;
+    
+    ofParameter<bool>     m_imageRecord;
     
     ofParameter<int>      m_noiseResolution;
     ofParameter<float>    m_noiseFrequency;

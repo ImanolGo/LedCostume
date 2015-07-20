@@ -79,6 +79,7 @@ void AppManager::update()
     m_viewManager.update();
     m_noiseManager.update();
     m_ledsManager.update();
+    m_imageManager.update();
     m_costumeManager.update();
 }
 

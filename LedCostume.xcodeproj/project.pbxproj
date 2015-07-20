@@ -14,6 +14,7 @@
 		08AE04791B4E6EA0007B55CE /* LedsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE04771B4E6EA0007B55CE /* LedsManager.cpp */; };
 		08AE047C1B4E7708007B55CE /* Led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AE047A1B4E7708007B55CE /* Led.cpp */; };
 		08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */; };
+		08DC24BF1B5D1A340055BB82 /* RectangleVisual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC24BD1B5D1A340055BB82 /* RectangleVisual.cpp */; };
 		08DC67AF1B564F6800789AFA /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC67AD1B564F6800789AFA /* ImageManager.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
@@ -136,6 +137,8 @@
 		08B1BF271B4FC606003C7BB3 /* NoiseManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseManager.cpp; sourceTree = "<group>"; };
 		08B1BF281B4FC606003C7BB3 /* NoiseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseManager.h; sourceTree = "<group>"; };
 		08C5194B0C92DDA2A7539395 /* core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = core.h; path = src/Addons/ofxUnicode/libs/utf8cpp/src/utf8_v2_3_1/source/utf8/core.h; sourceTree = SOURCE_ROOT; };
+		08DC24BD1B5D1A340055BB82 /* RectangleVisual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RectangleVisual.cpp; path = Engine/Visuals/RectangleVisual.cpp; sourceTree = "<group>"; };
+		08DC24BE1B5D1A340055BB82 /* RectangleVisual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RectangleVisual.h; path = Engine/Visuals/RectangleVisual.h; sourceTree = "<group>"; };
 		08DC67AD1B564F6800789AFA /* ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageManager.cpp; sourceTree = "<group>"; };
 		08DC67AE1B564F6800789AFA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -576,6 +579,8 @@
 		51215486FD04C7A6B90A7559 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				08DC24BD1B5D1A340055BB82 /* RectangleVisual.cpp */,
+				08DC24BE1B5D1A340055BB82 /* RectangleVisual.h */,
 				3656BF3981C35A273806DCEB /* BasicVisual.h */,
 				4F661FE0411AA0AC01E34CB7 /* ImageVisual.cpp */,
 				11C490A0CA5771C60AE54B4B /* ImageVisual.h */,
@@ -1107,6 +1112,7 @@
 				9A15495FA2EE8F23378413B2 /* ofxBaseGui.cpp in Sources */,
 				1E777E277DAB367779E7E89A /* ofxButton.cpp in Sources */,
 				10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */,
+				08DC24BF1B5D1A340055BB82 /* RectangleVisual.cpp in Sources */,
 				08E318301B53D84C003B99B3 /* ofxProcessFFT.cpp in Sources */,
 				08AE04751B4E623C007B55CE /* README.md in Sources */,
 				4D8AD4DF379BCF35DCB7A000 /* ofxLabel.cpp in Sources */,

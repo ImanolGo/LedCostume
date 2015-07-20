@@ -46,6 +46,10 @@ class LedsManager: public Manager
     
         const LedVector& getLeds() const {return m_leds;}
     
+        int getNumberLeds() const {return m_leds.size();}
+    
+    
+    
     private:
     
         void setupLeds();

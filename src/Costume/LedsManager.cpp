@@ -46,7 +46,6 @@ void LedsManager::setupLeds()
 {
     this->readLedsPosition();
     this->normalizeLeds();
-
 }
 
 void LedsManager::readLedsPosition()

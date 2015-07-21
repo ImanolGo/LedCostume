@@ -14,7 +14,7 @@
 
 
 
-AudioVisualsManager::AudioVisualsManager(): Manager(), m_playAudioVisuals(false), m_inputLevel(1.0), m_highValue(0.0), m_lowValue(0.0)
+AudioVisualsManager::AudioVisualsManager(): Manager(), m_playAudioVisuals(false), m_inputLevel(1.0), m_highValue(0.0), m_lowValue(0.0), m_mode(0)
 {
 	//Intentionally left empty
 }
@@ -38,7 +38,9 @@ void AudioVisualsManager::setup()
     this->setupFbo();
     this->setupFft();
     this->setupShader();
+    m_particles.setup();
     
+
     ofLogNotice() <<"AudioVisualsManager::initialized" ;
     
 }
@@ -86,13 +88,34 @@ void AudioVisualsManager::resetPosition()
     setupBoundingBox();
 }
 
+void AudioVisualsManager::setupParticles()
+{
+    m_particles.setup();
+}
+
+
 void AudioVisualsManager::update()
 {
     if (!m_playAudioVisuals) {
         return;
     }
     
+ 
+    
     this->updateFft();
+    
+    switch (m_mode)
+    {
+        case 0:
+            break;
+        case 1:
+            this->updateParticles();
+            break;
+            
+        default:
+            break;
+    }
+    
     this->updateFbo();
 }
 
@@ -105,13 +128,30 @@ void AudioVisualsManager::updateFft()
     m_highValue = ofMap(m_fft.getHighVal(), 0, 1, 8, 20*m_inputLevel);
 }
 
+void AudioVisualsManager::updateParticles()
+{
+    m_particles.setParameters(m_lowValue, m_highValue);
+    m_particles.update();
+}
+
+
 void AudioVisualsManager::updateFbo()
 {
     
     ofEnableAlphaBlending();
     m_fbo.begin();
-   
-        this->drawAudioCircles();
+        switch (m_mode)
+        {
+            case 0:
+                this->drawAudioCircles();
+                break;
+            case 1:
+                this->drawParticles();
+                break;
+            
+            default:
+                break;
+        }
     
     m_fbo.end();
     
@@ -123,11 +163,16 @@ void AudioVisualsManager::updateFbo()
     AppManager::getInstance().getLedsManager().setPixels(pixels);
 }
 
+void AudioVisualsManager::drawParticles()
+{
+    m_particles.draw();
+}
+
 void AudioVisualsManager::drawAudioCircles()
 {
     ofPushStyle();
     ofFill();
-    ofSetColor(0,0,0,15);
+    ofSetColor(0,0,0,12);
     ofRect(0,0,m_fbo.getWidth(),m_fbo.getHeight());
     
     m_shader.begin();
@@ -150,10 +195,7 @@ void AudioVisualsManager::draw()
         return;
     }
     
-    ofEnableAlphaBlending();
-    ofSetColor(255,255,255);
     m_fbo.draw(m_boundingBox);
-    ofDisableAlphaBlending();
 }
 
 void AudioVisualsManager::onPlayAudioVisualsChange(bool value)

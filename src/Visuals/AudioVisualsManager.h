@@ -12,6 +12,7 @@
 #include "Manager.h"
 
 #include "ofxProcessFFT.h"
+#include "AudioParticles.h"
 
 
 //========================== class AudioVisualsManager ==============================
@@ -56,7 +57,11 @@ class AudioVisualsManager: public Manager
     
         void setupShader();
     
+        void setupParticles();
+    
         void updateFbo();
+    
+        void updateParticles();
     
         void setupFft();
     
@@ -64,18 +69,23 @@ class AudioVisualsManager: public Manager
     
         void drawAudioCircles();
     
+        void drawParticles();
+    
     private:
     
         bool            m_playAudioVisuals;
         ofRectangle     m_boundingBox;
+        int             m_mode;
     
         ProcessFFT      m_fft;
         float           m_inputLevel;
         float           m_highValue;
         float           m_lowValue;
+    
+        AudioParticles  m_particles;
 
-        ofFbo           m_fbo;
-        ofShader        m_shader;
+        ofFbo               m_fbo;
+        ofShader            m_shader;
 };
 
 

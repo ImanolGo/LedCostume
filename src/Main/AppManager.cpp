@@ -52,6 +52,7 @@ void AppManager::setup()
 
 void AppManager::setupOF()
 {
+    ofSetFrameRate(24);
     ofSetVerticalSync(true);
     ofSetEscapeQuitsApp(true);
 }
@@ -70,9 +71,11 @@ void AppManager::setupManagers()
     m_noiseManager.setup();
     m_imageManager.setup();
     m_videoManager.setup();
+    m_audioVisualsManager.setup();
     m_guiManager.setup();
     m_noiseManager.resetPosition();
     m_videoManager.resetPosition();
+    m_audioVisualsManager.resetPosition();
     
 }
 
@@ -82,9 +85,9 @@ void AppManager::update()
     m_viewManager.update();
     m_noiseManager.update();
     m_ledsManager.update();
-    m_imageManager.update();
     m_videoManager.update();
     m_costumeManager.update();
+    m_audioVisualsManager.update();
 }
 
 
@@ -98,6 +101,7 @@ void AppManager::draw()
     m_noiseManager.draw();
     m_imageManager.draw();
     m_videoManager.draw();
+    m_audioVisualsManager.draw();
     
 }
 

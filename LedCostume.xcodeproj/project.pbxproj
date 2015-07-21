@@ -17,6 +17,7 @@
 		08DC24BF1B5D1A340055BB82 /* RectangleVisual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC24BD1B5D1A340055BB82 /* RectangleVisual.cpp */; };
 		08DC24C41B5D592E0055BB82 /* VideoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC24C21B5D592E0055BB82 /* VideoManager.cpp */; };
 		08DC67AF1B564F6800789AFA /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08DC67AD1B564F6800789AFA /* ImageManager.cpp */; };
+		08E30B4D1B5E374600789D32 /* AudioVisualsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30B4B1B5E374600789D32 /* AudioVisualsManager.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
 		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
@@ -144,6 +145,8 @@
 		08DC24C31B5D592E0055BB82 /* VideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoManager.h; sourceTree = "<group>"; };
 		08DC67AD1B564F6800789AFA /* ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageManager.cpp; sourceTree = "<group>"; };
 		08DC67AE1B564F6800789AFA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		08E30B4B1B5E374600789D32 /* AudioVisualsManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioVisualsManager.cpp; sourceTree = "<group>"; };
+		08E30B4C1B5E374600789D32 /* AudioVisualsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioVisualsManager.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 		08B1BF261B4FC606003C7BB3 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				08E30B4B1B5E374600789D32 /* AudioVisualsManager.cpp */,
+				08E30B4C1B5E374600789D32 /* AudioVisualsManager.h */,
 				08DC24C21B5D592E0055BB82 /* VideoManager.cpp */,
 				08DC24C31B5D592E0055BB82 /* VideoManager.h */,
 				08DC67AD1B564F6800789AFA /* ImageManager.cpp */,
@@ -1140,6 +1145,7 @@
 				82C668F7D0DF704AD7D1BB1C /* utf8cpp.html in Sources */,
 				B7993B374B98F50CBD9EC220 /* README.md in Sources */,
 				08E3182F1B53D84C003B99B3 /* ofxFftw.cpp in Sources */,
+				08E30B4D1B5E374600789D32 /* AudioVisualsManager.cpp in Sources */,
 				20DD9BBB631FBC0CDCCFA6B6 /* ofTextConverter.cpp in Sources */,
 				7E78555D595408C86F902937 /* ofUnicode.cpp in Sources */,
 				08AE047C1B4E7708007B55CE /* Led.cpp in Sources */,

@@ -106,6 +106,7 @@ void GuiManager::setupVideoGui()
     m_nextVideo.setup("Next Video");
     m_nextVideo.addListener(videoManager, &VideoManager::onNextVideoChange);
     
+    m_gui.add(m_parametersVideo);
     m_gui.add(&m_nextVideo);
     
 }

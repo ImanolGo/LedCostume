@@ -58,14 +58,14 @@ class VideoManager: public Manager
     
     private:
     
-    typedef vector <string> Videos;
+        typedef vector <string> Videos;
     
-    ofVideoPlayer 	m_videoPlayer;
-    Videos          m_videos;
-    string          m_currentVideo;
+        ofVideoPlayer 	m_videoPlayer;
+        Videos          m_videos;
+        string          m_currentVideo;
     
-    bool            m_playVideo;
-    ofRectangle     m_boundingBox;
+        bool            m_playVideo;
+        ofRectangle     m_boundingBox;
 
 };
 

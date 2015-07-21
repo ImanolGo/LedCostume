@@ -172,6 +172,8 @@ void LedsManager::setPixels(ofPixelsRef pixels)
         
         led->setColor(color);
     }
+    
+    AppManager::getInstance().getImageManager().update();
 }
 
 

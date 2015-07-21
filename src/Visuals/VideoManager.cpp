@@ -92,7 +92,11 @@ void VideoManager::update()
     
      m_videoPlayer.update();
     
-    AppManager::getInstance().getLedsManager().setPixels(m_videoPlayer.getPixelsRef());
+    if(m_videoPlayer.isFrameNew())
+    {
+        AppManager::getInstance().getLedsManager().setPixels(m_videoPlayer.getPixelsRef());
+    }
+    
 }
 
 

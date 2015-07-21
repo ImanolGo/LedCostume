@@ -24,6 +24,7 @@
 #include "NoiseManager.h"
 #include "ImageManager.h"
 #include "VideoManager.h"
+#include "AudioVisualsManager.h"
 
 
 //========================== class AppManager ==============================
@@ -83,6 +84,9 @@ public:
     
     //! Returns the video manager
     VideoManager&   getVideoManager() { return m_videoManager; }
+    
+    //! Returns the audio visuals manager
+    AudioVisualsManager&   getAudioVisualsManager() { return m_audioVisualsManager; }
 
     
     //==========================================================================
@@ -129,6 +133,7 @@ private:
     NoiseManager             m_noiseManager;             ///< Manages the noise visuals
     VideoManager             m_videoManager;             ///< Manages the video  visuals
     ImageManager             m_imageManager;             ///< Manages the images to be exported
+    AudioVisualsManager      m_audioVisualsManager;      ///< Manages the audio reactive visuals
 
     bool                     m_debugMode;
 };

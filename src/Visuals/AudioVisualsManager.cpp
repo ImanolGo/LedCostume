@@ -37,6 +37,7 @@ void AudioVisualsManager::setup()
     this->setupBoundingBox();
     this->setupFbo();
     this->setupFft();
+    this->setupShader();
     
     ofLogNotice() <<"AudioVisualsManager::initialized" ;
     
@@ -68,8 +69,16 @@ void AudioVisualsManager::setupFbo()
     float width = 1030;
     float height = 524;
     
-    m_fbo.allocate(width, height);
+    m_fbo.allocate(width, height,GL_RGBA32F_ARB);
     m_fbo.begin(); ofClear(0); m_fbo.end();
+}
+
+void AudioVisualsManager::setupShader()
+{
+    m_shader.setGeometryInputType(GL_LINES);
+    m_shader.setGeometryOutputType(GL_TRIANGLE_STRIP);
+    m_shader.setGeometryOutputCount(4);
+    m_shader.load("shaders/ThickLineShaderVert.glsl", "shaders/ThickLineShaderFrag.glsl", "shaders/ThickLineShaderGeom.glsl");
 }
 
 void AudioVisualsManager::resetPosition()
@@ -91,30 +100,49 @@ void AudioVisualsManager::updateFft()
 {
     m_fft.update();
     
-    m_lowValue = ofMap(m_fft.getLowVal(), 0, 1, 0, 30*m_inputLevel);
+    m_lowValue = ofMap(m_fft.getLowVal(), 0, 1, 8, 20*m_inputLevel);
     //float midValue = ofMap(m_fft.getMidVal(), 0, 1, 0, m_inputLevel);
-    m_highValue = ofMap(m_fft.getMidVal(), 0, 1, 0, 30*m_inputLevel);
+    m_highValue = ofMap(m_fft.getHighVal(), 0, 1, 8, 20*m_inputLevel);
 }
 
 void AudioVisualsManager::updateFbo()
 {
-    m_fbo.begin();
-    ofClear(0);
     
-    ofSetColor(200,0,0,100);
-    ofCircle(m_fbo.getWidth()*0.2, m_fbo.getHeight()*0.5, m_lowValue);
-     ofSetColor(0,0,200,100);
-    ofCircle(m_fbo.getWidth()*0.8, m_fbo.getHeight()*0.5, m_highValue);
+    ofEnableAlphaBlending();
+    m_fbo.begin();
+   
+        this->drawAudioCircles();
     
     m_fbo.end();
     
     ofPixels pixels;
     m_fbo.readToPixels(pixels);
     
+    ofDisableAlphaBlending();
+    
     AppManager::getInstance().getLedsManager().setPixels(pixels);
 }
 
+void AudioVisualsManager::drawAudioCircles()
+{
+    ofPushStyle();
+    ofFill();
+    ofSetColor(0,0,0,15);
+    ofRect(0,0,m_fbo.getWidth(),m_fbo.getHeight());
+    
+    m_shader.begin();
+    m_shader.setUniform1f("thickness", 6);
 
+    ofNoFill();
+    ofSetLineWidth(100);
+    ofSetColor(200,0,0);
+    ofCircle(m_fbo.getWidth()*0.2, m_fbo.getHeight()*0.5, m_lowValue);
+    ofSetColor(0,0,200);
+    ofCircle(m_fbo.getWidth()*0.8, m_fbo.getHeight()*0.5, m_highValue);
+    
+    ofPopStyle();
+    m_shader.end();
+}
 
 void AudioVisualsManager::draw()
 {
@@ -122,7 +150,10 @@ void AudioVisualsManager::draw()
         return;
     }
     
+    ofEnableAlphaBlending();
+    ofSetColor(255,255,255);
     m_fbo.draw(m_boundingBox);
+    ofDisableAlphaBlending();
 }
 
 void AudioVisualsManager::onPlayAudioVisualsChange(bool value)

@@ -54,11 +54,15 @@ class AudioVisualsManager: public Manager
     
         void setupFbo();
     
+        void setupShader();
+    
         void updateFbo();
     
         void setupFft();
     
         void updateFft();
+    
+        void drawAudioCircles();
     
     private:
     
@@ -71,6 +75,7 @@ class AudioVisualsManager: public Manager
         float           m_lowValue;
 
         ofFbo           m_fbo;
+        ofShader        m_shader;
 };
 
 

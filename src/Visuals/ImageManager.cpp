@@ -15,7 +15,7 @@
 #include "AppManager.h"
 
 
-ImageManager::ImageManager(): Manager(), m_isRecording(false), m_loop(false)
+ImageManager::ImageManager(): Manager(), m_isRecording(false), m_mirror(false)
 {
 	//Intentionally left empty
 }
@@ -69,8 +69,8 @@ void ImageManager::onRecordingChange(bool& value)
 void ImageManager::saveImage()
 {
     
-    if(m_loop){
-        this->saveImageLoop();
+    if(m_mirror){
+        this->saveImageMirror();
     }
     else{
         this->saveImageSample();
@@ -107,7 +107,7 @@ void ImageManager::saveImageSample()
     m_imageVector.clear();
 }
 
-void ImageManager::saveImageLoop()
+void ImageManager::saveImageMirror()
 {
     
     int width = AppManager::getInstance().getLedsManager().getNumberLeds();

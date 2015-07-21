@@ -93,7 +93,7 @@ private:
     ofParameter<float>    m_audioLevel;
     
     ofParameter<bool>     m_imageRecord;
-    ofParameter<bool>     m_imageLoop;
+    ofParameter<bool>     m_imageMirror;
     
     ofParameter<bool>     m_videoMode;
     ofParameter<bool>     m_noiseMode;

@@ -11,6 +11,8 @@
 
 #include "Manager.h"
 
+#include "ofxProcessFFT.h"
+
 
 //========================== class AudioVisualsManager ==============================
 //============================================================================
@@ -42,17 +44,33 @@ class AudioVisualsManager: public Manager
     
         void  onPlayAudioVisualsChange(bool value);
     
+        void  onInputLevelChange(float& value) {m_inputLevel = value;}
+    
         void resetPosition();
     
     private:
     
         void setupBoundingBox();
     
+        void setupFbo();
+    
+        void updateFbo();
+    
+        void setupFft();
+    
+        void updateFft();
+    
     private:
     
         bool            m_playAudioVisuals;
         ofRectangle     m_boundingBox;
+    
+        ProcessFFT      m_fft;
+        float           m_inputLevel;
+        float           m_highValue;
+        float           m_lowValue;
 
+        ofFbo           m_fbo;
 };
 
 

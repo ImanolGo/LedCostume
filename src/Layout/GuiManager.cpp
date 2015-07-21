@@ -43,6 +43,7 @@ void GuiManager::setup()
     this->setupModesGui();
     this->setupImageGui();
     this->setupVideoGui();
+    this->setupAudioGui();
     this->setupNoiseGui();
     this->loadGuiValues();
     
@@ -74,6 +75,10 @@ void GuiManager::setupModesGui()
     m_noiseMode.set("Noise",  false );
     m_noiseMode.addListener(this, &GuiManager::onSetNoiseMode);
     m_parametersModes.add(m_noiseMode);
+    
+    m_audioMode.set("Audio",  false );
+    m_audioMode.addListener(this, &GuiManager::onSetAudioMode);
+    m_parametersModes.add(m_audioMode);
     
     m_gui.add(m_parametersModes);
 }
@@ -111,7 +116,19 @@ void GuiManager::setupVideoGui()
     
 }
 
-
+void GuiManager::setupAudioGui()
+{
+    auto audioManager = &AppManager::getInstance().getAudioVisualsManager();
+    
+    m_parametersAudio.setName("Audio");
+    
+    m_audioLevel.set("Audio Level",  1.0, 0.0, 20.0 );
+    m_audioLevel.addListener(audioManager, &AudioVisualsManager::onInputLevelChange);
+    m_parametersAudio.add(m_audioLevel);
+    
+    m_gui.add(m_parametersAudio);
+    
+}
 
 void GuiManager::setupNoiseGui()
 {
@@ -188,8 +205,10 @@ void GuiManager::onSetVideoMode(bool& value)
 {
     if(value == true){
         m_noiseMode = false;
-        AppManager::getInstance().getVideoManager().onPlayVideoChange(value);
+        m_audioMode = false;
+        AppManager::getInstance().getVideoManager().onPlayVideoChange(true);
         AppManager::getInstance().getNoiseManager().onPlayNoiseChange(false);
+        AppManager::getInstance().getAudioVisualsManager().onPlayAudioVisualsChange(false);
     }
 
 }
@@ -198,8 +217,21 @@ void GuiManager::onSetNoiseMode(bool& value)
 {
     if(value == true){
         m_videoMode = false;
-        AppManager::getInstance().getVideoManager().onPlayVideoChange(m_videoMode.get());
-        AppManager::getInstance().getNoiseManager().onPlayNoiseChange(value);
+        m_audioMode = false;
+        AppManager::getInstance().getVideoManager().onPlayVideoChange(false);
+        AppManager::getInstance().getNoiseManager().onPlayNoiseChange(true);
+        AppManager::getInstance().getAudioVisualsManager().onPlayAudioVisualsChange(false);
     }
+}
 
+void GuiManager::onSetAudioMode(bool& value)
+{
+    if(value == true){
+        m_videoMode = false;
+        m_noiseMode = false;
+        AppManager::getInstance().getVideoManager().onPlayVideoChange(false);
+        AppManager::getInstance().getNoiseManager().onPlayNoiseChange(false);
+        AppManager::getInstance().getAudioVisualsManager().onPlayAudioVisualsChange(true);
+    }
+    
 }

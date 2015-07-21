@@ -50,6 +50,8 @@ public:
     
     void onSetNoiseMode(bool& value);
     
+    void onSetAudioMode(bool& value);
+    
     int getWidth() {return GUI_WIDTH;}
     
     int getHeight() {return m_gui.getHeight();}
@@ -68,6 +70,8 @@ private:
     
     void setupVideoGui();
     
+    void setupAudioGui();
+    
     void drawRectangle();
 
 private:
@@ -82,14 +86,18 @@ private:
     ofParameterGroup    m_parametersModes;
     ofParameterGroup    m_parametersImage;
     ofParameterGroup    m_parametersVideo;
+    ofParameterGroup    m_parametersAudio;
     
     ofxButton           m_nextVideo;
+    
+    ofParameter<float>    m_audioLevel;
     
     ofParameter<bool>     m_imageRecord;
     ofParameter<bool>     m_imageLoop;
     
     ofParameter<bool>     m_videoMode;
     ofParameter<bool>     m_noiseMode;
+    ofParameter<bool>     m_audioMode;
     
     ofParameter<int>      m_noiseResolution;
     ofParameter<float>    m_noiseFrequency;

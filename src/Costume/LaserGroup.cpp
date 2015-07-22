@@ -40,12 +40,8 @@ void LaserGroup::draw(int width, int height)
 }
 
 
-void  LaserGroup::setLaserColor(const ofColor& color, int laserId)
+void  LaserGroup::updateColor()
 {
-    if(laserId>=0 && laserId < m_lasers.size()){
-        m_lasers[laserId]->setColor(color);
-    }
-    
     if(m_lasers.size() >= 3){
         m_color.r =  m_lasers[0]->getColor().getBrightness();
         m_color.g =  m_lasers[1]->getColor().getBrightness();
@@ -76,6 +72,7 @@ void LaserGroup::setPixelsColors(ofPixelsRef pixels)
         const ofPoint& pos = laser->getPosition();
         ofColor color = pixels.getColor(pos.x*pixels.getWidth(), pos.y*pixels.getHeight());
         laser->setColor(color);
-        
     }
+    
+    this->updateColor();
 }

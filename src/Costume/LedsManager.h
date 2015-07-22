@@ -60,6 +60,8 @@ class LedsManager: public Manager
     
         int getNumberLeds(const string& key) const;
     
+        int getNumberLasers(const string& key) const;
+    
         void setPixels(ofPixelsRef pixels);
     
         void setLedColors(ofPixelsRef pixels);

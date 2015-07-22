@@ -32,7 +32,8 @@ void Laser::draw()
     ofRotateX(m_rotation.x);
     ofRotateY(m_rotation.y);
     
-    ofSetColor(m_color);
+    //ofSetColor(m_color);
+    ofSetColor(ofColor(m_color.getBrightness(), 0, 0));
     ofFill();
     
         ofRect(0, 0, m_width, m_height);

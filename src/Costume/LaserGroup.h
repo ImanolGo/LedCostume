@@ -30,8 +30,6 @@ class LaserGroup: public BasicVisual {
     
         void  addLaser(ofPtr<Laser> laser) {m_lasers.push_back(laser);}
     
-        void  setLaserColor(const ofColor& color, int laserId);
-    
         int   getNumberLasers() const {return m_lasers.size();}
     
         const ofPoint& getLaserPosition(int laserId) { m_lasers[laserId]->getPosition();}
@@ -39,6 +37,10 @@ class LaserGroup: public BasicVisual {
         void normalize(const ofRectangle& boundingBox);
     
         void setPixelsColors(ofPixelsRef pixels);
+    
+    private:
+    
+        void updateColor();
     
     private:
     

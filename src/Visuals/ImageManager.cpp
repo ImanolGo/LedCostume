@@ -46,7 +46,7 @@ void ImageManager::setup()
 void ImageManager::update()
 {
     if (m_isRecording) {
-         this->updateImage();
+         this->updateColorPixels();
     }
 }
 
@@ -55,7 +55,13 @@ void ImageManager::draw()
     
 }
 
-void ImageManager::updateImage()
+void ImageManager::updateColorPixels()
+{
+    this->updateLedColorPixels();
+    this->updateLaserColorPixels();
+}
+
+void ImageManager::updateLedColorPixels()
 {
     auto ledMap = AppManager::getInstance().getLedsManager().getLeds();
     
@@ -68,11 +74,34 @@ void ImageManager::updateImage()
         
         for(auto& led: ledVector.second)
         {
-            auto& colors = m_colorVectorMap[ledVector.first];
+            //m_colorVectorMap.at(ledVector.first).push_back(led->getColor());
+            auto& colors = m_colorVectorMap.at(ledVector.first);
             colors.push_back(led->getColor());
         }
     }
 }
+
+
+void ImageManager::updateLaserColorPixels()
+{
+    auto laserMap = AppManager::getInstance().getLedsManager().getLasers();
+    
+    for( auto& laserVector: laserMap){
+        
+        if(m_colorVectorMap.find(laserVector.first) == m_colorVectorMap.end()){
+            m_colorVectorMap[laserVector.first] = ColorVector();
+            m_imageMap[laserVector.first] = ofImage();
+        }
+        
+        for(auto& laserGroup: laserVector.second)
+        {
+            //m_colorVectorMap.at(laserVector.first).push_back(laserGroup->getColor());
+            auto& colors = m_colorVectorMap.at(laserVector.first);
+            colors.push_back(laserGroup->getColor());
+        }
+    }
+}
+
 
 
 void ImageManager::onRecordingChange(bool& value)
@@ -107,7 +136,7 @@ void ImageManager::saveImages()
 void ImageManager::saveImageMirror(const string& key)
 {
     
-    int width = AppManager::getInstance().getLedsManager().getNumberLeds(key);
+    int width = AppManager::getInstance().getLedsManager().getNumberLeds(key) + AppManager::getInstance().getLedsManager().getNumberLasers(key);
     int height = 2*m_colorVectorMap.at(key).size()/width;
     ofLogNotice() <<"ImageManager::saveImageMirror ->  width = " << width;
     ofLogNotice() <<"ImageManager::saveImageMirror ->  height = " << height;
@@ -119,7 +148,7 @@ void ImageManager::saveImageMirror(const string& key)
     
     ColorVector& colorVector = m_colorVectorMap.at(key);
     
-     ofLogNotice() <<"ImageManager::saveImageMirror ->  colorVector size = " << colorVector.size();
+    //ofLogNotice() <<"ImageManager::saveImageMirror ->  colorVector size = " << colorVector.size();
     
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -148,8 +177,11 @@ void ImageManager::saveImageMirror(const string& key)
 void ImageManager::saveImageSample(const string& key)
 {
     
-    int width = AppManager::getInstance().getLedsManager().getNumberLeds(key);
+    int width = AppManager::getInstance().getLedsManager().getNumberLeds(key) + AppManager::getInstance().getLedsManager().getNumberLasers(key);
     int height = m_colorVectorMap.at(key).size()/width;
+    
+    ofLogNotice() <<"ImageManager::saveImageMirror ->  width = " << width;
+    ofLogNotice() <<"ImageManager::saveImageMirror ->  height = " << height;
     
     ofImage& image = m_imageMap.at(key);
     image.allocate(width, height, OF_IMAGE_COLOR);
@@ -157,6 +189,9 @@ void ImageManager::saveImageSample(const string& key)
     ofPixelsRef pixels = image.getPixelsRef();
     
     ColorVector& colorVector = m_colorVectorMap.at(key);
+    
+    //ofLogNotice() <<"ImageManager::saveImageMirror ->  colorVector size = " << colorVector.size();
+    
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             int n = x + y*width;
@@ -176,7 +211,7 @@ void ImageManager::saveImageSample(const string& key)
 string ImageManager::getDateTime()
 {
     char buffer[80];
-    string fmt="%d-%m-%Y-%X";
+    string fmt="%d-%m-%Y-%H-%M-%S";
     time_t rawtime;
     time ( &rawtime );
     

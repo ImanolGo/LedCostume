@@ -308,7 +308,15 @@ int LedsManager::getNumberLeds(const string& key) const
     }
     
     return m_leds.at(key).size();
+}
 
+int LedsManager::getNumberLasers(const string& key) const
+{
+    if (m_lasers.find(key) == m_lasers.end()) {
+        return 0;
+    }
+    
+    return m_lasers.at(key).size();
 }
 
 

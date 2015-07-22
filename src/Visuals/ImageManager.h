@@ -58,7 +58,11 @@ class ImageManager: public Manager
     
         void saveImageMirror(const string& key);
     
-        void updateImage();
+        void updateColorPixels();
+    
+        void updateLedColorPixels();
+    
+        void updateLaserColorPixels();
     
         string getDateTime();
     

@@ -13,6 +13,7 @@
 
 #include "ofxProcessFFT.h"
 #include "AudioParticles.h"
+#include "AudioRings.h"
 
 
 //========================== class AudioVisualsManager ==============================
@@ -25,6 +26,8 @@
 
 class AudioVisualsManager: public Manager
 {
+    
+    static const int NUMBER_VISUALS;
     
     public:
 
@@ -47,6 +50,8 @@ class AudioVisualsManager: public Manager
     
         void  onInputLevelChange(float& value) {m_inputLevel = value;}
     
+        void  onNextAudiohange();
+    
         void resetPosition();
     
     private:
@@ -57,9 +62,13 @@ class AudioVisualsManager: public Manager
     
         void setupShader();
     
+        void setupRings();
+    
         void setupParticles();
     
         void updateFbo();
+    
+        void updateRings();
     
         void updateParticles();
     
@@ -67,9 +76,14 @@ class AudioVisualsManager: public Manager
     
         void updateFft();
     
-        void drawAudioCircles();
+        void drawRings();
     
         void drawParticles();
+    
+    public:
+    
+        static const int FBO_WIDTH;
+        static const int FBO_HEIGHT;
     
     private:
     
@@ -79,10 +93,9 @@ class AudioVisualsManager: public Manager
     
         ProcessFFT      m_fft;
         float           m_inputLevel;
-        float           m_highValue;
-        float           m_lowValue;
     
         AudioParticles  m_particles;
+        AudioRings      m_rings;
 
         ofFbo               m_fbo;
         ofShader            m_shader;

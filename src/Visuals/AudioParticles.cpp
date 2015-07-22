@@ -12,8 +12,8 @@
 #include "AudioParticles.h"
 #include "AppManager.h"
 
-const int  AudioParticles::NUM_PARTICLES = 300;
-const float  AudioParticles::DISTANCE_THRESHOLD = 40;
+const int  AudioParticles::NUM_PARTICLES = 50;
+const float  AudioParticles::DISTANCE_THRESHOLD = 200;
 
 void AudioParticle::draw()
 {
@@ -39,9 +39,12 @@ AudioParticles::~AudioParticles()
 
 void AudioParticles::setup()
 {
+    float width = AudioVisualsManager::FBO_WIDTH;
+    float height = AudioVisualsManager::FBO_HEIGHT;
+    
     for (int i = 0; i < NUM_PARTICLES; i++) {
         ofPtr<AudioParticle> particle = ofPtr<AudioParticle>(new AudioParticle());
-        particle->m_offset = ofPoint(ofRandom( 0, 1000 ), ofRandom( 0, 1000 ));
+        particle->m_offset = ofPoint(ofRandom( -width, width ), ofRandom( -height, height ));
         m_particles.push_back(particle);
     }
 }
@@ -66,10 +69,19 @@ void AudioParticles::update()
 
 void AudioParticles::draw()
 {
+    float width = AudioVisualsManager::FBO_WIDTH;
+    float height = AudioVisualsManager::FBO_HEIGHT;
+    
+    //Move center of coordinate system to the screen center
+    ofPushMatrix();
+    ofTranslate( width / 2, height/ 2 );
+    
     for (auto particle : m_particles )
     {
-        particle->draw();
+        //particle->draw();
     }
+    
+   
     
     ofPushStyle();
     ofSetColor(ofColor::white);
@@ -86,11 +98,15 @@ void AudioParticles::draw()
     }
     
     ofPopStyle();
+    ofPopMatrix();
 }
 
 void AudioParticles::setParameters(float radius, float velocity)
 {
-    m_radius = ofMap( radius, 0.0, 1.0, 400, 800, true );
+    float width = AudioVisualsManager::FBO_WIDTH;
+    float height = AudioVisualsManager::FBO_HEIGHT;
+    
+    m_radius = ofMap( radius, 0.0, 1.0, width, width*2, true );
     m_velocity = ofMap( velocity, 0.0, 1.0, 0.05, 0.5 );
 }
 

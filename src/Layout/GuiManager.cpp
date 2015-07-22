@@ -122,12 +122,15 @@ void GuiManager::setupAudioGui()
     
     m_parametersAudio.setName("Audio");
     
-    m_audioLevel.set("Audio Level",  1.0, 0.0, 20.0 );
+    m_audioLevel.set("Audio Level",  0.5, 0.0, 1.0 );
     m_audioLevel.addListener(audioManager, &AudioVisualsManager::onInputLevelChange);
     m_parametersAudio.add(m_audioLevel);
     
-    m_gui.add(m_parametersAudio);
+    m_nextAudio.setup("Next Visual");
+    m_nextAudio.addListener(audioManager, &AudioVisualsManager::onNextAudiohange);
     
+    m_gui.add(m_parametersAudio);
+    m_gui.add(&m_nextAudio);
 }
 
 void GuiManager::setupNoiseGui()

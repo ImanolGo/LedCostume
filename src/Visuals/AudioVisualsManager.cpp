@@ -13,8 +13,11 @@
 #include "AppManager.h"
 
 
+const int AudioVisualsManager::NUMBER_VISUALS = 2;
+const int AudioVisualsManager::FBO_WIDTH = 1030;
+const int AudioVisualsManager::FBO_HEIGHT = 524;
 
-AudioVisualsManager::AudioVisualsManager(): Manager(), m_playAudioVisuals(false), m_inputLevel(1.0), m_highValue(0.0), m_lowValue(0.0), m_mode(0)
+AudioVisualsManager::AudioVisualsManager(): Manager(), m_playAudioVisuals(false), m_inputLevel(1.0), m_mode(0)
 {
 	//Intentionally left empty
 }
@@ -38,8 +41,8 @@ void AudioVisualsManager::setup()
     this->setupFbo();
     this->setupFft();
     this->setupShader();
-    m_particles.setup();
-    
+    this->setupParticles();
+    this->setupRings();
 
     ofLogNotice() <<"AudioVisualsManager::initialized" ;
     
@@ -68,10 +71,7 @@ void AudioVisualsManager::setupFft()
 
 void AudioVisualsManager::setupFbo()
 {
-    float width = 1030;
-    float height = 524;
-    
-    m_fbo.allocate(width, height,GL_RGBA32F_ARB);
+    m_fbo.allocate(FBO_WIDTH, FBO_HEIGHT,GL_RGBA32F_ARB);
     m_fbo.begin(); ofClear(0); m_fbo.end();
 }
 
@@ -93,6 +93,10 @@ void AudioVisualsManager::setupParticles()
     m_particles.setup();
 }
 
+void AudioVisualsManager::setupRings()
+{
+    m_rings.setup();
+}
 
 void AudioVisualsManager::update()
 {
@@ -100,13 +104,13 @@ void AudioVisualsManager::update()
         return;
     }
     
- 
     
     this->updateFft();
     
     switch (m_mode)
     {
         case 0:
+            this->updateRings();
             break;
         case 1:
             this->updateParticles();
@@ -122,28 +126,30 @@ void AudioVisualsManager::update()
 void AudioVisualsManager::updateFft()
 {
     m_fft.update();
-    
-    m_lowValue = ofMap(m_fft.getLowVal(), 0, 1, 8, 20*m_inputLevel);
-    //float midValue = ofMap(m_fft.getMidVal(), 0, 1, 0, m_inputLevel);
-    m_highValue = ofMap(m_fft.getHighVal(), 0, 1, 8, 20*m_inputLevel);
 }
 
 void AudioVisualsManager::updateParticles()
 {
-    m_particles.setParameters(m_lowValue, m_highValue);
+    m_particles.setParameters(m_inputLevel*m_fft.getLowVal(), m_inputLevel*m_fft.getHighVal());
     m_particles.update();
 }
 
+void AudioVisualsManager::updateRings()
+{
+    m_rings.setParameters(m_inputLevel*m_fft.getLowVal(), m_inputLevel*m_fft.getHighVal());
+    m_rings.update();
+}
 
 void AudioVisualsManager::updateFbo()
 {
     
     ofEnableAlphaBlending();
     m_fbo.begin();
+    
         switch (m_mode)
         {
             case 0:
-                this->drawAudioCircles();
+                this->drawRings();
                 break;
             case 1:
                 this->drawParticles();
@@ -165,10 +171,21 @@ void AudioVisualsManager::updateFbo()
 
 void AudioVisualsManager::drawParticles()
 {
+    ofPushStyle();
+    ofFill();
+    ofSetColor(0,0,0,40);
+    ofRect(0,0,m_fbo.getWidth(),m_fbo.getHeight());
+    
+    m_shader.begin();
+    m_shader.setUniform1f("thickness", 2);
+    
     m_particles.draw();
+    
+    ofPopStyle();
+    m_shader.end();
 }
 
-void AudioVisualsManager::drawAudioCircles()
+void AudioVisualsManager::drawRings()
 {
     ofPushStyle();
     ofFill();
@@ -178,15 +195,13 @@ void AudioVisualsManager::drawAudioCircles()
     m_shader.begin();
     m_shader.setUniform1f("thickness", 6);
 
-    ofNoFill();
-    ofSetLineWidth(100);
-    ofSetColor(200,0,0);
-    ofCircle(m_fbo.getWidth()*0.2, m_fbo.getHeight()*0.5, m_lowValue);
-    ofSetColor(0,0,200);
-    ofCircle(m_fbo.getWidth()*0.8, m_fbo.getHeight()*0.5, m_highValue);
+    m_rings.draw();
     
     ofPopStyle();
     m_shader.end();
+    
+
+    
 }
 
 void AudioVisualsManager::draw()
@@ -201,6 +216,11 @@ void AudioVisualsManager::draw()
 void AudioVisualsManager::onPlayAudioVisualsChange(bool value)
 {
     m_playAudioVisuals = value;
+}
+
+void AudioVisualsManager::onNextAudiohange()
+{
+    m_mode = (m_mode + 1) % NUMBER_VISUALS;
 }
 
 

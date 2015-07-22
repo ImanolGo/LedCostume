@@ -91,6 +91,7 @@ private:
     ofxButton           m_nextVideo;
     
     ofParameter<float>    m_audioLevel;
+    ofxButton             m_nextAudio;
     
     ofParameter<bool>     m_imageRecord;
     ofParameter<bool>     m_imageMirror;

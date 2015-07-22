@@ -44,6 +44,7 @@
 		08E30BED1B5E7C3A00789D32 /* VerticalTiltShifPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BD21B5E7C3A00789D32 /* VerticalTiltShifPass.cpp */; };
 		08E30BEE1B5E7C3A00789D32 /* ZoomBlurPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BD41B5E7C3A00789D32 /* ZoomBlurPass.cpp */; };
 		08E30BF51B5E9B3F00789D32 /* AudioParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BF31B5E9B3F00789D32 /* AudioParticles.cpp */; };
+		08E30BF91B5F85A000789D32 /* AudioRings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BF71B5F85A000789D32 /* AudioRings.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
 		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
@@ -226,6 +227,8 @@
 		08E30BD51B5E7C3A00789D32 /* ZoomBlurPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBlurPass.h; sourceTree = "<group>"; };
 		08E30BF31B5E9B3F00789D32 /* AudioParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioParticles.cpp; sourceTree = "<group>"; };
 		08E30BF41B5E9B3F00789D32 /* AudioParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioParticles.h; sourceTree = "<group>"; };
+		08E30BF71B5F85A000789D32 /* AudioRings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioRings.cpp; sourceTree = "<group>"; };
+		08E30BF81B5F85A000789D32 /* AudioRings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRings.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
@@ -453,6 +456,8 @@
 		08B1BF261B4FC606003C7BB3 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				08E30BF71B5F85A000789D32 /* AudioRings.cpp */,
+				08E30BF81B5F85A000789D32 /* AudioRings.h */,
 				08E30BF31B5E9B3F00789D32 /* AudioParticles.cpp */,
 				08E30BF41B5E9B3F00789D32 /* AudioParticles.h */,
 				08E30B4B1B5E374600789D32 /* AudioVisualsManager.cpp */,
@@ -1273,6 +1278,7 @@
 				08E3182C1B53D84C003B99B3 /* ofxEasyFft.cpp in Sources */,
 				9A15495FA2EE8F23378413B2 /* ofxBaseGui.cpp in Sources */,
 				1E777E277DAB367779E7E89A /* ofxButton.cpp in Sources */,
+				08E30BF91B5F85A000789D32 /* AudioRings.cpp in Sources */,
 				08E30BE01B5E7C3A00789D32 /* GodRaysPass.cpp in Sources */,
 				10071661D0AA59C4EC246B6C /* ofxGuiGroup.cpp in Sources */,
 				08DC24BF1B5D1A340055BB82 /* RectangleVisual.cpp in Sources */,

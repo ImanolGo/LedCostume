@@ -13,7 +13,8 @@
 #include "AppManager.h"
 
 
-const string LedsManager::LEDS_LIST_PATH = "led_list/";
+const string LedsManager::LEDS_LIST_PATH = "leds/";
+const string LedsManager::LASERS_LIST_PATH = "lasers/";
 
 
 LedsManager::LedsManager(): Manager()
@@ -36,10 +37,19 @@ void LedsManager::setup()
 
 	Manager::setup();
     
+    this->setupBoundingBox();
     this->setupLeds();
     
     ofLogNotice() <<"LedsManager::initialized" ;
     
+}
+
+void LedsManager::setupBoundingBox()
+{
+    m_boundingBox.setX(67.16);
+    m_boundingBox.setY(49.62);
+    m_boundingBox.setWidth(3478.78 - m_boundingBox.getX());
+    m_boundingBox.setHeight(1724.33 - m_boundingBox.getY());
 }
 
 void LedsManager::setupLeds()
@@ -51,28 +61,33 @@ void LedsManager::setupLeds()
 void LedsManager::readLedsPosition()
 {
     
-    int numSectionsInGroupA = 7;
+    int numSections = 7;
     int id = 0;
-    readLedsPositionFromGroup("A", id, numSectionsInGroupA);
+    readLedsPositionFromGroup("A", id, numSections);
     
-    int numSectionsInGroupJ = 5;
-    readLedsPositionFromGroup("J", id, numSectionsInGroupA);
+    std::vector<int> sections;
+    sections.push_back(4); sections.push_back(5);
+    readLasersPositionFromGroup("A", id, sections);
+    
+    id = 0;
+    numSections = 5;
+    readLedsPositionFromGroup("J", id, numSections);
+
+    sections.clear();
+    sections.push_back(1); sections.push_back(2); sections.push_back(4); sections.push_back(5);
+    readLasersPositionFromGroup("J", id, sections);
+    
     
 }
 
 void LedsManager::normalizeLeds()
 {
     
-    m_boundingBox.setX(67.16);
-    m_boundingBox.setY(49.62);
-    m_boundingBox.setWidth(3478.78 - m_boundingBox.getX());
-    m_boundingBox.setHeight(1724.33 - m_boundingBox.getY());
-    
     float width = AppManager::getInstance().getCostumeManager().getWidth();
     float height = AppManager::getInstance().getCostumeManager().getHeight();
     
     
-    ofLogNotice() <<"LedsManager::readLedsPosition -> width " << width<< ", height = "  << height;
+    ofLogNotice() <<"LedsManager::normalizeLeds -> width " << width<< ", height = "  << height;
     
     for (auto& ledmap : m_leds)
     {
@@ -80,15 +95,20 @@ void LedsManager::normalizeLeds()
         
         for (auto led: ledVector)
         {
-            ofPoint pos = led->getPosition();
-            pos.x = (pos.x - m_boundingBox.getX()) / m_boundingBox.getWidth();
-            pos.y = (pos.y - m_boundingBox.getY()) / m_boundingBox.getHeight();
-            pos.y = 1 - pos.y;
-            
-            
-            led->setPosition(pos);
-            
-            //ofLogNotice() <<"LedsManager::readLedsPosition -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
+            led->normalize(m_boundingBox);
+            //ofLogNotice() <<"LedsManager::normalizeLeds -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
+        }
+    }
+    
+    
+    for (auto& lasermap : m_lasers)
+    {
+        auto& laserGroupVector = lasermap.second;
+        
+        for (auto laserGroup: laserGroupVector)
+        {
+            laserGroup->normalize(m_boundingBox);
+            //ofLogNotice() <<"LedsManager::normalizeLeds -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
         }
         
     }
@@ -113,7 +133,6 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
                 ofPoint ledPosition;
                 if(parseLedLine(line,ledPosition)){
                     createLed(ledPosition, id, channel, leds);
-                    id++;
                 }
                 
             }
@@ -125,17 +144,60 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
     m_leds[groupName] = leds;
 }
 
-void LedsManager::createLed(const ofPoint& position, int id, int channel, LedVector& leds)
+void LedsManager::readLasersPositionFromGroup(const string& groupName, int& id, vector<int>& sections)
 {
-    int width = 4;
-    int height = width;
-    BasicVisual visual(position, width, height);
+    int channel = 0;
+    LaserVector lasers;
     
-    ofPtr<Led> led = ofPtr<Led> (new Led ( visual, id, channel ) );
+    for(auto section: sections)
+    {
+        string laser_section_path = LASERS_LIST_PATH + groupName + ofToString(section) + ".txt";
+        ofBuffer buffer = ofBufferFromFile(laser_section_path);
+        
+        if(buffer.size())
+        {
+            while(buffer.isLastLine() == false)
+            {
+                string line = buffer.getNextLine();
+                ofPoint laserPosition;
+                if(parseLedLine(line,laserPosition)){
+                    createLaser(laserPosition, id, channel, lasers);
+                }
+                
+            }
+        }
+        
+        channel++;
+    }
+    
+    m_lasers[groupName] = lasers;
+}
+
+
+void LedsManager::createLaser(const ofPoint& position, int& id, int channel, LaserVector& lasers)
+{
+    if (lasers.empty() || lasers.back()->getNumberLasers()>=3) {
+        ofPtr<LaserGroup> laserGroup = ofPtr<LaserGroup> (new LaserGroup(id, channel) );
+        lasers.push_back(laserGroup);
+        id++;
+    }
+    
+    ofPtr<Laser> laser = ofPtr<Laser> (new Laser(position) );
+    lasers.back()->addLaser(laser);
+    
+    
+    //ofLogNotice() <<"LedsManager::createLaser -> id " << lasers.back()->getId() << ", channel = "  << lasers.back()->getChannel()  << ", x = "  << laser->getPosition().x << ", y = "  << laser->getPosition().y << ", z = " << laser->getPosition().z ;
+}
+
+void LedsManager::createLed(const ofPoint& position, int& id, int channel, LedVector& leds)
+{
+    ofPtr<Led> led = ofPtr<Led> (new Led ( position, id, channel ) );
     
     leds.push_back(led);
     
-    //ofLogNotice() <<"LedsManager::readLedsPosition -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
+    id++;
+    
+    //ofLogNotice() <<"LedsManager::createLed -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
 }
 
 bool LedsManager::parseLedLine(string& line, ofPoint& position)
@@ -168,28 +230,13 @@ void LedsManager::update()
 
 void LedsManager::setPixels(ofPixelsRef pixels)
 {
-    for (auto& ledmap : m_leds)
-    {
-        auto& ledVector = ledmap.second;
-        
-        for (auto led: ledVector)
-        {
-            ofPoint pos = led->getPosition();
-            pos.x *= pixels.getWidth();
-            pos.y *= pixels.getHeight();
-            
-            ofColor color = pixels.getColor(pos.x, pos.y);
-            
-            led->setColor(color);
-        }
-    }
+    this->setLedColors(pixels);
+    this->setLaserColors(pixels);
     
     AppManager::getInstance().getImageManager().update();
 }
 
-
-
-void LedsManager::draw()
+void LedsManager::setLedColors(ofPixelsRef pixels)
 {
     for (auto& ledmap : m_leds)
     {
@@ -197,7 +244,59 @@ void LedsManager::draw()
         
         for (auto led: ledVector)
         {
-           led->draw();
+            led->setPixelColor(pixels);
+        }
+    }
+}
+
+void LedsManager::setLaserColors(ofPixelsRef pixels)
+{
+    for (auto& laserMap : m_lasers)
+    {
+        auto& laserGroupVector = laserMap.second;
+        
+        for (auto laserGroup: laserGroupVector)
+        {
+            laserGroup->setPixelsColors(pixels);
+        }
+    }
+}
+
+void LedsManager::draw()
+{
+    this->drawLeds();
+    this->drawLasers();
+}
+
+void LedsManager::draw(int width, int height)
+{
+    this->drawLeds(width, height);
+    this->drawLasers(width, height);
+}
+
+void LedsManager::drawLeds(int width, int height)
+{
+    for (auto& ledmap : m_leds)
+    {
+        auto& ledVector = ledmap.second;
+        
+        for (auto led: ledVector)
+        {
+            led->draw(width,height);
+        }
+    }
+}
+
+
+void LedsManager::drawLasers(int width, int height)
+{
+    for (auto& laserMap : m_lasers)
+    {
+        auto& laserGroupVector = laserMap.second;
+        
+        for (auto laserGroup: laserGroupVector)
+        {
+           laserGroup->draw(width,height);
         }
     }
 }

@@ -8,21 +8,16 @@
 
 #include "Laser.h"
 
+const int Laser::SIZE = 4;
 
-Laser::Laser(const BasicVisual& visual, int id, int channel): BasicVisual(visual), m_id(id), m_channel(channel)
+Laser::Laser(const ofPoint& position): BasicVisual(position, SIZE, SIZE)
 {
-    
-    this->setup();
+    //Intentionaly left empty
 }
 
 Laser::~Laser()
 {
     //Intentionaly left empty
-}
-
-void Laser::setup()
-{
-    //
 }
 
 

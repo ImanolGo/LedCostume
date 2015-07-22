@@ -46,6 +46,7 @@
 		08E30BF51B5E9B3F00789D32 /* AudioParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BF31B5E9B3F00789D32 /* AudioParticles.cpp */; };
 		08E30BF91B5F85A000789D32 /* AudioRings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BF71B5F85A000789D32 /* AudioRings.cpp */; };
 		08E30BFC1B5FC32800789D32 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BFA1B5FC32800789D32 /* Laser.cpp */; };
+		08E30C001B5FF78D00789D32 /* LaserGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BFE1B5FF78D00789D32 /* LaserGroup.cpp */; };
 		08E318281B53D84B003B99B3 /* fftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E318111B53D84B003B99B3 /* fftw3f.a */; };
 		08E318291B53D84C003B99B3 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318171B53D84B003B99B3 /* kiss_fft.c */; };
 		08E3182A1B53D84C003B99B3 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E318191B53D84B003B99B3 /* kiss_fftr.c */; };
@@ -232,6 +233,8 @@
 		08E30BF81B5F85A000789D32 /* AudioRings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRings.h; sourceTree = "<group>"; };
 		08E30BFA1B5FC32800789D32 /* Laser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Laser.cpp; path = Costume/Laser.cpp; sourceTree = "<group>"; };
 		08E30BFB1B5FC32800789D32 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Laser.h; path = Costume/Laser.h; sourceTree = "<group>"; };
+		08E30BFE1B5FF78D00789D32 /* LaserGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserGroup.cpp; path = Costume/LaserGroup.cpp; sourceTree = "<group>"; };
+		08E30BFF1B5FF78D00789D32 /* LaserGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserGroup.h; path = Costume/LaserGroup.h; sourceTree = "<group>"; };
 		08E318081B53D84B003B99B3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08E3180B1B53D84B003B99B3 /* .keep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		08E3180D1B53D84B003B99B3 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
@@ -1066,6 +1069,8 @@
 		CE75F045B397535276B2B3BE /* Costume */ = {
 			isa = PBXGroup;
 			children = (
+				08E30BFE1B5FF78D00789D32 /* LaserGroup.cpp */,
+				08E30BFF1B5FF78D00789D32 /* LaserGroup.h */,
 				08E30BFA1B5FC32800789D32 /* Laser.cpp */,
 				08E30BFB1B5FC32800789D32 /* Laser.h */,
 				08AE047A1B4E7708007B55CE /* Led.cpp */,
@@ -1321,6 +1326,7 @@
 				08E30BED1B5E7C3A00789D32 /* VerticalTiltShifPass.cpp in Sources */,
 				08E30B4D1B5E374600789D32 /* AudioVisualsManager.cpp in Sources */,
 				08E30BE41B5E7C3A00789D32 /* LUTPass.cpp in Sources */,
+				08E30C001B5FF78D00789D32 /* LaserGroup.cpp in Sources */,
 				20DD9BBB631FBC0CDCCFA6B6 /* ofTextConverter.cpp in Sources */,
 				7E78555D595408C86F902937 /* ofUnicode.cpp in Sources */,
 				08AE047C1B4E7708007B55CE /* Led.cpp in Sources */,

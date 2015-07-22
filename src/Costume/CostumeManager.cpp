@@ -107,23 +107,7 @@ void CostumeManager::draw()
 
 void CostumeManager::drawCostumeLeds()
 {
-    auto leds = AppManager::getInstance().getLedsManager().getLeds();
-    
-    for (auto& ledmap : leds)
-    {
-        auto& ledVector = ledmap.second;
-        
-        for (auto led: ledVector)
-        {
-            auto pos = led->getPosition();
-            
-            ofPushMatrix();
-            ofTranslate(pos.x*m_costumeImage->getOriginalWidth(), pos.y*m_costumeImage->getOriginalHeight());
-                led->draw();
-            ofPopMatrix();
-        }
-    }
-    
+    AppManager::getInstance().getLedsManager().draw(m_costumeImage->getOriginalWidth(), m_costumeImage->getOriginalHeight());
 }
 
 

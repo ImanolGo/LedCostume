@@ -12,27 +12,15 @@
 
 class Laser: public BasicVisual {
     
+    static const int SIZE;
+    
     public:
     
-        Laser(const BasicVisual& visual, int id, int channel);
+        Laser(const ofPoint& position);
     
         virtual ~Laser();
        
         void draw();
-    
-        int getId() const {return m_id;}
-    
-        int getChannel() const {return m_channel;}
-
-    private:
-
-        void setup();
-        
-    private:
-            
-        int m_id;
-
-        int m_channel;
 };
 
 

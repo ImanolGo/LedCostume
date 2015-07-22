@@ -12,22 +12,26 @@
 
 class Led: public BasicVisual {
     
+    static const int SIZE;
+    
     public:
     
-        Led(const BasicVisual& visual, int id, int channel);
+        Led(const ofPoint& position, int id, int channel);
     
         virtual ~Led();
        
         void draw();
     
+        void draw(int width, int height);
+    
         int getId() const {return m_id;}
     
         int getChannel() const {return m_channel;}
-
-    private:
-
-        void setup();
-        
+    
+        void normalize(const ofRectangle& boundingBox);
+    
+        void setPixelColor(ofPixelsRef pixels);
+    
     private:
             
         int m_id;

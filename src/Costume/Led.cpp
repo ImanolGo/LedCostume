@@ -9,22 +9,17 @@
 #include "Led.h"
 
 
-Led::Led(const BasicVisual& visual, int id, int channel): BasicVisual(visual), m_id(id), m_channel(channel)
+const int Led::SIZE = 4;
+
+Led::Led(const ofPoint& position, int id, int channel): BasicVisual(position, SIZE, SIZE), m_id(id), m_channel(channel)
 {
-    
-    this->setup();
+    //Intentionaly left empty
 }
 
 Led::~Led()
 {
     //Intentionaly left empty
 }
-
-void Led::setup()
-{
-    //
-}
-
 
 void Led::draw()
 {
@@ -44,5 +39,27 @@ void Led::draw()
     
     ofPopStyle();
     ofPopMatrix();
+}
+
+void Led::draw(int width, int height)
+{
+    
+    ofPushMatrix();
+    ofTranslate(m_position.x * width, m_position.y * height);
+        this->draw();
+    ofPopMatrix();
+}
+
+void Led::normalize(const ofRectangle& boundingBox)
+{
+    m_position.x = (m_position.x - boundingBox.getX()) / boundingBox.getWidth();
+    m_position.y = (m_position.y - boundingBox.getY()) / boundingBox.getHeight();
+    m_position.y = 1 - m_position.y;
+}
+
+
+void Led::setPixelColor(ofPixelsRef pixels)
+{
+    m_color = pixels.getColor(m_position.x * pixels.getWidth(), m_position.y * pixels.getHeight());
 }
 

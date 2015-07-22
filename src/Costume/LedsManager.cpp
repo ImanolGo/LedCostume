@@ -74,17 +74,22 @@ void LedsManager::normalizeLeds()
     
     ofLogNotice() <<"LedsManager::readLedsPosition -> width " << width<< ", height = "  << height;
     
-    for (auto led : m_leds) {
+    for (auto& ledmap : m_leds)
+    {
+        auto& ledVector = ledmap.second;
         
-        ofPoint pos = led->getPosition();
-        pos.x = (pos.x - m_boundingBox.getX()) / m_boundingBox.getWidth();
-        pos.y = (pos.y - m_boundingBox.getY()) / m_boundingBox.getHeight();
-        pos.y = 1 - pos.y;
-
-        
-        led->setPosition(pos);
-        
-        //ofLogNotice() <<"LedsManager::readLedsPosition -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
+        for (auto led: ledVector)
+        {
+            ofPoint pos = led->getPosition();
+            pos.x = (pos.x - m_boundingBox.getX()) / m_boundingBox.getWidth();
+            pos.y = (pos.y - m_boundingBox.getY()) / m_boundingBox.getHeight();
+            pos.y = 1 - pos.y;
+            
+            
+            led->setPosition(pos);
+            
+            //ofLogNotice() <<"LedsManager::readLedsPosition -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
+        }
         
     }
     
@@ -93,6 +98,8 @@ void LedsManager::normalizeLeds()
 void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, int numberOfSections)
 {
     int channel = 0;
+    LedVector leds;
+    
     for(int i = 1; i <= numberOfSections; i++)
     {
         string led_section_path = LEDS_LIST_PATH + groupName + ofToString(i) + ".txt";
@@ -105,7 +112,7 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
                 string line = buffer.getNextLine();
                 ofPoint ledPosition;
                 if(parseLedLine(line,ledPosition)){
-                    createLed(ledPosition, id, channel);
+                    createLed(ledPosition, id, channel, leds);
                     id++;
                 }
                 
@@ -114,10 +121,11 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
         
         channel++;
     }
-
+    
+    m_leds[groupName] = leds;
 }
 
-void LedsManager::createLed(const ofPoint& position, int id, int channel)
+void LedsManager::createLed(const ofPoint& position, int id, int channel, LedVector& leds)
 {
     int width = 4;
     int height = width;
@@ -125,9 +133,7 @@ void LedsManager::createLed(const ofPoint& position, int id, int channel)
     
     ofPtr<Led> led = ofPtr<Led> (new Led ( visual, id, channel ) );
     
-    
-    m_leds.push_back(led);
-    
+    leds.push_back(led);
     
     //ofLogNotice() <<"LedsManager::readLedsPosition -> id " << led->getId() << ", channel = "  << led->getChannel()  << ", x = "  << led->getPosition().x << ", y = "  << led->getPosition().y << ", z = " << led->getPosition().z ;
 }
@@ -162,14 +168,20 @@ void LedsManager::update()
 
 void LedsManager::setPixels(ofPixelsRef pixels)
 {
-    for (auto led : m_leds) {
-        ofPoint pos = led->getPosition();
-        pos.x *= pixels.getWidth();
-        pos.y *= pixels.getHeight();
+    for (auto& ledmap : m_leds)
+    {
+        auto& ledVector = ledmap.second;
         
-        ofColor color = pixels.getColor(pos.x, pos.y);
-        
-        led->setColor(color);
+        for (auto led: ledVector)
+        {
+            ofPoint pos = led->getPosition();
+            pos.x *= pixels.getWidth();
+            pos.y *= pixels.getHeight();
+            
+            ofColor color = pixels.getColor(pos.x, pos.y);
+            
+            led->setColor(color);
+        }
     }
     
     AppManager::getInstance().getImageManager().update();
@@ -179,9 +191,25 @@ void LedsManager::setPixels(ofPixelsRef pixels)
 
 void LedsManager::draw()
 {
-    for (auto led : m_leds) {
-        led->draw();
+    for (auto& ledmap : m_leds)
+    {
+        auto& ledVector = ledmap.second;
+        
+        for (auto led: ledVector)
+        {
+           led->draw();
+        }
     }
+}
+
+int LedsManager::getNumberLeds(const string& key) const
+{
+    if (m_leds.find(key) == m_leds.end()) {
+        return 0;
+    }
+    
+    return m_leds.at(key).size();
+
 }
 
 

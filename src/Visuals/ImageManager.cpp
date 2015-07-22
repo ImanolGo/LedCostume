@@ -55,104 +55,123 @@ void ImageManager::draw()
     
 }
 
+void ImageManager::updateImage()
+{
+    auto ledMap = AppManager::getInstance().getLedsManager().getLeds();
+    
+    for( auto& ledVector: ledMap){
+        
+        if(m_colorVectorMap.find(ledVector.first) == m_colorVectorMap.end()){
+            m_colorVectorMap[ledVector.first] = ColorVector();
+            m_imageMap[ledVector.first] = ofImage();
+        }
+        
+        for(auto& led: ledVector.second)
+        {
+            auto& colors = m_colorVectorMap[ledVector.first];
+            colors.push_back(led->getColor());
+        }
+    }
+}
+
 
 void ImageManager::onRecordingChange(bool& value)
 {
     if (m_isRecording && !value) {
-        this->saveImage();
+        this->saveImages();
     }
     
      m_isRecording = value;
 }
 
 
-void ImageManager::saveImage()
+void ImageManager::saveImages()
 {
     
-    if(m_mirror){
-        this->saveImageMirror();
+    for(auto& colorMap: m_colorVectorMap)
+    {
+        if(m_mirror){
+            this->saveImageMirror(colorMap.first);
+        }
+        else{
+            this->saveImageSample(colorMap.first);
+        }
     }
-    else{
-        this->saveImageSample();
-    }
+    
+    m_colorVectorMap.clear();
+    m_imageMap.clear();
 }
 
 
-void ImageManager::saveImageSample()
+
+void ImageManager::saveImageMirror(const string& key)
 {
     
-    int width = AppManager::getInstance().getLedsManager().getNumberLeds();
-    int height = m_imageVector.size();
+    int width = AppManager::getInstance().getLedsManager().getNumberLeds(key);
+    int height = 2*m_colorVectorMap.at(key).size()/width;
+    ofLogNotice() <<"ImageManager::saveImageMirror ->  width = " << width;
+    ofLogNotice() <<"ImageManager::saveImageMirror ->  height = " << height;
     
-    m_image.allocate(width, height, OF_IMAGE_COLOR);
+    ofImage& image = m_imageMap.at(key);
+    image.allocate(width, height, OF_IMAGE_COLOR);
     
-    ofPixelsRef pixels = m_image.getPixelsRef();
+    ofPixelsRef pixels = image.getPixelsRef();
+    
+    ColorVector& colorVector = m_colorVectorMap.at(key);
+    
+     ofLogNotice() <<"ImageManager::saveImageMirror ->  colorVector size = " << colorVector.size();
     
     for (int y = 0; y < height; y++) {
-        auto colors = m_imageVector[y];
-        
         for (int x = 0; x < width; x++) {
+            int n = x + y*width;
             
-            pixels.setColor(x, y, colors[x]);
+            if ( y >= height/2) {
+                int y_ = height - y - 1;
+                n = x + y_* width;
+            }
+            
+            
+            pixels.setColor(x, y, colorVector[n]);
         }
     }
     
-    m_image.update(); // uploads the new pixels to the gfx card
+    image.update(); // uploads the new pixels to the gfx card
     
-    string fileName = "images/saved/image_"+ getDateTime() +".bmp";
-    m_image.saveImage(fileName);
+    string fileName = "images/saved/image_"+ getDateTime() + "_" + key + ".bmp";
+    image.saveImage(fileName);
     
-    ofLogNotice() <<"ImageManager::saveImage ->  Saved " << fileName;
+    ofLogNotice() <<"ImageManager::saveImageMirror ->  Saved " << fileName;
     
-    m_imageVector.clear();
 }
 
-void ImageManager::saveImageMirror()
+
+void ImageManager::saveImageSample(const string& key)
 {
     
-    int width = AppManager::getInstance().getLedsManager().getNumberLeds();
-    int height = 2*m_imageVector.size();
+    int width = AppManager::getInstance().getLedsManager().getNumberLeds(key);
+    int height = m_colorVectorMap.at(key).size()/width;
     
-    m_image.allocate(width, height, OF_IMAGE_COLOR);
+    ofImage& image = m_imageMap.at(key);
+    image.allocate(width, height, OF_IMAGE_COLOR);
     
-    ofPixelsRef pixels = m_image.getPixelsRef();
+    ofPixelsRef pixels = image.getPixelsRef();
     
+    ColorVector& colorVector = m_colorVectorMap.at(key);
     for (int y = 0; y < height; y++) {
-        
-        int n = y;
-        if ( y >= height/2) {
-            n = height - y - 1;
-        }
-        auto colors = m_imageVector[n];
-        
         for (int x = 0; x < width; x++) {
-            pixels.setColor(x, y, colors[x]);
+            int n = x + y*width;
+            pixels.setColor(x, y, colorVector[n]);
         }
     }
-
-    m_image.update(); // uploads the new pixels to the gfx card
     
-    string fileName = "images/saved/image_"+ getDateTime() +".bmp";
-    m_image.saveImage(fileName);
+    image.update(); // uploads the new pixels to the gfx card
     
-    ofLogNotice() <<"ImageManager::saveImage ->  Saved " << fileName;
+    string fileName = "images/saved/image_"+ getDateTime() + "_" + key + ".bmp";
+    image.saveImage(fileName);
     
-    m_imageVector.clear();
+    ofLogNotice() <<"ImageManager::saveImageSample ->  Saved " << fileName;
+    
 }
-
-
-void ImageManager::updateImage()
-{
-    auto leds = AppManager::getInstance().getLedsManager().getLeds();
-    ColorVector colors;
-    
-    for (auto led: leds) {
-        colors.push_back(led->getColor());
-    }
-    
-    m_imageVector.push_back(colors);
-}
-
 
 string ImageManager::getDateTime()
 {

@@ -11,12 +11,13 @@
 
 #include "Manager.h"
 #include "Led.h"
+#include "Laser.h"
 
 //========================== class LedsManager ==============================
 //============================================================================
 /** \class LedsManager LedsManager.h
- *	\brief Class managing the LEDs
- *	\details It controls the postion and color of the LEDs
+ *	\brief Class managing the LEDs and lasers
+ *	\details It controls the postion and color of the LEDs and lasers
  */
 
 
@@ -25,7 +26,13 @@ class LedsManager: public Manager
 
     static const string LEDS_LIST_PATH;
     
-    typedef vector< ofPtr<Led> > LedVector;
+    
+    public:
+    
+        typedef vector< ofPtr<Led> > LedVector;
+        typedef vector< ofPtr<Laser> > LaserVector;
+        typedef map< string, LedVector> LedMap;
+        typedef map< string, LaserVector> LaserMap;
     
     public:
 
@@ -44,9 +51,11 @@ class LedsManager: public Manager
         //! Draw the Halo Manager
         void draw();
     
-        const LedVector& getLeds() const {return m_leds;}
+        const LedMap& getLeds() const {return m_leds;}
     
-        int getNumberLeds() const {return m_leds.size();}
+        const LaserMap& getLasers() const {return m_lasers;}
+    
+        int getNumberLeds(const string& key) const;
     
         void setPixels(ofPixelsRef pixels);
     
@@ -65,13 +74,14 @@ class LedsManager: public Manager
     
         void removeCharsFromString( string &str, char* charsToRemove );
     
-        void createLed(const ofPoint& position, int id, int channel);
+        void createLed(const ofPoint& position, int id, int channel, LedVector& leds);
     
     private:
     
     
     
-        LedVector       m_leds;
+        LedMap          m_leds;
+        LaserMap        m_lasers;
         ofRectangle     m_boundingBox;
     
 };

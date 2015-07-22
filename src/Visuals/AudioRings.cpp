@@ -64,6 +64,7 @@ void AudioRings::update()
     double dt = ofGetLastFrameTime();
     
     //Update particles positions
+    int i = 0;
     for (auto ring : m_rings )
     {
         ring->m_offset.x += m_velocity * dt;	//move offset
@@ -71,8 +72,10 @@ void AudioRings::update()
       
         //Calculate Perlin's noise in [-1, 1] and
         //multiply on Rad
-        ring->m_position.x = ring->m_offset.x + ofSignedNoise(  ring->m_offset.x ) * m_radius;
-        ring->m_position.y = ring->m_offset.y + ofSignedNoise(  ring->m_offset.y ) * m_radius;
+        ring->m_position.x = ring->m_offset.x + ofSignedNoise( i*1000 + ring->m_offset.x ) * m_radius;
+        ring->m_position.y = ring->m_offset.y + ofSignedNoise( i*1000 + ring->m_offset.y ) * m_radius;
+        
+        i++;
     }
     
     m_rings[0]->m_radius = m_radius;
@@ -94,7 +97,7 @@ void AudioRings::setParameters(float radius, float velocity)
     float height = AudioVisualsManager::FBO_HEIGHT;
     
     m_radius = ofMap( radius, 0.0, 1.0, 10, width/2, true );
-    m_velocity = ofMap( velocity, 0.0, 1.0, 0.05, 0.5 );//
+    m_velocity = ofMap( velocity, 0.0, 1.0, 0.2, 3.5 );//
 }
 
 

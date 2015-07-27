@@ -37,6 +37,7 @@ void VideoManager::setup()
     
     this->loadVideos();
     this->setupBoundingBox();
+    this->setupFbo();
     
     ofLogNotice() <<"VideoManager::initialized" ;
     
@@ -79,6 +80,12 @@ void VideoManager::setupBoundingBox()
     m_boundingBox.x = AppManager::getInstance().getGuiManager().getPosition().x;
 }
 
+void VideoManager::setupFbo()
+{
+    m_fbo.allocate(m_videoPlayer.getPixelsRef().getWidth(), m_videoPlayer.getPixelsRef().getHeight());
+    m_fbo.begin(); ofClear(0); m_fbo.end();
+}
+
 void VideoManager::resetPosition()
 {
     setupBoundingBox();
@@ -94,7 +101,10 @@ void VideoManager::update()
     
     if(m_videoPlayer.isFrameNew())
     {
-        AppManager::getInstance().getLedsManager().setPixels(m_videoPlayer.getPixelsRef());
+        ofPixels pixels;
+        m_fbo.readToPixels(pixels);
+        AppManager::getInstance().getLedsManager().setPixels(pixels);
+        //AppManager::getInstance().getLedsManager().setPixels(m_videoPlayer.getPixelsRef());
     }
     
 }
@@ -106,7 +116,16 @@ void VideoManager::draw()
         return;
     }
     
-    m_videoPlayer.draw(m_boundingBox);
+    m_fbo.begin();
+        ofPushStyle();
+            ofClear(0);
+            ofSetColor(ofColor::blue);
+            m_videoPlayer.draw(0,0);
+        ofPopStyle();
+    m_fbo.end();
+    
+    m_fbo.draw(m_boundingBox);
+    
 }
 
 void VideoManager::onPlayVideoChange(bool value)
@@ -136,6 +155,8 @@ void VideoManager::onNextVideoChange()
     if(m_playVideo){
         m_videoPlayer.play();
     }
+    
+    this->setupFbo();
 }
 
 

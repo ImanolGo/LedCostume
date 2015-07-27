@@ -160,11 +160,10 @@ void AudioVisualsManager::updateFbo()
         }
     
     m_fbo.end();
+    ofDisableAlphaBlending();
     
     ofPixels pixels;
     m_fbo.readToPixels(pixels);
-    
-    ofDisableAlphaBlending();
     
     AppManager::getInstance().getLedsManager().setPixels(pixels);
 }

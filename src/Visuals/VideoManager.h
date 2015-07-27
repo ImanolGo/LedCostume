@@ -51,6 +51,8 @@ class VideoManager: public Manager
     
     private:
     
+        void setupFbo();
+    
         void loadVideos();
     
         void setupBoundingBox();
@@ -66,6 +68,8 @@ class VideoManager: public Manager
     
         bool            m_playVideo;
         ofRectangle     m_boundingBox;
+    
+        ofFbo           m_fbo;
 
 };
 

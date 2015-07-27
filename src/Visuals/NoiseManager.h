@@ -49,15 +49,17 @@ class NoiseManager: public Manager
     
         float getHeight()  {return m_noiseImage.getHeight();}
     
+        void onNoiseResolutionChange( int& value);
+    
         void onNoiseFrequencyChange(float& value) {m_noiseFrequency = value;}
     
         void onNoiseSpeedChange(float& value) {m_noiseSpeed = value;}
     
-        void onNoiseHueChange(int& value) {m_hue = value;}
+        void onHueChange(float& value) {m_color.setHue(value);}
     
-        void onNoiseBrightnessChange(int& value) {m_brightness = ofMap(value, 0, 255, 0, 1);}
+        void onBrightnessChange(float& value) {m_color.setBrightness(value);}
     
-        void onNoiseResolutionChange(int& value);
+        void onSaturationChange(float& value) {m_color.setSaturation(value);}
     
         void  onPlayNoiseChange(bool value) {m_playNoise = value;}
     
@@ -86,12 +88,9 @@ class NoiseManager: public Manager
         float       m_noiseSpeed;
         int         m_noiseResolution;
     
-        int         m_hue;
-        float       m_brightness;
-    
+        ofColor     m_color;
         bool        m_playNoise;
-    
-        ofImage m_noiseImage;
+        ofImage     m_noiseImage;
 };
 
 

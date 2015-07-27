@@ -41,6 +41,7 @@ void GuiManager::setup()
 
     this->setupGuiParameters();
     this->setupModesGui();
+    this->setupLayoutGui();
     this->setupImageGui();
     this->setupVideoGui();
     this->setupAudioGui();
@@ -81,6 +82,27 @@ void GuiManager::setupModesGui()
     m_parametersModes.add(m_audioMode);
     
     m_gui.add(m_parametersModes);
+}
+
+void GuiManager::setupLayoutGui()
+{
+    auto layoutManager = &AppManager::getInstance().getLayoutManager();
+    
+    m_parametersLayout.setName("Color");
+    
+    m_hue.set("Hue", 0.0, 0.0, 255.0);
+    m_hue.addListener(layoutManager, &LayoutManager::onHueChange);
+    m_parametersLayout.add(m_hue);
+    
+    m_saturation.set("Saturation", 0.0, 0.0, 255.0);
+    m_saturation.addListener(layoutManager, &LayoutManager::onSaturationChange);
+    m_parametersLayout.add(m_saturation);
+    
+    m_brightness.set("Brightness", 0.0, 0.0, 255.0);
+    m_brightness.addListener(layoutManager, &LayoutManager::onBrightnessChange);
+    m_parametersLayout.add(m_brightness);
+    
+    m_gui.add(m_parametersLayout);
 }
 
 
@@ -142,16 +164,7 @@ void GuiManager::setupNoiseGui()
     m_noiseResolution.set("Noise Resolution",  64, 2, 256 );
     m_noiseResolution.addListener(noiseManager, &NoiseManager::onNoiseResolutionChange);
     m_parametersNoise.add(m_noiseResolution);
-    
-    m_noiseHue.set("Noise Hue",  0, 0, 255);
-    m_noiseHue.addListener(noiseManager, &NoiseManager::onNoiseHueChange);
-    m_parametersNoise.add(m_noiseHue);
-    
-    m_noiseBrightness.set("Noise Brightness",  0, 0, 255);
-    m_noiseBrightness.addListener(noiseManager, &NoiseManager::onNoiseBrightnessChange);
-    m_parametersNoise.add(m_noiseBrightness);
-
-    
+        
     m_noiseFrequency.set("Noise Frequency",  0.4, 0.0, 4.0);
     m_noiseFrequency.addListener(noiseManager, &NoiseManager::onNoiseFrequencyChange);
     m_parametersNoise.add(m_noiseFrequency);

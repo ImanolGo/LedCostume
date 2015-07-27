@@ -107,7 +107,7 @@ void NoiseManager::updateNoise()
             ofColor c;
             // the range of each of the arguments here is 0..255 so we map i and j to that range.
     
-            c.setHsb( m_hue, 255,m_brightness*tmpNoise * 255.0f);
+            c.setHsb( m_color.getHue(), m_color.getSaturation(), m_color.getBrightness()*tmpNoise);
             
             //m_noiseColor.setSaturation(tmpNoise * 255.0f);
             pixels.setColor(x,y, c);

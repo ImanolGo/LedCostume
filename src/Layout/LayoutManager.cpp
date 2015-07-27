@@ -82,3 +82,23 @@ void LayoutManager::addVisuals()
 }
 
 
+void LayoutManager::onHueChange(float& value)
+{
+    AppManager::getInstance().getVideoManager().onHueChange(value);
+    AppManager::getInstance().getNoiseManager().onHueChange(value);
+}
+
+void LayoutManager::onBrightnessChange(float& value)
+{
+    AppManager::getInstance().getVideoManager().onBrightnessChange(value);
+    AppManager::getInstance().getNoiseManager().onBrightnessChange(value);
+}
+
+void LayoutManager::onSaturationChange(float& value)
+{
+    AppManager::getInstance().getVideoManager().onSaturationChange(value);
+    AppManager::getInstance().getNoiseManager().onSaturationChange(value);
+}
+
+
+

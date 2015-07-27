@@ -32,6 +32,12 @@ public:
 
     //! Set-up the layout
     void setup();
+    
+    void onHueChange(float& value);
+    
+    void onBrightnessChange(float& value);
+    
+    void onSaturationChange(float& value);
 
 private:
 

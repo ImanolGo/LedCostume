@@ -1,5 +1,5 @@
 <LedCostume>
-	<FPS>23.9798</FPS>
+	<FPS>24.0198</FPS>
 	<Noise>
 		<Frequency>0.903469</Frequency>
 		<Time_Frequency>1</Time_Frequency>
@@ -30,4 +30,9 @@
 <Audio>
 		<Audio_Level>0.897959</Audio_Level>
 	</Audio>
+<Color>
+		<Hue>180.656</Hue>
+		<Saturation>143.484</Saturation>
+		<Brightness>153.149</Brightness>
+	</Color>
 </LedCostume>

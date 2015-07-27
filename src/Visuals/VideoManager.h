@@ -48,6 +48,11 @@ class VideoManager: public Manager
     
         void resetPosition();
     
+        void onHueChange(float& value) {m_color.setHue(value);}
+    
+        void onBrightnessChange(float& value) {m_color.setBrightness(value);}
+    
+        void onSaturationChange(float& value) {m_color.setSaturation(value);}
     
     private:
     
@@ -70,6 +75,7 @@ class VideoManager: public Manager
         ofRectangle     m_boundingBox;
     
         ofFbo           m_fbo;
+        ofColor         m_color;
 
 };
 

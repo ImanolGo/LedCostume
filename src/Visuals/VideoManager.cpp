@@ -119,7 +119,7 @@ void VideoManager::draw()
     m_fbo.begin();
         ofPushStyle();
             ofClear(0);
-            ofSetColor(ofColor::blue);
+            ofSetColor(m_color);
             m_videoPlayer.draw(0,0);
         ofPopStyle();
     m_fbo.end();
@@ -158,6 +158,7 @@ void VideoManager::onNextVideoChange()
     
     this->setupFbo();
 }
+
 
 
 

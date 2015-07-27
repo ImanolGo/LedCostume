@@ -58,6 +58,9 @@ public:
     //! Returns the settings manager
     SettingsManager& getSettingsManager() { return m_settingsManager; }
     
+    //! Returns the layout manager
+    LayoutManager& getLayoutManager() { return m_layoutManager; }
+    
     //! Returns the resource manager
     ResourceManager& getResourceManager() { return m_resourceManager; }
     

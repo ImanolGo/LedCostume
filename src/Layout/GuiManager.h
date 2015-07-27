@@ -72,6 +72,8 @@ private:
     
     void setupAudioGui();
     
+    void setupLayoutGui();
+    
     void drawRectangle();
 
 private:
@@ -87,6 +89,7 @@ private:
     ofParameterGroup    m_parametersImage;
     ofParameterGroup    m_parametersVideo;
     ofParameterGroup    m_parametersAudio;
+    ofParameterGroup    m_parametersLayout;
     
     ofxButton           m_nextVideo;
     
@@ -103,9 +106,12 @@ private:
     ofParameter<int>      m_noiseResolution;
     ofParameter<float>    m_noiseFrequency;
     ofParameter<float>    m_noiseSpeed;
-    ofParameter<int>      m_noiseHue;
-    ofParameter<int>      m_noiseBrightness;
     
+    ofParameter<float>      m_hue;
+    ofParameter<float>      m_brightness;
+    ofParameter<float>      m_saturation;
+    
+   
     bool        m_showGui;  //It defines the whether the gui should be shown or not
 };
 

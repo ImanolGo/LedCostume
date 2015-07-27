@@ -153,12 +153,12 @@ void VideoManager::onNextVideoChange()
     m_videoPlayer.loadMovie(m_currentVideo);
     
     if(m_playVideo){
+        //m_videoPlayer.setLoopState(OF_LOOP_NONE);
         m_videoPlayer.play();
     }
     
     this->setupFbo();
 }
-
 
 
 

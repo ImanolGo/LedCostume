@@ -51,10 +51,10 @@ void LedsManager::setupBoundingBox()
     //m_boundingBox.setWidth(3478.78 - m_boundingBox.getX());
     //m_boundingBox.setHeight(1724.33 - m_boundingBox.getY());
     
-    m_boundingBox.setX(3.38785);
-    m_boundingBox.setY(316.499);
-    m_boundingBox.setWidth(3491.19 - m_boundingBox.getX());
-    m_boundingBox.setHeight(2214.58 - m_boundingBox.getY());
+    m_boundingBox.setX(3.56768);
+    m_boundingBox.setY(316.313);
+    m_boundingBox.setWidth(3491.22 - m_boundingBox.getX());
+    m_boundingBox.setHeight(2227.23 - m_boundingBox.getY());
 }
 
 void LedsManager::setupLeds()
@@ -72,7 +72,7 @@ void LedsManager::readLedsPosition()
     
     std::vector<int> sections;
     sections.push_back(1); sections.push_back(2);
-    readLasersPositionFromGroup("Al", id, sections);
+    readLasersPositionFromGroup("A", id, sections);
     
     id = 0;
     numSections = 8;
@@ -80,7 +80,7 @@ void LedsManager::readLedsPosition()
 
     sections.clear();
     sections.push_back(1); sections.push_back(2);
-    readLasersPositionFromGroup("Jl", id, sections);
+    readLasersPositionFromGroup("J", id, sections);
     
     
 }
@@ -146,6 +146,7 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
         channel++;
     }
     
+    ofLogNotice() <<"LedsManager::readLedsPositionFromGroup -> groupName " << groupName << ", numLeds = "  << leds.size();
     m_leds[groupName] = leds;
 }
 
@@ -180,6 +181,9 @@ void LedsManager::readLasersPositionFromGroup(const string& groupName, int& id, 
         channel++;
     }
     
+    
+    ofLogNotice() <<"LedsManager::readLasersPositionFromGroup -> groupName " << groupName << ", numLasers = "  << lasers.size();
+ 
     m_lasers[groupName] = lasers;
 }
 

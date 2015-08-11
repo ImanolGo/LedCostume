@@ -40,7 +40,7 @@ void ResourceManager::setup()
 void ResourceManager::loadResources()
 {
     this->loadTextures();
-    this->loadSVGs();
+    //this->loadSVGs();
 }
 
 void ResourceManager::loadTextures()

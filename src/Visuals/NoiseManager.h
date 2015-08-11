@@ -9,7 +9,6 @@
 
 #pragma once
 
-#include "ofxFastFboReader.h"
 #include "Manager.h"
 
 
@@ -80,7 +79,6 @@ class NoiseManager: public Manager
     private:
   
         ofFbo               m_fbo;
-        ofxFastFboReader    m_fboReader;
 
         ofRectangle         m_boundingBox;
     

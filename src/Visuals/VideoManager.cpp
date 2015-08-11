@@ -110,7 +110,7 @@ void VideoManager::update()
     
     if(!m_videoPlayer.isPlaying()){
          m_playVideo = false;
-         AppManager::getInstance().getImageManager().onRecordingChange(m_playVideo);
+         //AppManager::getInstance().getImageManager().onRecordingChange(m_playVideo);
          m_playVideo = true;
          onNextVideoChange();
     }
@@ -163,7 +163,7 @@ void VideoManager::onNextVideoChange()
     if(m_playVideo){
         m_videoPlayer.setLoopState(OF_LOOP_NONE);
         m_videoPlayer.play();
-        AppManager::getInstance().getImageManager().onRecordingChange(m_playVideo);
+        //AppManager::getInstance().getImageManager().onRecordingChange(m_playVideo);
     }
     
     this->setupFbo();

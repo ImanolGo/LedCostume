@@ -63,10 +63,12 @@ void AudioVisualsManager::setupBoundingBox()
 
 void AudioVisualsManager::setupFft()
 {
-    m_fft.setup();
-    m_fft.setNumFFTBins(16);
-    //m_fft.setVolumeRange(200);
-    m_fft.setNormalize(true);
+    m_fftLive.setMirrorData(false);
+    m_fftLive.setup();
+    m_fftLive.setThreshold(1.0);
+    m_fftLive.setPeakDecay(0.915);
+    m_fftLive.setMaxDecay(0.995);
+
 }
 
 void AudioVisualsManager::setupFbo()
@@ -125,19 +127,32 @@ void AudioVisualsManager::update()
 
 void AudioVisualsManager::updateFft()
 {
-    m_fft.update();
+    m_fftLive.update();
 }
 
 void AudioVisualsManager::updateParticles()
 {
-    m_particles.setParameters(m_inputLevel*m_fft.getLowVal(), m_inputLevel*m_fft.getHighVal());
+    int numOfVerts = 3;
+    
+    float * audioData = new float[numOfVerts];
+    m_fftLive.getFftPeakData(audioData, numOfVerts);
+    
+    m_particles.setParameters(audioData[0], audioData[2]);
     m_particles.update();
+    
+    delete[] audioData;
 }
 
 void AudioVisualsManager::updateRings()
 {
-    m_rings.setParameters(m_inputLevel*m_fft.getLowVal(), m_inputLevel*m_fft.getHighVal());
+    int numOfVerts = 3;
+    float * audioData = new float[numOfVerts];
+    m_fftLive.getFftPeakData(audioData, numOfVerts);
+    
+    m_rings.setParameters(audioData[0], audioData[2]);
     m_rings.update();
+    
+    delete[] audioData;
 }
 
 void AudioVisualsManager::updateFbo()

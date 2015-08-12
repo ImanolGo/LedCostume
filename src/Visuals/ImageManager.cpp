@@ -192,9 +192,16 @@ void ImageManager::saveImageSample(const string& key)
     
     //ofLogNotice() <<"ImageManager::saveImageMirror ->  colorVector size = " << colorVector.size();
     
+    /*
+    In a bottom-up DIB, the image buffer starts with the bottom row of pixels, followed by the next row up,
+    and so forth. The top row of the image is the last row in the buffer.
+    Therefore, the first byte in memory is the bottom-left pixel of the image.
+    */
+    
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            int n = x + y*width;
+            int y_ = height - y - 1;
+            int n = x + y_*width;
             pixels.setColor(x, y, colorVector[n]);
         }
     }

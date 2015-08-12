@@ -109,6 +109,10 @@ void SettingsManager::setWindowProperties()
         string title = attributes["title"];
         m_appWidth = ofToInt(attributes["width"]);
         m_appHeight= ofToInt(attributes["height"]);
+        
+        m_appWidth = ofGetScreenWidth();
+        m_appHeight = ofGetScreenHeight();
+        
         int x = ofToInt(attributes["x"]);
         int y = ofToInt(attributes["y"]);
         bool fullscreen = ofToBool(attributes["fullscreen"]);

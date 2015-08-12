@@ -11,7 +11,7 @@
 
 #include "Manager.h"
 
-#include "ofxProcessFFT.h"
+#include "ofxFFTLive.h"
 #include "AudioParticles.h"
 #include "AudioRings.h"
 
@@ -53,6 +53,7 @@ class AudioVisualsManager: public Manager
         void  onNextAudiohange();
     
         void resetPosition();
+
     
     private:
     
@@ -91,7 +92,7 @@ class AudioVisualsManager: public Manager
         ofRectangle     m_boundingBox;
         int             m_mode;
     
-        ProcessFFT      m_fft;
+        ofxFFTLive      m_fftLive;
         float           m_inputLevel;
     
         AudioParticles  m_particles;
@@ -99,6 +100,7 @@ class AudioVisualsManager: public Manager
 
         ofFbo               m_fbo;
         ofShader            m_shader;
+    
 };
 
 

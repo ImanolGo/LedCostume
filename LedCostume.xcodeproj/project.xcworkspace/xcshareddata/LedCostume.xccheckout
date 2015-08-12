@@ -12,6 +12,8 @@
 	<dict>
 		<key>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</key>
 		<string>https://github.com/ImanolGo/LedCostume.git</string>
+		<key>D6AB9497F0D53E01F3ED385C5E8C56AD9C7B354C</key>
+		<string>bitbucket.org:imanolgo/murmurrenderer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>LedCostume.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</key>
 		<string>../..</string>
+		<key>D6AB9497F0D53E01F3ED385C5E8C56AD9C7B354C</key>
+		<string>../../../MurmurRenderer</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ImanolGo/LedCostume.git</string>
@@ -35,6 +39,14 @@
 			<string>532F3BA0A67FEEB331B7C5B01F629ED899EC6866</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LedCostume</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D6AB9497F0D53E01F3ED385C5E8C56AD9C7B354C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MurmurRenderer</string>
 		</dict>
 	</array>
 </dict>

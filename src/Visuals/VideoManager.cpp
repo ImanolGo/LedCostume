@@ -66,6 +66,7 @@ void VideoManager::loadVideos()
     
     m_currentVideo = m_videos.front();
     m_videoPlayer.loadMovie(m_currentVideo);
+    m_videoPlayer.setLoopState(OF_LOOP_NONE);
 }
 
 void VideoManager::setupBoundingBox()
@@ -105,6 +106,13 @@ void VideoManager::update()
         m_fbo.readToPixels(pixels);
         AppManager::getInstance().getLedsManager().setPixels(pixels);
         //AppManager::getInstance().getLedsManager().setPixels(m_videoPlayer.getPixelsRef());
+    }
+    
+    if(!m_videoPlayer.isPlaying()){
+         m_playVideo = false;
+         //AppManager::getInstance().getImageManager().onRecordingChange(m_playVideo);
+         m_playVideo = true;
+         onNextVideoChange();
     }
     
 }
@@ -153,8 +161,9 @@ void VideoManager::onNextVideoChange()
     m_videoPlayer.loadMovie(m_currentVideo);
     
     if(m_playVideo){
-        //m_videoPlayer.setLoopState(OF_LOOP_NONE);
+        m_videoPlayer.setLoopState(OF_LOOP_NONE);
         m_videoPlayer.play();
+        //AppManager::getInstance().getImageManager().onRecordingChange(m_playVideo);
     }
     
     this->setupFbo();

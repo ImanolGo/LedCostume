@@ -52,6 +52,7 @@ void AppManager::setup()
 
 void AppManager::setupOF()
 {
+    ofSetLogLevel(OF_LOG_NOTICE);
     ofSetFrameRate(24);
     ofSetVerticalSync(true);
     ofSetEscapeQuitsApp(true);
@@ -94,7 +95,8 @@ void AppManager::update()
 void AppManager::draw()
 {
     
-    ofBackgroundGradient( ofColor(55), ofColor(0), OF_GRADIENT_CIRCULAR );
+    //ofBackgroundGradient( ofColor(80), ofColor(55), OF_GRADIENT_CIRCULAR );
+    ofBackground(55,55,55);
     m_viewManager.draw();
     m_costumeManager.draw();
     m_guiManager.draw();

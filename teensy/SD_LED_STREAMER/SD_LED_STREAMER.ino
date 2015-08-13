@@ -73,9 +73,18 @@ void setup(){
 
 void loop() { 
 
-  if (timeElapsed > interval && isPlaying) {       
+  if (timeElapsed > interval) { 
+
+    if(beatDetected){ 
+      detectBeat();
+    }
+
+    if(isPlaying){
       nextLEDFrame();
-      timeElapsed = 0;       // reset the counter to 0 so the counting starts over...
+    }
+       
+     timeElapsed = 0;       // reset the counter to 0 so the counting starts over..
+    .
   }
 } 
 
@@ -94,6 +103,25 @@ void initSample() { //Played also when it is in sample mode, for every beat
   timeElapsed = 0;
   currentFrame = 0;
   setFrame(0);
+}
+
+bool beatDetected() 
+{
+  if(audioMode!=1){ 
+      return false;
+  }
+  
+  if (peak1.available()) 
+  {
+      int monoPeak = peak1.read() * 30.0 + 1;
+      Serial.println(monoPeak);
+      if(monoPeak>=13)
+      {
+        return true;
+      }
+   }
+
+   return false;
 }
 
 void loadBMPinfo(int file) {

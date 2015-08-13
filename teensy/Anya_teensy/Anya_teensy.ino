@@ -72,8 +72,20 @@ ClickButton button1(buttonPin1, LOW, CLICKBTN_PULLUP);
 // GUItool: begin automatically generated code
 AudioInputAnalog         adc1(AUDIO_PIN);           //xy=164,95
 AudioAnalyzePeak         peak1;          //xy=317,123
+AudioAnalyzeFFT256       fft256;
 AudioConnection          patchCord1(adc1, peak1);
+AudioConnection          patchCord2(adc1,fft256);
 // GUItool: end automatically generated code
+
+//FFT audio mode
+float scale = 60.0*32.0; // The scale sets how much sound is needed in each frequency range to show full brightness
+float level = 0; // Value holding one frequency band
+int shown = 0;// holds the value in case id quickly drops
+
+//Gui
+bool guiOn = true;
+bool laserOn = true;
+bool peakDetected = false;
 
 File myFile;
 
@@ -87,10 +99,10 @@ int ifbreak=0;
 int onoff=1;
 int time=0;
 int audioMode=0;
-int peakDetected=0;
 int monoPeak;
 int previousPeak;
-bool laserOn = true;
+int lineNo = 0;
+
 
 #define SDchipSelect 10       //chip select for SD card --53 on mega, 10 on 328
 #define WSchipSelect 5       //chip select for WS2801
@@ -190,34 +202,69 @@ void loadBMPinfo(int file) {
 void streamSdToLED() {
   
     //loop through each line in the file, then spit it out.
-    for(int lineNo=0; lineNo<height;lineNo++) {
+    for(lineNo=0; lineNo<height;lineNo++) {
+     
+        checkButton();
+
+        if(guiOn){
+          setGuiLeds();
+        }
+        else{
+          calculateSoundLevel();
+          setFrame(lineNo);
+        }
       
-        if(button1.clicks != 0) presses = button1.clicks;
+                              
+        if (serialDebug) {
+        Serial.println("EOL"); //end of each line
+        }
+        
+        
+        for(time=0; time<=LINE_DELAY; time++){
+            delay(1);            
+            detectPeak();
+        }
+
+        
+        if(peakDetected){peakDetected=false; lineNo=0;}
+
+        FastLED.show(); //fastspi output
+        button1.Update();
+    }    
+} 
+
+
+void checkButton() {
+
+     if(button1.clicks != 0) presses = button1.clicks;
       
         if(presses == 1){  //Single short click
             presses=0;
-            imageNo=imageNo+1;
-            if(imageNo>=NO_OF_FILES){
-              imageNo=0;
+
+            if(guiOn){
+              loadNextImage();
+              lineNo = 0;
+              guiOn = false;
             }
-            loadBMPinfo(imageNo);
-            lineNo=0;
-            Serial.println("***NEXT IMAGE***"); 
+            else{
+              guiOn = true;
+           }
+             
         }
         
-        if(presses == 2){    //Double short click
+        else if(presses == 2){    //Double short click
             presses=0;
             Serial.println("DOUBLE click");
             audioMode = (audioMode+1)%3;
         }
 
-        if(presses == 3){    //Triple short click
+        else if(presses == 3){    //Triple short click
             presses=0;
             Serial.println("Triple click");
             laserOn = !laserOn;
         }
       
-       if(presses == -1){    //Single long press
+       else if(presses == -1){    //Single long press
            presses=0;
            onoff=0;
            for(int i=0; i < NUM_LEDS; i++) {
@@ -232,76 +279,160 @@ void streamSdToLED() {
              if(button1.clicks==-1){onoff=1;}
            }
         }
-        
-        
-        filePosition = bitmapOffset+ (lineNo *(NUM_LEDS * 3) );
-        myFile.seek(filePosition);//get to data
-        memset(leds, 0, NUM_LEDS * 3);//blank the array
-        
-        //something went wrong, myFile should not return -1 here.
-        if (!myFile){ 
-            Serial.println("the card broke"); 
-        }
-        
-        //read an entire line to leds[]
-        for(int i=0; i < NUM_LEDS; i++) {
+}
 
-          leds[i].b = myFile.read();
-          leds[i].g= myFile.read();
-          leds[i].r= myFile.read();  
-           
-          if(i<LASER_OFFSET){
-            leds[i].b = leds[i].b*BRIGHTNESS/MAX_BRIGHTNESS;
-            leds[i].g = leds[i].g*BRIGHTNESS/MAX_BRIGHTNESS; 
-            leds[i].r = leds[i].r*BRIGHTNESS/MAX_BRIGHTNESS;
-          }
-          else{
-            if(!laserOn){
-              leds[i].b = 0;
-              leds[i].g = 0; 
-              leds[i].r = 0;
-            }
-          }
-             
-                   
-            if (serialDebug) {
-              Serial.print(leds[i].r,HEX);  
-              Serial.print(":");
-              Serial.print(leds[i].g,HEX);  
-              Serial.print(":");
-              Serial.print(leds[i].b,HEX);  
-              Serial.print(",");
-            }
-            
-        } 
-       
+void setGuiLeds() 
+{
+
+  for(int i=0; i < NUM_LEDS; i++) 
+  {
+      leds[i].b=0;
+      leds[i].g=0;
+      leds[i].r=0;
+  }
+
+  unsigned int A_4 = STRING1+STRING2+STRING3;  
+  unsigned int A_5 = STRING1+STRING2+STRING3+STRING4;
+  unsigned int A_6 = A_5 + STRING5;
+
+  int numLeds = imageNo + 1;
+  for(int i=0; i < numLeds; i++) 
+  {
+     if(audioMode==0){
+        leds[A_4 + i].b = BRIGHTNESS;
+        leds[A_6 + i].b = BRIGHTNESS;
+     }
+     else if(audioMode==1){
+        leds[A_4 + i].g = BRIGHTNESS;
+        leds[A_6 + i].g = BRIGHTNESS;
+     }
+
+     else if(audioMode==2){
+        leds[A_4 + i].r = BRIGHTNESS;
+        leds[A_6 + i].r = BRIGHTNESS;
+     }
+  }
+}
+
+void setFrame(int frameIndex) {
+
+  if(frameIndex < 0 || frameIndex >= height){
+    return;
+  }
+
         
-                     
+   filePosition = bitmapOffset+ (frameIndex *(NUM_LEDS * 3) );
+   myFile.seek(filePosition);//get to data
+   memset(leds, 0, NUM_LEDS * 3);//blank the array
+  
+    //something went wrong, myFile should not return -1 here.
+      if (!myFile){ 
+          Serial.println("the card broke"); 
+          return;
+      }
+      
+     int brightness = BRIGHTNESS;
+     if(audioMode==2){
+        brightness = BRIGHTNESS*shown/MAX_BRIGHTNESS;
+      }
+      //read an entire line to leds[]
+      for(int i=0; i < NUM_LEDS; i++) {
+
+        leds[i].b = myFile.read();
+        leds[i].g= myFile.read();
+        leds[i].r= myFile.read();  
+         
+        if(i<LASER_OFFSET){
+          leds[i].b = leds[i].b*brightness/MAX_BRIGHTNESS;
+          leds[i].g = leds[i].g*brightness/MAX_BRIGHTNESS; 
+          leds[i].r = leds[i].r*brightness/MAX_BRIGHTNESS;
+        }
+        else{
+          if(!laserOn){
+            leds[i].b = 0;
+            leds[i].g = 0; 
+            leds[i].r = 0;
+          }
+        }
+
         if (serialDebug) {
-        Serial.println("EOL"); //end of each line
-        }
-        
-        
-        for(time=0; time<=LINE_DELAY; time++){
-            delay(1);            
-            if(audioMode>0){ 
-                 if (fps > 40) {
-                    if (peak1.available()) {
-                      fps = 0;
-                      previousPeak=monoPeak;
-                      monoPeak = peak1.read() * 30.0 + 1;
-                      Serial.println(monoPeak);
-                      if(monoPeak>=13){
-                        peakDetected=1;
-                      }
-                    }
-                }
-            }          
-        }
+            Serial.print(leds[i].r,HEX);  
+            Serial.print(":");
+            Serial.print(leds[i].g,HEX);  
+            Serial.print(":");
+            Serial.print(leds[i].b,HEX);  
+            Serial.print(",");
+          }
+      }
+}
 
-        if(peakDetected==1){peakDetected=0; lineNo=0;}
+void loadNextImage()
+{
+    imageNo= (imageNo+1)%NO_OF_FILES;
+    loadBMPinfo(imageNo);
+    Serial.println("***NEXT IMAGE***");
+}
 
-        FastLED.show(); //fastspi output
-        button1.Update();
-    }    
-} 
+void calculateSoundLevel()
+{
+    if (fft256.available()) 
+    {
+         level = fft256.read(4,10); ///Low band frequency
+         //int val = level * scale;
+         int val = zmap(level, 0, 0.1, 30, MAX_BRIGHTNESS, true);
+         //val = 100;
+         //Serial.println(val);  
+         if (val > MAX_BRIGHTNESS) val = MAX_BRIGHTNESS;
+  
+          if (val >= shown) {
+             shown = val;
+           } 
+          else  {
+              if (shown > 0) shown = shown - 10;
+  
+          }
+      }
+}
+
+void detectPeak()
+{
+     if(audioMode==1 && fps > 40 && peak1.available())
+     {
+          fps = 0;
+          previousPeak=monoPeak;
+          monoPeak = peak1.read() * 30.0 + 1;
+          Serial.println(monoPeak);
+          if(monoPeak>=13)
+          {
+            peakDetected=true;
+          }
+     }
+}
+
+float zmap(float input, float inMin, float inMax, float outMin, float outMax, bool _clamp){
+
+      float out = (input-inMin)/(inMax-inMin)*(outMax-outMin)+outMin;
+
+      if(_clamp){
+        out = clamp(out, outMin, outMax);
+      }
+      
+      return out;
+
+}
+
+
+float clamp(float value, float valueMin, float valueMax){
+
+      float out = value;
+      
+      if(value > valueMax){
+        out = valueMax;
+      }
+
+      if(value < valueMin){
+        out = valueMin;
+      }
+      
+    return out;
+}

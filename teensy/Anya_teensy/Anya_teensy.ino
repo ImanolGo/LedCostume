@@ -35,9 +35,10 @@ const int buttonPin1=18;       //Pin to change which bitmap it is currently read
 
 // pixel width : 783
 
-#define NO_OF_FILES 12
+#define NO_OF_FILES 20
 //*** MAKE SURE FILE NAMES ARE SHORT (<=5 characters excluding .bmp bit)
-char* fileNames[] = {"1.bmp", "2.bmp", "3.bmp", "4.bmp", "5.bmp", "6.bmp", "7.bmp", "8.bmp", "9.bmp", "10.bmp", "11.bmp", "12.bmp"}; //, "13.bmp", "14.bmp", "15.bmp", "16.bmp", "17.bmp", "18.bmp", "19.bmp", "20.bmp"};
+char* fileNames[] = {"1.bmp", "2.bmp", "3.bmp", "4.bmp", "5.bmp", "6.bmp", "7.bmp", "8.bmp", "9.bmp", "10.bmp",
+                      "11.bmp", "12.bmp", "13.bmp", "14.bmp", "15.bmp", "16.bmp", "17.bmp", "18.bmp", "19.bmp", "20.bmp"}; //, "13.bmp", "14.bmp", "15.bmp", "16.bmp", "17.bmp", "18.bmp", "19.bmp", "20.bmp"};
 //char* fileNames[] = {"1.bmp"};
 
 //******************************************************
@@ -299,16 +300,16 @@ void setGuiLeds()
   for(int i=0; i < numLeds; i++) 
   {
      if(audioMode==0){
-        leds[A_4 + i].b = BRIGHTNESS;
+        leds[A_5 + i].b = BRIGHTNESS;
         leds[A_6 + i].b = BRIGHTNESS;
      }
      else if(audioMode==1){
-        leds[A_4 + i].g = BRIGHTNESS;
+        leds[A_5 + i].g = BRIGHTNESS;
         leds[A_6 + i].g = BRIGHTNESS;
      }
 
      else if(audioMode==2){
-        leds[A_4 + i].r = BRIGHTNESS;
+        leds[A_5 + i].r = BRIGHTNESS;
         leds[A_6 + i].r = BRIGHTNESS;
      }
   }
@@ -388,7 +389,7 @@ void calculateSoundLevel()
              shown = val;
            } 
           else  {
-              if (shown > 0) shown = shown - 20;
+              if (shown > 0) shown = shown - 10;
   
           }
       }

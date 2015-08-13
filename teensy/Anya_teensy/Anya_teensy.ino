@@ -388,7 +388,7 @@ void calculateSoundLevel()
              shown = val;
            } 
           else  {
-              if (shown > 0) shown = shown - 10;
+              if (shown > 0) shown = shown - 20;
   
           }
       }

@@ -172,7 +172,7 @@ void setup(){
     button1.multiclickTime = 250;  // Time limit for multi clicks
     button1.longClickTime  = 1000; // time until "held-down clicks" register
     
-    FastLED.setBrightness(BRIGHTNESS);
+    //FastLED.setBrightness(BRIGHTNESS);
     
     
       Serial.print("Initializing SD card...");
@@ -201,6 +201,12 @@ Serial.println("DONE OUTPUTTING ALL DATA");
 
 
 void loadBMPinfo(int file) {
+    
+    if (!SD.exists(fileNames[file])) {
+        setLedsOff();
+        return;
+    }
+    
     byte heightByte[4]; 
     height = 0; //start with a zero'd signed long, 4 bytes.
     myFile.close();  
@@ -271,11 +277,10 @@ void checkButton() {
             presses=0;
 
             if(guiOn){
-              loadNextImage();
-              lineNo = 0;
               guiOn = false;
             }
             else{
+              loadNextImage();
               guiOn = true;
            }
              
@@ -296,12 +301,7 @@ void checkButton() {
        else if(presses == -1){    //Single long press
            presses=0;
            onoff=0;
-           for(int i=0; i < NUM_LEDS; i++) {
-              leds[i].b=0;
-              leds[i].g=0;
-              leds[i].r=0;
-           }
-           FastLED.show();
+           setLedsOff();
            
            while(onoff==0){
              button1.Update();
@@ -328,15 +328,18 @@ void setGuiLeds()
   for(int i=0; i < numLeds; i++) 
   {
      if(audioMode==0){
+        leds[J_2 + i].b = BRIGHTNESS;
         leds[J_5 + i].b = BRIGHTNESS;
         leds[J_6 + i].b = BRIGHTNESS;
      }
      else if(audioMode==1){
+        leds[J_2 + i].g = BRIGHTNESS;
         leds[J_5 + i].g = BRIGHTNESS;
         leds[J_6 + i].g = BRIGHTNESS;
      }
 
      else if(audioMode==2){
+        leds[J_2 + i].r = BRIGHTNESS;
         leds[J_5 + i].r = BRIGHTNESS;
         leds[J_6 + i].r = BRIGHTNESS;
      }
@@ -397,6 +400,7 @@ void setFrame(int frameIndex) {
 
 void loadNextImage()
 {
+    lineNo = 0;
     imageNo= (imageNo+1)%NO_OF_FILES;
     loadBMPinfo(imageNo);
     Serial.println("***NEXT IMAGE***");
@@ -436,6 +440,18 @@ void detectPeak()
             peakDetected=true;
           }
      }
+}
+
+
+float setLedsOff(){
+
+      for(int i=0; i < NUM_LEDS; i++) {
+              leds[i].b=0;
+              leds[i].g=0;
+              leds[i].r=0;
+           }
+     FastLED.show();
+
 }
 
 float zmap(float input, float inMin, float inMax, float outMin, float outMax, bool _clamp){

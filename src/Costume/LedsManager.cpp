@@ -197,6 +197,7 @@ void LedsManager::createLaser(const ofPoint& position, int& id, int channel, Las
     }
     
     ofPtr<Laser> laser = ofPtr<Laser> (new Laser(position) );
+    laser->setColor(ofColor::black);
     lasers.back()->addLaser(laser);
     
     
@@ -206,7 +207,7 @@ void LedsManager::createLaser(const ofPoint& position, int& id, int channel, Las
 void LedsManager::createLed(const ofPoint& position, int& id, int channel, LedVector& leds)
 {
     ofPtr<Led> led = ofPtr<Led> (new Led ( position, id, channel ) );
-    
+    led->setColor(ofColor::black);
     leds.push_back(led);
     
     id++;

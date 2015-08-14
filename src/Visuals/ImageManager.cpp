@@ -77,6 +77,7 @@ void ImageManager::updateLedColorPixels()
             //m_colorVectorMap.at(ledVector.first).push_back(led->getColor());
             auto& colors = m_colorVectorMap.at(ledVector.first);
             colors.push_back(led->getColor());
+            //colors.push_back(ofColor::black);
         }
     }
 }

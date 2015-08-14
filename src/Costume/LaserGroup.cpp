@@ -42,11 +42,20 @@ void LaserGroup::draw(int width, int height)
 
 void  LaserGroup::updateColor()
 {
-    if(m_lasers.size() >= 3){
+    m_color = ofColor::black;
+    
+    if(m_lasers.size() > 0){
         m_color.r =  m_lasers[0]->getColor().getBrightness();
+    }
+    
+    if(m_lasers.size() > 1){
         m_color.g =  m_lasers[1]->getColor().getBrightness();
+    }
+    
+    if(m_lasers.size() > 2){
         m_color.b =  m_lasers[2]->getColor().getBrightness();
     }
+    
 }
 
 

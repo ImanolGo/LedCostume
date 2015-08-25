@@ -1,15 +1,15 @@
 <LedCostume>
-	<FPS>23.9929</FPS>
+	<FPS>24.0139</FPS>
 	<Noise>
 		<Frequency>0.903469</Frequency>
 		<Time_Frequency>1</Time_Frequency>
 		<Magnitude>0.3</Magnitude>
 		<Grid_Size>6</Grid_Size>
 		<Grid_resolution>20</Grid_resolution>
-	<Noise_Frequency>3.63848</Noise_Frequency>
-		<Noise_Speed>0.385711</Noise_Speed>
+	<Noise_Frequency>3.47522</Noise_Frequency>
+		<Noise_Speed>0.25456</Noise_Speed>
 		<Input_Level>0</Input_Level>
-	<Noise_Resolution>6</Noise_Resolution>
+	<Noise_Resolution>19</Noise_Resolution>
 		<Noise_Hue>21</Noise_Hue>
 	<Noise_Saturation>193</Noise_Saturation>
 	<Noise_Brightness>255</Noise_Brightness>
@@ -31,7 +31,7 @@
 		<Audio_Level>0.897959</Audio_Level>
 	</Audio>
 <Color>
-		<Hue>0</Hue>
+		<Hue>178.426</Hue>
 		<Saturation>0</Saturation>
 		<Brightness>255</Brightness>
 	</Color>

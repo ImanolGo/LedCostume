@@ -233,7 +233,7 @@ void streamSdToLED() {
       
                               
         if (serialDebug) {
-        Serial.println("EOL"); //end of each line
+        //Serial.println("EOL"); //end of each line
         }
         
         
@@ -260,11 +260,10 @@ void checkButton() {
             Serial.println("SINGLE click");
             
             if(guiOn){
-              loadNextImage();
-              lineNo = 0;
               guiOn = false;
             }
             else{
+              loadNextImage();
               guiOn = true;
            }
              
@@ -385,6 +384,7 @@ void setFrame(int frameIndex) {
 
 void loadNextImage()
 {
+    lineNo = 0;
     imageNo= (imageNo+1)%NO_OF_FILES;
     loadBMPinfo(imageNo);
     Serial.println("***NEXT IMAGE***");

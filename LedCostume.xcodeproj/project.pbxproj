@@ -21,6 +21,7 @@
 		08E30BF91B5F85A000789D32 /* AudioRings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BF71B5F85A000789D32 /* AudioRings.cpp */; };
 		08E30BFC1B5FC32800789D32 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BFA1B5FC32800789D32 /* Laser.cpp */; };
 		08E30C001B5FF78D00789D32 /* LaserGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E30BFE1B5FF78D00789D32 /* LaserGroup.cpp */; };
+		08E83FF71B8DA8A8008BA517 /* AudioEqualizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08E83FF51B8DA8A8008BA517 /* AudioEqualizer.cpp */; };
 		08EA40EE1B7B4A5600EC0E39 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08EA40E51B7B4A5600EC0E39 /* fft.cpp */; };
 		08EA40EF1B7B4A5600EC0E39 /* ofxFFTBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08EA40E81B7B4A5600EC0E39 /* ofxFFTBase.cpp */; };
 		08EA40F01B7B4A5600EC0E39 /* ofxFFTFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08EA40EA1B7B4A5600EC0E39 /* ofxFFTFile.cpp */; };
@@ -143,6 +144,8 @@
 		08E30BFB1B5FC32800789D32 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Laser.h; path = Costume/Laser.h; sourceTree = "<group>"; };
 		08E30BFE1B5FF78D00789D32 /* LaserGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaserGroup.cpp; path = Costume/LaserGroup.cpp; sourceTree = "<group>"; };
 		08E30BFF1B5FF78D00789D32 /* LaserGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaserGroup.h; path = Costume/LaserGroup.h; sourceTree = "<group>"; };
+		08E83FF51B8DA8A8008BA517 /* AudioEqualizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioEqualizer.cpp; sourceTree = "<group>"; };
+		08E83FF61B8DA8A8008BA517 /* AudioEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEqualizer.h; sourceTree = "<group>"; };
 		08EA40E31B7B4A5600EC0E39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		08EA40E51B7B4A5600EC0E39 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
 		08EA40E61B7B4A5600EC0E39 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 		08B1BF261B4FC606003C7BB3 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				08E83FF51B8DA8A8008BA517 /* AudioEqualizer.cpp */,
+				08E83FF61B8DA8A8008BA517 /* AudioEqualizer.h */,
 				08E30BF71B5F85A000789D32 /* AudioRings.cpp */,
 				08E30BF81B5F85A000789D32 /* AudioRings.h */,
 				08E30BF31B5E9B3F00789D32 /* AudioParticles.cpp */,
@@ -855,6 +860,7 @@
 				FCA1CD00EA2BBEEEBA5C4AC9 /* svgtiny_list.cpp in Sources */,
 				E76816EF014518B0B3E83C39 /* ofxSvg.cpp in Sources */,
 				08B1BF291B4FC606003C7BB3 /* NoiseManager.cpp in Sources */,
+				08E83FF71B8DA8A8008BA517 /* AudioEqualizer.cpp in Sources */,
 				D75E4524BBB94FF34BF7DD48 /* ReleaseNotes in Sources */,
 				82C668F7D0DF704AD7D1BB1C /* utf8cpp.html in Sources */,
 				B7993B374B98F50CBD9EC220 /* README.md in Sources */,

@@ -14,6 +14,7 @@
 #include "ofxFFTLive.h"
 #include "AudioParticles.h"
 #include "AudioRings.h"
+#include "AudioEqualizer.h"
 
 
 //========================== class AudioVisualsManager ==============================
@@ -67,11 +68,15 @@ class AudioVisualsManager: public Manager
     
         void setupParticles();
     
+        void setupEqualizer();
+    
         void updateFbo();
     
         void updateRings();
     
         void updateParticles();
+    
+        void updateEqualizer();
     
         void setupFft();
     
@@ -80,6 +85,8 @@ class AudioVisualsManager: public Manager
         void drawRings();
     
         void drawParticles();
+    
+        void drawEqualizer();
     
     public:
     
@@ -97,6 +104,7 @@ class AudioVisualsManager: public Manager
     
         AudioParticles  m_particles;
         AudioRings      m_rings;
+        AudioEqualizer  m_equalizer;
 
         ofFbo               m_fbo;
         ofShader            m_shader;

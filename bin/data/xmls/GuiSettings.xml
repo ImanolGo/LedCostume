@@ -1,5 +1,5 @@
 <LedCostume>
-	<FPS>24.0139</FPS>
+	<FPS>24.0076</FPS>
 	<Noise>
 		<Frequency>0.903469</Frequency>
 		<Time_Frequency>1</Time_Frequency>
@@ -22,9 +22,9 @@
 	<Mirror>0</Mirror>
 	</Image_Export>
 <Modes>
-		<Video>1</Video>
+		<Video>0</Video>
 		<Noise>0</Noise>
-	<Audio>0</Audio>
+	<Audio>1</Audio>
 	</Modes>
 <Video/>
 <Audio>

@@ -82,7 +82,7 @@ AudioConnection          patchCord2(adc1,fft256);
 //FFT audio mode
 float scale = 60.0*32.0; // The scale sets how much sound is needed in each frequency range to show full brightness
 float level = 0; // Value holding one frequency band
-int shown = 0;// holds the value in case id quickly drops
+float shown = 0;// holds the value in case id quickly drops
 
 //Gui
 bool guiOn = true;
@@ -104,6 +104,7 @@ int audioMode=0;
 int monoPeak;
 int previousPeak;
 int lineNo = 0;
+int peakThreshold = 13;
 
 
 #define SDchipSelect 10       //chip select for SD card --53 on mega, 10 on 328
@@ -121,9 +122,7 @@ void setup(){
     AudioMemory(4);
   
     Serial.begin(115200);   
-     while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
-   }   
+    delay(500); // wait for serial port to connect.  
     Serial.println("Start");
     
     //pinMode(SWITCH_PIN, INPUT_PULLUP);
@@ -396,16 +395,16 @@ void calculateSoundLevel()
     {
          level = fft256.read(4,10); ///Low band frequency
          //int val = level * scale;
-         int val = zmap(level, 0, 0.1, 30, MAX_BRIGHTNESS, true);
+         float val = zmap(level, 0, 0.1, 0, 1.0, true);
          //val = 100;
          //Serial.println(val);  
-         if (val > MAX_BRIGHTNESS) val = MAX_BRIGHTNESS;
+         //if (val > MAX_BRIGHTNESS) val = MAX_BRIGHTNESS;
   
           if (val >= shown) {
              shown = val;
            } 
           else  {
-              if (shown > 0) shown = shown - 10;
+              if (shown > 0) shown = shown - 0.1;
   
           }
       }
@@ -419,7 +418,7 @@ void detectPeak()
           previousPeak=monoPeak;
           monoPeak = peak1.read() * 30.0 + 1;
           //Serial.println(monoPeak);
-          if(monoPeak>=13)
+          if(monoPeak>=peakThreshold)
           {
             peakDetected=true;
           }

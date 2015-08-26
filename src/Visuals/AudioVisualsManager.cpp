@@ -13,7 +13,7 @@
 #include "AppManager.h"
 
 
-const int AudioVisualsManager::NUMBER_VISUALS = 2;
+const int AudioVisualsManager::NUMBER_VISUALS = 3;
 const int AudioVisualsManager::FBO_WIDTH = 1030;
 const int AudioVisualsManager::FBO_HEIGHT = 524;
 
@@ -43,6 +43,7 @@ void AudioVisualsManager::setup()
     this->setupShader();
     this->setupParticles();
     this->setupRings();
+    this->setupEqualizer();
 
     ofLogNotice() <<"AudioVisualsManager::initialized" ;
     
@@ -100,6 +101,13 @@ void AudioVisualsManager::setupRings()
     m_rings.setup();
 }
 
+
+void AudioVisualsManager::setupEqualizer()
+{
+    m_equalizer.setup();
+}
+
+
 void AudioVisualsManager::update()
 {
     if (!m_playAudioVisuals) {
@@ -116,6 +124,9 @@ void AudioVisualsManager::update()
             break;
         case 1:
             this->updateParticles();
+            break;
+        case 2:
+            this->updateEqualizer();
             break;
             
         default:
@@ -155,6 +166,11 @@ void AudioVisualsManager::updateRings()
     delete[] audioData;
 }
 
+void AudioVisualsManager::updateEqualizer()
+{
+    m_equalizer.update();
+}
+
 void AudioVisualsManager::updateFbo()
 {
     
@@ -168,6 +184,9 @@ void AudioVisualsManager::updateFbo()
                 break;
             case 1:
                 this->drawParticles();
+                break;
+            case 2:
+                this->drawEqualizer();
                 break;
             
             default:
@@ -216,6 +235,11 @@ void AudioVisualsManager::drawRings()
     
 
     
+}
+
+void AudioVisualsManager::drawEqualizer()
+{
+    m_equalizer.draw();
 }
 
 void AudioVisualsManager::draw()

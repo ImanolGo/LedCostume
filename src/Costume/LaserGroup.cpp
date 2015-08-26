@@ -85,3 +85,4 @@ void LaserGroup::setPixelsColors(ofPixelsRef pixels)
     
     this->updateColor();
 }
+

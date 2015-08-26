@@ -70,6 +70,7 @@ void LedsManager::readLedsPosition()
     int id = 0;
     readLedsPositionFromGroup("A", id, numSections);
     
+    id = 0;
     std::vector<int> sections;
     sections.push_back(1); sections.push_back(2);
     readLasersPositionFromGroup("A", id, sections);
@@ -78,6 +79,7 @@ void LedsManager::readLedsPosition()
     numSections = 8;
     readLedsPositionFromGroup("J", id, numSections);
 
+    id = 0;
     sections.clear();
     sections.push_back(1); sections.push_back(2);
     readLasersPositionFromGroup("J", id, sections);
@@ -181,20 +183,25 @@ void LedsManager::readLasersPositionFromGroup(const string& groupName, int& id, 
                 string line = buffer.getNextLine();
                 ofPoint laserPosition;
                 if(parseLedLine(line,laserPosition)){
+                    int id_ = id;
                     createLaser(laserPosition, id, channel, lasers);
-                    channelSize++;
+                    
+                    if(id_!= id){
+                        channelSize++;
+                    }
+                    
                 }
                 
             }
             
-            channelSizes.push_back(channelSize);
-            channel++;
+            
         }
         else{
             ofLogNotice() <<"LedsManager::readLasersPositionFromGroup -> unable to read lasers from " << laser_section_path;
         }
         
         channel++;
+        channelSizes.push_back(channelSize);
     }
     
     

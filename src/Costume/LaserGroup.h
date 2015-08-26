@@ -32,7 +32,7 @@ class LaserGroup: public BasicVisual {
     
         int   getNumberLasers() const {return m_lasers.size();}
     
-        const ofPoint& getLaserPosition(int laserId) { m_lasers[laserId]->getPosition();}
+        const ofPoint& getLaserPosition(int laserId){ return m_lasers[laserId]->getPosition();}
 
         void normalize(const ofRectangle& boundingBox);
     

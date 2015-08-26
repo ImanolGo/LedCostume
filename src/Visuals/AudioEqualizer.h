@@ -17,6 +17,7 @@
  *	\details it creates and updates the audio equalizer
  */
 
+#include "LedsManager.h"
 
 class AudioEqualizer
 {
@@ -40,8 +41,14 @@ class AudioEqualizer
     
     private:
     
+        void setupNumFrames();
     
-
+    private:
+    
+        int m_numFrames;
+        int m_currentFrame;
+    
+        LedsManager::LedVector m_leds;
 };
 
 

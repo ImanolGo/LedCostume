@@ -29,10 +29,12 @@ class LedsManager: public Manager
     
     public:
     
+        typedef vector<int> IntVector;
         typedef vector< ofPtr<Led> > LedVector;
         typedef vector< ofPtr<LaserGroup> > LaserVector;
         typedef map< string, LedVector> LedMap;
         typedef map< string, LaserVector> LaserMap;
+        typedef map< string, IntVector>   ChannelMap;
     
     public:
 
@@ -57,6 +59,10 @@ class LedsManager: public Manager
         const LedMap& getLeds() const {return m_leds;}
     
         const LaserMap& getLasers() const {return m_lasers;}
+    
+        const ChannelMap& getLedChannels() const {return m_ledChannels;}
+    
+        const ChannelMap& getLaserChannels() const {return m_laserChannels;}
     
         int getNumberLeds(const string& key) const;
     
@@ -101,6 +107,8 @@ class LedsManager: public Manager
     
         LedMap          m_leds;
         LaserMap        m_lasers;
+        ChannelMap      m_ledChannels;
+        ChannelMap      m_laserChannels;
         ofRectangle     m_boundingBox;
     
 };

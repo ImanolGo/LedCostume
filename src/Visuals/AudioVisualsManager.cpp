@@ -239,7 +239,10 @@ void AudioVisualsManager::drawRings()
 
 void AudioVisualsManager::drawEqualizer()
 {
-    m_equalizer.draw();
+    ofPushStyle();
+    ofClear(0);
+        m_equalizer.draw();
+    ofPopStyle();
 }
 
 void AudioVisualsManager::draw()

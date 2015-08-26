@@ -124,11 +124,14 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
 {
     int channel = 0;
     LedVector leds;
+    IntVector channelSizes;
     
     for(int i = 1; i <= numberOfSections; i++)
     {
         string led_section_path = LEDS_LIST_PATH + groupName + ofToString(i) + ".txt";
         ofBuffer buffer = ofBufferFromFile(led_section_path);
+        
+        int channelSize = 0;
         
         if(buffer.size())
         {
@@ -138,27 +141,36 @@ void LedsManager::readLedsPositionFromGroup(const string& groupName, int& id, in
                 ofPoint ledPosition;
                 if(parseLedLine(line,ledPosition)){
                     createLed(ledPosition, id, channel, leds);
+                    channelSize++;
                 }
                 
             }
+            
+            ofLogNotice() <<"LedsManager::readLedsPositionFromGroup -> groupName " << groupName << ", group numLeds = "  << channelSize;
+            channelSizes.push_back(channelSize);
+            channel++;
         }
         
-        channel++;
+       
     }
     
     ofLogNotice() <<"LedsManager::readLedsPositionFromGroup -> groupName " << groupName << ", numLeds = "  << leds.size();
     m_leds[groupName] = leds;
+    m_ledChannels[groupName] = channelSizes;
 }
 
 void LedsManager::readLasersPositionFromGroup(const string& groupName, int& id, vector<int>& sections)
 {
     int channel = 0;
     LaserVector lasers;
+    IntVector channelSizes;
     
     for(auto section: sections)
     {
         string laser_section_path = LASERS_LIST_PATH + groupName + ofToString(section) + ".txt";
         ofBuffer buffer = ofBufferFromFile(laser_section_path);
+        
+        int channelSize = 0;
         
         if(buffer.size())
         {
@@ -170,9 +182,13 @@ void LedsManager::readLasersPositionFromGroup(const string& groupName, int& id, 
                 ofPoint laserPosition;
                 if(parseLedLine(line,laserPosition)){
                     createLaser(laserPosition, id, channel, lasers);
+                    channelSize++;
                 }
                 
             }
+            
+            channelSizes.push_back(channelSize);
+            channel++;
         }
         else{
             ofLogNotice() <<"LedsManager::readLasersPositionFromGroup -> unable to read lasers from " << laser_section_path;
@@ -185,6 +201,7 @@ void LedsManager::readLasersPositionFromGroup(const string& groupName, int& id, 
     ofLogNotice() <<"LedsManager::readLasersPositionFromGroup -> groupName " << groupName << ", numLasers = "  << lasers.size();
  
     m_lasers[groupName] = lasers;
+    m_laserChannels[groupName] = channelSizes;
 }
 
 
